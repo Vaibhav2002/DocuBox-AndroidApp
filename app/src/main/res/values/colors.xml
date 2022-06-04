@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="background1">#FFFFFF</color>
+    <color name="background2">#F9F9F9</color>
+    <color name="background3">#F7F7F7</color>
+    <color name="primary">#0A2543</color>
+    <color name="onPrimary">#FFFFFF</color>
+
+    <color name="secondary">#F95E07</color>
+    <color name="secondaryContainer">#33FF6208</color>
+    <color name="inActive">#7A7A7A</color>
+    <color name="primaryText">#1F2528</color>
+    <color name="secondaryText">#2F3537</color>
+    <color name="tertiaryText">#8A8E90</color>
+
+    <color name="main">#263238</color>
+    <color name="white">#ffffff</color>
+
+    <color name="rippleColor">#2F000000</color>
+</resources>

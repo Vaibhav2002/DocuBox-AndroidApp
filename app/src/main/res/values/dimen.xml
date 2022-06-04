@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+
+    <dimen name="calculatorButtonDimension">75dp</dimen>
+
+    <dimen name="calculatorButtonPadding">10dp</dimen>
+    <dimen name="calculatorButtonMargin">5dp</dimen>
+    <dimen name="defaultButtonCornerRadius">10dp</dimen>
+    <dimen name="calculatorButtonFontSize">35sp</dimen>
+
+    <dimen name="appScreenPadding">20dp</dimen>
+
+
+
+
+</resources>

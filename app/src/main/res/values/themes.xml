@@ -1,0 +1,60 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Theme.DocuBox" parent="Theme.Material3.Light.NoActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorPrimaryVariant">@color/primary</item>
+        <item name="colorPrimaryContainer">@color/primary</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/secondary</item>
+        <item name="colorSecondaryVariant">@color/secondary</item>
+        <item name="colorSecondaryContainer">@color/secondary</item>
+        <item name="colorOnSecondary">@color/white</item>
+
+        <item name="backgroundColor">@color/background2</item>
+        <item name="colorSurface">@color/background1</item>
+        <item name="colorBackgroundFloating">@color/background1</item>
+
+        <item name="colorOnBackground">@color/primaryText</item>
+        <item name="colorOnSurface">@color/secondaryText</item>
+
+        <item name="textAppearanceDisplayLarge">@style/TextAppearance.MdcTypographyStyles.DisplayLarge</item>
+        <item name="textAppearanceDisplayMedium">@style/TextAppearance.MdcTypographyStyles.DisplayMedium</item>
+        <item name="textAppearanceDisplaySmall">@style/TextAppearance.MdcTypographyStyles.DisplayLarge</item>
+        <item name="textAppearanceHeadlineLarge">@style/TextAppearance.MdcTypographyStyles.HeadlineLarge</item>
+        <item name="textAppearanceHeadlineMedium">@style/TextAppearance.MdcTypographyStyles.HeadlineMedium</item>
+        <item name="textAppearanceHeadlineSmall">@style/TextAppearance.MdcTypographyStyles.HeadlineSmall</item>
+        <item name="textAppearanceTitleLarge">@style/TextAppearance.MdcTypographyStyles.TitleLarge</item>
+        <item name="textAppearanceTitleMedium">@style/TextAppearance.MdcTypographyStyles.TitleMedium</item>
+        <item name="textAppearanceTitleSmall">@style/TextAppearance.MdcTypographyStyles.TitleSmall</item>
+        <item name="textAppearanceLabelLarge">@style/TextAppearance.MdcTypographyStyles.LabelLarge</item>
+        <item name="textAppearanceLabelMedium">@style/TextAppearance.MdcTypographyStyles.LabelMedium</item>
+        <item name="textAppearanceLabelSmall">@style/TextAppearance.MdcTypographyStyles.LabelSmall</item>
+        <item name="textAppearanceBodyLarge">@style/TextAppearance.MdcTypographyStyles.BodyLarge</item>
+        <item name="textAppearanceBodyMedium">@style/TextAppearance.MdcTypographyStyles.BodyMedium</item>
+        <item name="textAppearanceBodySmall">@style/TextAppearance.MdcTypographyStyles.BodySmall</item>
+
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+        <!-- Customize your theme here. -->
+
+        <item name="bottomNavigationStyle">@style/Widget.App.BottomNav</item>
+
+    </style>
+
+    <style name="Widget.App.BottomNav" parent="Widget.Material3.BottomNavigationView">
+        <item name="materialThemeOverlay">@style/ThemeOverlay.App.BottomNav</item>
+    </style>
+
+    <style name="ThemeOverlay.App.BottomNav" parent="">
+        <item name="colorPrimary">@color/secondaryContainer</item>
+        <item name="colorSurface">@color/background1</item>
+        <item name="colorOnSurface">@color/secondary</item>
+        <item name="colorOnSecondaryContainer">@color/secondary</item>
+        <item name="colorSecondaryContainer">@color/secondaryContainer</item>
+        <item name="colorOnSurfaceVariant">@color/tertiaryText</item>
+    </style>
+
+
+</resources>
