@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/miHome"
+        android:title="Home"
+        android:icon="@drawable/ic_home"
+        app:showAsAction="ifRoom|collapseActionView" />
+
+    <item
+        android:id="@+id/miDocuments"
+        android:title="Documents"
+        android:icon="@drawable/ic_folder"
+        app:showAsAction="ifRoom|collapseActionView" />
+
+    <item
+        android:id="@+id/miDownloads"
+        android:title="Saved"
+        android:icon="@drawable/ic_downloads"
+        app:showAsAction="ifRoom|collapseActionView" />
+
+    <item
+        android:id="@+id/miProfile"
+        android:title="Profile"
+        android:icon="@drawable/ic_profile"
+        app:showAsAction="ifRoom|collapseActionView" />
+
+
+
+
+
+
+</menu>

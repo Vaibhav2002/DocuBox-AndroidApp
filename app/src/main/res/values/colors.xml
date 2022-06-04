@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorAppBackground">#fAfAfA</color>
+    <color name="colorAppBackground">#ffffff</color>
     <color name="colorPlaceholderBackground">#f2f6fb</color>
 
     <color name="colorPrimary">#479dff</color>
@@ -15,6 +15,6 @@
     <color name="colorPrimaryText">#1F2528</color>
     <color name="colorSecondaryText">#2F3537</color>
     <color name="colorTertiaryText">#8A8E90</color>
-    <color name="colorDisabled">#7A7A7A</color>
-    <color name="rippleColor">#2F000000</color>
+    <color name="colorDisabled">#909090</color>
+    <color name="rippleColor">#DEDEDE</color>
 </resources>

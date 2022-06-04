@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="TextAppearance.DocuBox.Heading1" parent="TextAppearance.Material3.DisplayLarge">
-        <item name="fontFamily">@font/poppins_semi_bold</item>
-        <item name="android:fontFamily">@font/poppins_semi_bold</item>
-        <item name="android:textSize">46sp</item>
+    <style name="TextAppearance.DocuBox.BottomNavBar" parent="TextAppearance.Material3.DisplayLarge">
+        <item name="fontFamily">@font/poppins_regular</item>
+        <item name="android:fontFamily">@font/poppins_regular</item>
+        <item name="android:textSize">13sp</item>
     </style>
 
 

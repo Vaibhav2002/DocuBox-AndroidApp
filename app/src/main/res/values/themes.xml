@@ -12,12 +12,12 @@
         <item name="colorSecondaryContainer">@color/colorPrimary</item>
         <item name="colorOnSecondary">@color/colorOnSecondary</item>
 
-        <item name="backgroundColor">@color/colorAppBackground</item>
-        <item name="colorSurface">@color/colorAppBackground</item>
-        <item name="colorBackgroundFloating">@color/colorAppBackground</item>
 
         <item name="colorOnBackground">@color/colorPrimaryText</item>
         <item name="colorOnSurface">@color/colorSecondaryText</item>
+
+        <item name="android:windowBackground">@color/colorAppBackground</item>
+        <item name="android:colorBackground">@color/colorAppBackground</item>
 
 
         <!-- Status bar color. -->
@@ -33,12 +33,12 @@
     </style>
 
     <style name="ThemeOverlay.App.BottomNav" parent="">
-        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimary">@color/colorAppBackground</item>
         <item name="colorSurface">@color/colorAppBackground</item>
-        <item name="colorOnSurface">@color/colorSecondary</item>
-        <item name="colorOnSecondaryContainer">@color/colorSecondary</item>
-        <item name="colorSecondaryContainer">@color/colorSecondary</item>
-        <item name="colorOnSurfaceVariant">@color/colorTertiaryText</item>
+        <item name="colorOnSurface">@color/colorPrimary</item>
+        <item name="colorOnSecondaryContainer">@color/colorPrimary</item>
+        <item name="colorSecondaryContainer">@android:color/transparent</item>
+        <item name="colorOnSurfaceVariant">@color/colorDisabled</item>
     </style>
 
 
