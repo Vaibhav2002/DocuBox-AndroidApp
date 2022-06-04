@@ -3,25 +3,25 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:id="@+id/miHome"
+        android:id="@+id/homeFragment"
         android:title="Home"
         android:icon="@drawable/ic_home"
         app:showAsAction="ifRoom|collapseActionView" />
 
     <item
-        android:id="@+id/miDocuments"
+        android:id="@+id/documentsFragment"
         android:title="Documents"
         android:icon="@drawable/ic_folder"
         app:showAsAction="ifRoom|collapseActionView" />
 
     <item
-        android:id="@+id/miDownloads"
-        android:title="Saved"
+        android:id="@+id/downloadsFragment"
+        android:title="Downloads"
         android:icon="@drawable/ic_downloads"
         app:showAsAction="ifRoom|collapseActionView" />
 
     <item
-        android:id="@+id/miProfile"
+        android:id="@+id/profileFragment"
         android:title="Profile"
         android:icon="@drawable/ic_profile"
         app:showAsAction="ifRoom|collapseActionView" />

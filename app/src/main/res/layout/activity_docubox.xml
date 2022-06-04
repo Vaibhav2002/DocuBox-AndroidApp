@@ -4,20 +4,33 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".DocuboxActivity">
+    tools:context=".ui.docubox.DocuBoxActivity">
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottomNavMenu"
+        android:id="@+id/bottomNavView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        app:itemIconSize="30dp"
+        app:itemRippleColor="@color/rippleColor"
+        app:itemTextAppearanceActive="@style/TextAppearance.DocuBox.BottomNavBar"
+        app:itemTextAppearanceInactive="@style/TextAppearance.DocuBox.BottomNavBar"
+        app:labelVisibilityMode="labeled"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:itemIconSize="30dp"
-        app:labelVisibilityMode="labeled"
-        app:itemRippleColor="@color/rippleColor"
-        app:itemTextAppearanceInactive="@style/TextAppearance.DocuBox.BottomNavBar"
-        app:itemTextAppearanceActive="@style/TextAppearance.DocuBox.BottomNavBar"
         app:menu="@menu/bottom_nav_menu" />
+
+    <fragment
+        android:id="@+id/navHostFragment"
+        android:name="androidx.navigation.fragment.NavHostFragment"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:defaultNavHost="true"
+        app:layout_constraintBottom_toTopOf="@+id/bottomNavView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:navGraph="@navigation/docubox_nav_graph" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

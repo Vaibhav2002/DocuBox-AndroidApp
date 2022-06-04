@@ -14,7 +14,7 @@
         android:theme="@style/Theme.DocuBox"
         tools:targetApi="31">
         <activity
-            android:name=".DocuboxActivity"
+            android:name=".ui.docubox.DocuBoxActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
