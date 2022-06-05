@@ -19,15 +19,6 @@ class DocumentsFragment : Fragment(R.layout.fragment_documents) {
         super.onViewCreated(view, savedInstanceState)
         initListeners()
     }
-import com.docubox.databinding.FragmentDocumentsBinding
-import com.docubox.util.viewBinding.viewBinding
-
-class DocumentsFragment : Fragment(R.layout.fragment_documents) {
-
-    private val binding by viewBinding(FragmentDocumentsBinding::bind)
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
 
     private fun initListeners() = with(binding) {
         addFileBtn.setOnClickListener {
@@ -37,11 +28,11 @@ class DocumentsFragment : Fragment(R.layout.fragment_documents) {
 
     private fun openFilePicker() = lifecycleScope.launchWhenStarted {
         askStoragePermission().also {
-            if (it) // open file picker
+            if (it != null) // open file picker
                 Timber.d("All permissions given")
         }
     }
 }
 
-    }
-}
+
+
