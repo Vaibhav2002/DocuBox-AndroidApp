@@ -7,14 +7,14 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.docubox.R
 import com.docubox.databinding.ActivityDocuboxBinding
+import com.docubox.util.viewBinding.viewBinding
 
 class DocuBoxActivity : AppCompatActivity() {
 
-    private lateinit var binding: ActivityDocuboxBinding
+    private val binding by viewBinding(ActivityDocuboxBinding::inflate)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityDocuboxBinding.inflate(LayoutInflater.from(this))
         setContentView(binding.root)
 
         val navController = findNavController(R.id.navHostFragment)

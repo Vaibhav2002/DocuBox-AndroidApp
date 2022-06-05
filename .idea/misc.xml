@@ -3,8 +3,8 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/AndroidStudioProjects/DocuBox-AndroidApp/app/src/main/res/layout/activity_docubox.xml" value="0.34739583333333335" />
-        <entry key="app/src/main/res/layout/activity_docubox.xml" value="0.16" />
+        <entry key="app/src/main/res/drawable/ic_folder.xml" value="0.154" />
+        <entry key="app/src/main/res/layout/activity_docubox.xml" value="0.22" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.16875" />
         <entry key="app/src/main/res/layout/fragment_documents.xml" value="0.16875" />
         <entry key="app/src/main/res/layout/fragment_downloads.xml" value="0.16875" />
