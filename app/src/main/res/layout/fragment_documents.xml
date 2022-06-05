@@ -1,14 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".DocumentsFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/documentSwipeRefreshView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Documents" />
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/btnBack"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:src="@drawable/ic_back"
+                android:layout_marginLeft="10dp"
+                app:layout_constraintBottom_toBottomOf="@+id/tvActionBarTitle"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:tint="@color/colorSecondaryText" />
+
+            <TextView
+                android:id="@+id/tvActionBarTitle"
+                style="@style/TextAppearance.MdcTypographyStyles.TitleMedium"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="2dp"
+                android:padding="10dp"
+                android:text="Root"
+                android:textColor="@color/colorSecondaryText"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/btnBack"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
 </FrameLayout>

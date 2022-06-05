@@ -11,7 +11,7 @@
     <item
         android:id="@+id/documentsFragment"
         android:title="Documents"
-        android:icon="@drawable/ic_folder"
+        android:icon="@drawable/ic_document_icon"
         app:showAsAction="ifRoom|collapseActionView" />
 
     <item
