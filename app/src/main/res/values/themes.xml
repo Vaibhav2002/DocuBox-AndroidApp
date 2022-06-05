@@ -42,5 +42,10 @@
         <item name="colorOnSurfaceVariant">@color/colorDisabled</item>
     </style>
 
+    <style name="DocuBox.BottomSheet" parent="ThemeOverlay.Material3.BottomSheetDialog">
+        <item name="colorPrimary">@color/colorOnPrimary</item>
+        <item name="colorSecondary">@color/colorOnPrimary</item>
+
+    </style>
 
 </resources>
