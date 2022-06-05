@@ -39,7 +39,6 @@
     <style name="TextAppearance.MdcTypographyStyles.TitleMedium" parent="TextAppearance.Material3.TitleMedium">
         <item name="fontFamily">@font/poppins_medium</item>
         <item name="android:fontFamily">@font/poppins_medium</item>
-        <item name="android:textSize">24sp</item>
     </style>
 
     <style name="TextAppearance.MdcTypographyStyles.TitleSmall" parent="TextAppearance.Material3.TitleSmall">

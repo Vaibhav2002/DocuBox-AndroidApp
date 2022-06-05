@@ -3,15 +3,16 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/AndroidStudioProjects/DocuBox-AndroidApp/app/src/main/res/layout/activity_docubox.xml" value="0.34739583333333335" />
+        <entry key="..\:/AndroidStudioProjects/DocuBox-AndroidApp/app/src/main/res/layout/fragment_documents.xml" value="0.2" />
+        <entry key="..\:/AndroidStudioProjects/DocuBox-AndroidApp/app/src/main/res/layout/item_file_and_folder.xml" value="0.21" />
+        <entry key="app/src/main/res/layout/activity_docubox.xml" value="0.16" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.16875" />
+        <entry key="app/src/main/res/layout/fragment_documents.xml" value="0.16875" />
         <entry key="app/src/main/res/drawable/ic_folder.xml" value="0.154" />
         <entry key="app/src/main/res/layout/activity_docubox.xml" value="0.17" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.16875" />
         <entry key="app/src/main/res/layout/fragment_documents.xml" value="0.2" />
-        <entry key="app/src/main/res/layout/fragment_downloads.xml" value="0.16875" />
-        <entry key="app/src/main/res/layout/fragment_home.xml" value="0.16875" />
-        <entry key="app/src/main/res/layout/fragment_profile.xml" value="0.16875" />
-        <entry key="app/src/main/res/layout/sheet_upload_document.xml" value="0.25" />
-        <entry key="app/src/main/res/menu/bottom_nav_menu.xml" value="0.16875" />
       </map>
     </option>
   </component>
