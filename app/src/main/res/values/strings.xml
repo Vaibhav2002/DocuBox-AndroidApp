@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">DocuBox</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="ok">OK</string>
+    <string name="cancel">Cancel</string>
+    <string name="rationale_message">Core features are based on these permission</string>
+    <string name="permission_settings_message">You need to allow necessary permissions in Settings manually</string>
 </resources>
