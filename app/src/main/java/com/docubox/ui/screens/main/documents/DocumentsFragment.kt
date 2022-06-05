@@ -14,8 +14,8 @@ import com.docubox.util.extensions.askStoragePermission
 import com.docubox.util.extensions.compose
 import com.docubox.util.extensions.launchAndCollectLatest
 import com.docubox.util.viewBinding.viewBinding
-import dagger.hilt.android.AndroidEntryPoint
 import com.google.android.material.bottomsheet.BottomSheetDialog
+import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
 
 @AndroidEntryPoint
@@ -51,11 +51,17 @@ class DocumentsFragment : Fragment(R.layout.fragment_documents) {
 
     private fun initListeners() = with(binding) {
         addFileBtn.setOnClickListener {
-            //openFilePicker()
-            val bottomSheetDialog = BottomSheetDialog(requireContext(),R.style.DocuBox_BottomSheet)
-            bottomSheetDialog.setContentView(R.layout.sheet_upload_document)
-            bottomSheetDialog.show()
+            openBottomSheet()
         }
+    }
+
+    private fun openBottomSheet() {
+        val bottomSheetDialog = BottomSheetDialog(
+            requireContext(),
+            R.style.DocuBox_BottomSheet
+        ).apply {
+            setContentView(R.layout.sheet_upload_document)
+        }.also { it.show() }
     }
 
     private fun openFilePicker() = lifecycleScope.launchWhenStarted {
