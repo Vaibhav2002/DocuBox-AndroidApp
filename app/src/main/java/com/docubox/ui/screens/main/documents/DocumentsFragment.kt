@@ -9,6 +9,7 @@ import com.docubox.R
 import com.docubox.databinding.FragmentDocumentsBinding
 import com.docubox.util.extensions.askStoragePermission
 import com.docubox.util.viewBinding.viewBinding
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import timber.log.Timber
 
 class DocumentsFragment : Fragment(R.layout.fragment_documents) {
@@ -22,7 +23,10 @@ class DocumentsFragment : Fragment(R.layout.fragment_documents) {
 
     private fun initListeners() = with(binding) {
         addFileBtn.setOnClickListener {
-            openFilePicker()
+            //openFilePicker()
+            val bottomSheetDialog = BottomSheetDialog(requireContext(),R.style.DocuBox_BottomSheet)
+            bottomSheetDialog.setContentView(R.layout.sheet_upload_document)
+            bottomSheetDialog.show()
         }
     }
 
