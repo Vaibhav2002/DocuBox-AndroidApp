@@ -1,9 +1,8 @@
-package com.docubox.ui.docubox
+package com.docubox.ui.screens
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.LayoutInflater
-import androidx.navigation.NavController
+import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.docubox.R
@@ -20,6 +19,5 @@ class DocuBoxActivity : AppCompatActivity() {
 
         val navController = findNavController(R.id.navHostFragment)
         binding.bottomNavView.setupWithNavController(navController)
-
     }
 }
