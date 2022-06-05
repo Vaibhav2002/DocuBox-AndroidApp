@@ -1,14 +1,15 @@
 package com.docubox.ui.screens
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.docubox.R
 import com.docubox.databinding.ActivityDocuboxBinding
 import com.docubox.util.viewBinding.viewBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class DocuBoxActivity : AppCompatActivity() {
 
     private val binding by viewBinding(ActivityDocuboxBinding::inflate)

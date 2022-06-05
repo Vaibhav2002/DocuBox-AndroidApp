@@ -2,6 +2,7 @@ package com.docubox.ui.adapter
 
 import android.annotation.SuppressLint
 import androidx.recyclerview.widget.DiffUtil
+import com.docubox.data.modes.local.StorageItem
 
 internal class DiffUtilCallback<ITEM> : DiffUtil.ItemCallback<ITEM>() {
 
@@ -11,6 +12,9 @@ internal class DiffUtilCallback<ITEM> : DiffUtil.ItemCallback<ITEM>() {
 
     @SuppressLint("DiffUtilEquals")
     override fun areContentsTheSame(oldItem: ITEM & Any, newItem: ITEM & Any): Boolean {
-        return oldItem.hashCode() == newItem.hashCode()
+        return when {
+            oldItem is StorageItem && newItem is StorageItem -> oldItem.id == newItem.id
+            else -> oldItem.hashCode() == newItem.hashCode()
+        }
     }
 }
