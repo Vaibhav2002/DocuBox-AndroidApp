@@ -13,6 +13,7 @@ import com.docubox.ui.adapter.OneAdapter
 import com.docubox.util.extensions.askStoragePermission
 import com.docubox.util.extensions.compose
 import com.docubox.util.extensions.launchAndCollectLatest
+import com.docubox.util.extensions.singleClick
 import com.docubox.util.viewBinding.viewBinding
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import dagger.hilt.android.AndroidEntryPoint
@@ -50,9 +51,7 @@ class DocumentsFragment : Fragment(R.layout.fragment_documents) {
     }
 
     private fun initListeners() = with(binding) {
-        addFileBtn.setOnClickListener {
-            openBottomSheet()
-        }
+        addFileBtn.singleClick(this@DocumentsFragment::openBottomSheet)
     }
 
     private fun openBottomSheet() {

@@ -3,12 +3,14 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/AndroidStudioProjects/DocuBox-AndroidApp/app/src/main/res/layout/activity_auth.xml" value="0.2194078947368421" />
         <entry key="..\:/AndroidStudioProjects/DocuBox-AndroidApp/app/src/main/res/layout/activity_docubox.xml" value="0.34739583333333335" />
         <entry key="..\:/AndroidStudioProjects/DocuBox-AndroidApp/app/src/main/res/layout/fragment_documents.xml" value="0.2" />
+        <entry key="..\:/AndroidStudioProjects/DocuBox-AndroidApp/app/src/main/res/layout/fragment_downloads.xml" value="0.2194078947368421" />
+        <entry key="..\:/AndroidStudioProjects/DocuBox-AndroidApp/app/src/main/res/layout/fragment_getting_started.xml" value="0.22" />
+        <entry key="..\:/AndroidStudioProjects/DocuBox-AndroidApp/app/src/main/res/layout/fragment_login.xml" value="0.2194078947368421" />
+        <entry key="..\:/AndroidStudioProjects/DocuBox-AndroidApp/app/src/main/res/layout/fragment_register.xml" value="0.21052631578947367" />
         <entry key="..\:/AndroidStudioProjects/DocuBox-AndroidApp/app/src/main/res/layout/item_file_and_folder.xml" value="0.21" />
-        <entry key="app/src/main/res/layout/activity_docubox.xml" value="0.16" />
-        <entry key="app/src/main/res/layout/activity_main.xml" value="0.16875" />
-        <entry key="app/src/main/res/layout/fragment_documents.xml" value="0.16875" />
         <entry key="app/src/main/res/drawable/ic_folder.xml" value="0.154" />
         <entry key="app/src/main/res/layout/activity_docubox.xml" value="0.17" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.16875" />
@@ -21,5 +23,12 @@
   </component>
   <component name="ProjectType">
     <option name="id" value="Android" />
+  </component>
+  <component name="VisualizationToolProject">
+    <option name="state">
+      <ProjectState>
+        <option name="scale" value="0.22" />
+      </ProjectState>
+    </option>
   </component>
 </project>

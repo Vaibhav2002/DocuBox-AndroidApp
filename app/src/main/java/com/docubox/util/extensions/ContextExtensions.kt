@@ -1,6 +1,7 @@
 package com.docubox.util.extensions
 
 import android.content.Context
+import android.widget.Toast
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import kotlin.coroutines.resume
 import kotlin.coroutines.suspendCoroutine
@@ -23,4 +24,8 @@ suspend fun Context.showAlertDialog(
         }
     }
     dialog.show()
+}
+
+fun Context.showToast(message: String) {
+    Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
 }

@@ -17,6 +17,7 @@
         <item name="colorOnBackground">@color/colorPrimaryText</item>
         <item name="colorOnSurface">@color/colorSecondaryText</item>
 
+        <item name="backgroundColor">@color/colorAppBackground</item>
         <item name="android:windowBackground">@color/colorAppBackground</item>
         <item name="android:colorBackground">@color/colorAppBackground</item>
 
