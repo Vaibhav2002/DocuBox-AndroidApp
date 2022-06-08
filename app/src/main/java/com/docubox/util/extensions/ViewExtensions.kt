@@ -3,6 +3,8 @@ package com.docubox.util.extensions
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
+import androidx.core.widget.doAfterTextChanged
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewbinding.ViewBinding
 import com.docubox.ui.adapter.OneAdapter
@@ -13,6 +15,10 @@ fun View.singleClick(onClick: () -> Unit) {
     setOnClickListener {
         onClick()
     }
+}
+
+fun EditText.listenAfterChange(afterChange: (String) -> Unit) {
+    doAfterTextChanged { afterChange(it.toString()) }
 }
 
 // Function to toggle visibility of a view
