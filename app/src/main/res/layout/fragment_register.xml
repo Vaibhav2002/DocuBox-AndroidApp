@@ -35,14 +35,38 @@
         android:textColor="@color/colorSecondaryText" />
 
     <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/usernameTIL"
+        style="@style/Widget.Material3.TextInputLayout.FilledBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="24dp"
+        app:boxBackgroundColor="@color/gray"
+        app:boxStrokeWidth="0dp"
+        android:layout_marginTop="64dp"
+        android:hint="Username"
+        app:boxStrokeWidthFocused="0dp"
+        app:placeholderText="Enter username">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/usernameTIET"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_light"
+            android:imeOptions="actionNext"
+            android:inputType="textPersonName"
+            android:singleLine="true"
+            android:textAppearance="@style/TextAppearance.MdcTypographyStyles.TitleMedium" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/emailTIL"
         style="@style/Widget.Material3.TextInputLayout.FilledBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="24dp"
-        android:layout_marginTop="64dp"
         app:boxBackgroundColor="@color/gray"
         app:boxStrokeWidth="0dp"
+        android:layout_marginTop="16dp"
         android:hint="Email"
         app:boxStrokeWidthFocused="0dp"
         app:placeholderText="Enter email">
@@ -70,7 +94,7 @@
         android:hint="Password"
         android:layout_marginTop="16dp"
         app:boxStrokeWidthFocused="0dp"
-        app:placeholderText="Enter email">
+        app:placeholderText="Enter password">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/passwordTIET"
@@ -83,30 +107,7 @@
             android:textAppearance="@style/TextAppearance.MdcTypographyStyles.TitleMedium" />
     </com.google.android.material.textfield.TextInputLayout>
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/confPasswordTIL"
-        style="@style/Widget.Material3.TextInputLayout.FilledBox"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="24dp"
-        app:boxBackgroundColor="@color/gray"
-        app:boxStrokeWidth="0dp"
-        app:passwordToggleEnabled="true"
-        android:hint="Confirm Password"
-        android:layout_marginTop="16dp"
-        app:boxStrokeWidthFocused="0dp"
-        app:placeholderText="Enter email">
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/confPasswordTIET"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/poppins_light"
-            android:imeOptions="actionNext"
-            android:inputType="textPassword"
-            android:singleLine="true"
-            android:textAppearance="@style/TextAppearance.MdcTypographyStyles.TitleMedium" />
-    </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/registerBtn"

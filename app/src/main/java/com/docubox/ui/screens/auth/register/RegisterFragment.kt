@@ -40,10 +40,10 @@ class RegisterFragment : Fragment(R.layout.fragment_register) {
         with(binding) {
             emailTIL.error = it.emailError
             passwordTIL.error = it.passwordError
-            confPasswordTIET.error = it.confirmPwdError
+            usernameTIL.error = it.usernameError
             emailTIET.isEnabled = it.areTextFieldsEnabled
             passwordTIET.isEnabled = it.areTextFieldsEnabled
-            confPasswordTIET.isEnabled = it.areTextFieldsEnabled
+            usernameTIET.isEnabled = it.areTextFieldsEnabled
             registerBtn.isEnabled = it.isRegisterButtonEnabled
         }
     }
@@ -51,7 +51,7 @@ class RegisterFragment : Fragment(R.layout.fragment_register) {
     private fun initListeners() = with(binding) {
         emailTIET.listenAfterChange(viewModel::onEmailTextChange)
         passwordTIET.listenAfterChange(viewModel::onPasswordTextChange)
-        confPasswordTIET.listenAfterChange(viewModel::onConfirmPasswordChange)
+        usernameTIET.listenAfterChange(viewModel::onUsernameChange)
         registerBtn.singleClick(viewModel::onRegisterButtonPressed)
         goToLogin.singleClick(viewModel::onGoToLoginPress)
     }
