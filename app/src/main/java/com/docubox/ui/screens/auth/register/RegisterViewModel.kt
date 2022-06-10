@@ -2,9 +2,9 @@ package com.docubox.ui.screens.auth.register
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.docubox.util.validateConfirmPassword
 import com.docubox.util.validateEmail
 import com.docubox.util.validatePassword
+import com.docubox.util.validateUsername
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
@@ -27,28 +27,28 @@ class RegisterViewModel @Inject constructor() : ViewModel() {
         _uiState.update { it.copy(password = password.trim()) }
     }
 
-    fun onConfirmPasswordChange(confirmPassword: String) = viewModelScope.launch {
-        _uiState.update { it.copy(confirmPassword = confirmPassword.trim()) }
+    fun onUsernameChange(username: String) = viewModelScope.launch {
+        _uiState.update { it.copy(username = username.trim()) }
     }
 
     private fun verifyUserInput(): Boolean {
         val emailError = uiState.value.email.validateEmail()
         val passwordError = uiState.value.password.validatePassword()
-        val confirmPasswordError =
-            uiState.value.confirmPassword.validateConfirmPassword(uiState.value.password)
+        val usernameError = uiState.value.username.validateUsername()
         _uiState.update {
             it.copy(
                 emailError = emailError,
                 passwordError = passwordError,
-                confirmPwdError = confirmPasswordError
+                usernameError = usernameError
             )
         }
-        return emailError == null && passwordError == null && confirmPasswordError == null
+        return listOf(emailError, passwordError, usernameError).none { it == null }
     }
 
     fun onRegisterButtonPressed() = viewModelScope.launch {
         if (verifyUserInput())
             registerUsingCredentials(
+                uiState.value.username,
                 uiState.value.email,
                 uiState.value.password
             )
@@ -59,6 +59,7 @@ class RegisterViewModel @Inject constructor() : ViewModel() {
     }
 
     private suspend fun registerUsingCredentials(
+        username: String,
         email: String,
         password: String,
     ) {

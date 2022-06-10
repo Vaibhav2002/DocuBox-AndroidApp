@@ -17,6 +17,11 @@ fun String.validatePassword(): String? = when {
     else -> null
 }
 
+fun String.validateUsername() = when {
+    isEmpty() -> "Username cannot be empty"
+    else -> null
+}
+
 fun String.validateConfirmPassword(password: String) = when {
     password != this -> "Passwords do not match"
     else -> null
