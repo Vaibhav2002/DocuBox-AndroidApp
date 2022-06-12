@@ -17,7 +17,7 @@ object EncryptionModule {
     fun providesAliceContext(): AliceContext =
         AliceContextBuilder().setAlgorithm(EncryptionDetails.algo)
             .setMode(EncryptionDetails.mode)
-            .setIvLength(EncryptionDetails.ivLength)
+            .setIvLength(EncryptionDetails.ivmLength)
             .setGcmTagLength(EncryptionDetails.gcmTagLength)
             .build()
 

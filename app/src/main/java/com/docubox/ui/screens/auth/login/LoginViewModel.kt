@@ -2,6 +2,8 @@ package com.docubox.ui.screens.auth.login
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.docubox.data.repo.AuthRepo
+import com.docubox.util.Resource
 import com.docubox.util.validateEmail
 import com.docubox.util.validatePassword
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -10,7 +12,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class LoginViewModel @Inject constructor() : ViewModel() {
+class LoginViewModel @Inject constructor(private val authRepo: AuthRepo) : ViewModel() {
 
     private val _uiState = MutableStateFlow(LoginScreenState())
     val uiState = _uiState.asStateFlow()
@@ -45,13 +47,13 @@ class LoginViewModel @Inject constructor() : ViewModel() {
     }
 
     private suspend fun loginUsingCredentials(email: String, password: String) {
-//        authRepo.loginUser(email, password).collectLatest {
-//            _uiState.emit(uiState.value.copy(isLoading = it is Resource.Loading))
-//            when (it) {
-//                is Resource.Error -> _events.emit(LoginScreenEvents.ShowToast(it.message))
-//                is Resource.Loading -> Unit
-//                is Resource.Success -> _events.emit(LoginScreenEvents.NavigateToMainScreen)
-//            }
-//        }
+        authRepo.loginUser(email, password).collectLatest {
+            _uiState.emit(uiState.value.copy(isLoading = it is Resource.Loading))
+            when (it) {
+                is Resource.Error -> _events.emit(LoginScreenEvents.ShowToast(it.message))
+                is Resource.Loading -> Unit
+                is Resource.Success -> _events.emit(LoginScreenEvents.NavigateToMainScreen)
+            }
+        }
     }
 }
