@@ -7,6 +7,8 @@ import com.docubox.data.modes.local.StorageItem
 
 object Constants {
 
+    const val DATASTORE_NAME = "DocuBoxDataStore"
+
     val filePermissions = listOf(
         Manifest.permission.READ_EXTERNAL_STORAGE,
         Manifest.permission.WRITE_EXTERNAL_STORAGE,
