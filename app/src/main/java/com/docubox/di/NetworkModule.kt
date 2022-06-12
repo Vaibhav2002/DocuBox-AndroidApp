@@ -1,6 +1,6 @@
 package com.docubox.di
 
-import com.docubox.data.remote.api.ApiService
+import com.docubox.data.remote.api.AuthService
 import com.docubox.util.Secrets.BASE_URL
 import dagger.Module
 import dagger.Provides
@@ -34,5 +34,6 @@ object NetworkModule {
 
     @Provides
     @Singleton
-    fun providesApiService(retrofit: Retrofit): ApiService = retrofit.create(ApiService::class.java)
+    fun providesAuthService(retrofit: Retrofit): AuthService =
+        retrofit.create(AuthService::class.java)
 }

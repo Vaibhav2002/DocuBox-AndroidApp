@@ -4,6 +4,7 @@ import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.stringPreferencesKey
 import com.docubox.data.local.dataSources.dataStore.Keys.USER_KEY
+import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
 private object Keys {
@@ -20,4 +21,6 @@ object PreferencesManager {
         key = USER_KEY,
         defaultValue = ""
     )
+
+    fun observeUser() = prefDataStore.data.map { it[USER_KEY] }
 }
