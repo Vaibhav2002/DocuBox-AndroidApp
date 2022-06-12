@@ -10,7 +10,9 @@ import com.docubox.databinding.FragmentRegisterBinding
 import com.docubox.ui.screens.DocuBoxActivity
 import com.docubox.util.extensions.*
 import com.docubox.util.viewBinding.viewBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class RegisterFragment : Fragment(R.layout.fragment_register) {
 
     private val binding by viewBinding(FragmentRegisterBinding::bind)
@@ -36,7 +38,7 @@ class RegisterFragment : Fragment(R.layout.fragment_register) {
     }
 
     private fun collectUIState() = viewModel.uiState.launchAndCollectLatest(viewLifecycleOwner) {
-        // change progress bar visibiltiy acc to isLoading
+        // change progress bar visibility acc to isLoading
         with(binding) {
             emailTIL.error = it.emailError
             passwordTIL.error = it.passwordError

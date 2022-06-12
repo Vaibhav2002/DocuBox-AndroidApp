@@ -19,7 +19,7 @@ suspend fun <T> safeApiCall(
         } else Resource.Error(message = errorMessage ?: response.message())
     } catch (e: IOException) {
         Timber.d(e.toString())
-        Resource.Error(ErrorType.NoInternet)
+        Resource.Error(ErrorType.NoInternet, message = errorMessage ?: e.message.toString())
     } catch (e: Exception) {
         Timber.d(e.toString())
         Resource.Error(ErrorType.Unknown, message = errorMessage ?: e.message.toString())

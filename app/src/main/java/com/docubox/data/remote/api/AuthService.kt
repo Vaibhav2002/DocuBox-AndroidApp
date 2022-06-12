@@ -14,7 +14,7 @@ interface AuthService {
         @Body request: LoginRequest
     ): Response<UserDto>
 
-    @POST("auth/register")
+    @POST("auth/signup")
     suspend fun registerUser(
         @Body request: RegisterRequest
     ): Response<UserDto>

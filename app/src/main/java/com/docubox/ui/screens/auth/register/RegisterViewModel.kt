@@ -2,6 +2,8 @@ package com.docubox.ui.screens.auth.register
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.docubox.data.repo.AuthRepo
+import com.docubox.util.Resource
 import com.docubox.util.validateEmail
 import com.docubox.util.validatePassword
 import com.docubox.util.validateUsername
@@ -11,7 +13,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class RegisterViewModel @Inject constructor() : ViewModel() {
+class RegisterViewModel @Inject constructor(private val authRepo: AuthRepo) : ViewModel() {
 
     private val _uiState = MutableStateFlow(RegisterScreenState())
     val uiState = _uiState.asStateFlow()
@@ -42,7 +44,7 @@ class RegisterViewModel @Inject constructor() : ViewModel() {
                 usernameError = usernameError
             )
         }
-        return listOf(emailError, passwordError, usernameError).none { it == null }
+        return listOf(emailError, passwordError, usernameError).all { it == null }
     }
 
     fun onRegisterButtonPressed() = viewModelScope.launch {
@@ -63,13 +65,13 @@ class RegisterViewModel @Inject constructor() : ViewModel() {
         email: String,
         password: String,
     ) {
-//        authRepo.registerUser(email, password).collectLatest {
-//            _uiState.emit(uiState.value.copy(isLoading = it is Resource.Loading))
-//            when (it) {
-//                is Resource.Error -> _events.emit(RegisterScreenEvents.ShowToast(it.message))
-//                is Resource.Loading -> Unit
-//                is Resource.Success -> _events.emit(RegisterScreenEvents.NavigateToAvatarSelectScreen)
-//            }
-//        }
+        authRepo.registerUser(username, email, password).collectLatest {
+            _uiState.emit(uiState.value.copy(isLoading = it is Resource.Loading))
+            when (it) {
+                is Resource.Error -> _events.emit(RegisterScreenEvents.ShowToast(it.message))
+                is Resource.Loading -> Unit
+                is Resource.Success -> _events.emit(RegisterScreenEvents.NavigateToHomeScreen)
+            }
+        }
     }
 }
