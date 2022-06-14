@@ -18,6 +18,8 @@
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.16875" />
         <entry key="app/src/main/res/layout/fragment_documents.xml" value="0.2" />
         <entry key="app/src/main/res/layout/fragment_getting_started.xml" value="0.21" />
+        <entry key="app/src/main/res/layout/fragment_login.xml" value="0.16875" />
+        <entry key="app/src/main/res/layout/fragment_register.xml" value="0.16875" />
       </map>
     </option>
   </component>
