@@ -13,14 +13,14 @@ class DataStoreManager<T>(
     private val dataStore: DataStore<Preferences>,
     private val key: Preferences.Key<T>,
     private val defaultValue: T
-) : ReadWriteProperty<Any, T> {
+) : ReadWriteProperty<Any, T?> {
 
     // A special thread for performing datastore operations
     @WorkerThread
     override fun getValue(thisRef: Any, property: KProperty<*>): T =
         dataStore.get(key, defaultValue)
 
-    override fun setValue(thisRef: Any, property: KProperty<*>, value: T) {
+    override fun setValue(thisRef: Any, property: KProperty<*>, value: T?) {
         dataStore.set(key, value)
     }
 }

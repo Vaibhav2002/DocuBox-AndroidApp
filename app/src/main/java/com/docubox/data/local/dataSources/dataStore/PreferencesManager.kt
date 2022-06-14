@@ -18,7 +18,7 @@ private object Keys {
 class PreferencesManager @Inject constructor(private val dataStore: DataStore<Preferences>) {
 
     // Assign the user by putting details in the DataStoreManager.kt wrapper class
-    var user by DataStoreManager(
+    var user: String? by DataStoreManager(
         dataStore = dataStore,
         key = USER_KEY,
         defaultValue = ""

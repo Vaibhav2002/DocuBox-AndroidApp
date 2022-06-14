@@ -18,6 +18,10 @@ class PreferencesRepo @Inject constructor(private val dataStore: PreferencesMana
         return Gson().fromJson(dataStore.user, User::class.java) // Convert user json to User object
     }
 
+    fun removeUser() {
+        dataStore.user = null
+    }
+
     fun observeUser() = dataStore.observeUser().map { Gson().fromJson(it, User::class.java) }
 
     fun isUserLoggedIn() = getUser() != null
