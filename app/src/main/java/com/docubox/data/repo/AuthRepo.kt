@@ -15,12 +15,14 @@ class AuthRepo @Inject constructor(
     private val userMapper: UserMapper // To map data between local and remote
 ) {
 
-   suspend fun loginUser(
+    fun isUserLoggedIn() = preferencesRepo.isUserLoggedIn()
+
+    suspend fun loginUser(
         email: String,
         password: String
     ) = flow {
-       // Use resource->Resource.Success to get resource state and resource.data to get resource data
-       emit(Resource.Loading())
+        // Use resource->Resource.Success to get resource state and resource.data to get resource data
+        emit(Resource.Loading())
         val resource = authDataSource.loginUser(email, password)
         if (resource is Resource.Success)
             saveUserLocally(resource.data)
@@ -37,6 +39,10 @@ class AuthRepo @Inject constructor(
         if (resource is Resource.Success)
             saveUserLocally(resource.data)
         emit(resource.mapToUnit())
+    }
+
+    suspend fun logoutUser() {
+        preferencesRepo.removeUser()
     }
 
     private suspend fun saveUserLocally(userDto: UserDto?) {
