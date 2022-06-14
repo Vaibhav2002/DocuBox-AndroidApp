@@ -18,6 +18,8 @@
 
     <color name="colorDisabled">#909090</color>
     <color name="rippleColor">#DEDEDE</color>
+    <color name="rippleColorPrimary">#94C6FF</color>
+    <color name="rippleDrawableColor">#59000000</color>
 
     <color name="gray">#EBEAF0</color>
 </resources>

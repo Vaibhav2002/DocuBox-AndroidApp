@@ -13,62 +13,73 @@
         android:layout_height="0dp"
         android:layout_marginHorizontal="16dp"
         android:layout_marginTop="16dp"
-        android:alpha="0.5"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
         app:strokeColor="@android:color/transparent"
         android:elevation="0dp"
-        app:cardBackgroundColor="?attr/colorPrimary"
+        app:cardBackgroundColor="@color/colorPlaceholderBackground"
         app:cardCornerRadius="24dp"
         app:cardElevation="0dp"
         android:clickable="false"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHeight_percent="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:layout_margin="20dp"
+            android:src="@drawable/img_lock" />
+
+    </com.google.android.material.card.MaterialCardView>
 
     <TextView
         android:id="@+id/titleText"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Securely save\nyour files"
-        android:textAlignment="center"
-        android:layout_marginTop="48dp"
-        android:textColor="?attr/colorOnBackground"
         android:fontFamily="@font/poppins_semi_bold"
+        android:text="Securely store\nyour files"
+        android:layout_marginBottom="20dp"
+        android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.MdcTypographyStyles.HeadlineLarge"
+        android:textColor="@color/colorSecondaryText"
+        app:layout_constraintBottom_toTopOf="@+id/descriptionText"
         app:layout_constraintEnd_toEndOf="@id/materialCardView"
-        app:layout_constraintStart_toStartOf="@+id/materialCardView"
-        app:layout_constraintTop_toBottomOf="@+id/materialCardView" />
+        app:layout_constraintStart_toStartOf="@+id/materialCardView" />
 
     <TextView
         android:id="@+id/descriptionText"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Save all your important files on the Cloud with maximum security"
-        android:textAlignment="center"
-        android:layout_marginTop="16dp"
-        android:textColor="@color/colorSecondaryText"
         android:layout_marginHorizontal="16dp"
+        android:layout_marginBottom="32dp"
         android:alpha="0.7"
         android:fontFamily="@font/poppins_light"
+        android:text="Save all your important documents on the cloud with maximum security"
+        android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.MdcTypographyStyles.TitleMedium"
+        android:textColor="@color/colorSecondaryText"
+        app:layout_constraintBottom_toTopOf="@+id/materialCardView3"
         app:layout_constraintEnd_toEndOf="@id/titleText"
-        app:layout_constraintStart_toStartOf="@+id/titleText"
-        app:layout_constraintTop_toBottomOf="@+id/titleText" />
+        app:layout_constraintStart_toStartOf="@+id/titleText"/>
 
 
     <com.google.android.material.card.MaterialCardView
+        android:id="@+id/materialCardView3"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="@id/materialCardView"
-        app:layout_constraintEnd_toEndOf="@id/materialCardView"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:cardElevation="0dp"
-        android:elevation="0dp"
-        android:clickable="false"
         android:layout_marginHorizontal="24dp"
-        android:layout_marginBottom="48dp"
-        app:strokeColor="@android:color/transparent"
-        app:cardBackgroundColor="@color/gray">
+        android:layout_marginBottom="50dp"
+        android:clickable="false"
+        android:elevation="0dp"
+        app:cardBackgroundColor="@color/gray"
+        app:cardElevation="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/materialCardView"
+        app:layout_constraintStart_toStartOf="@id/materialCardView"
+        app:strokeColor="@android:color/transparent">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -76,31 +87,32 @@
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/registerBtn"
+                style="@style/Widget.Material3.Button"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                style="@style/Widget.Material3.Button"
-                android:layout_weight="1"
-                android:text="Register"
-                app:cornerRadius="8dp"
                 android:layout_marginStart="4dp"
+                android:layout_weight="1"
                 android:paddingVertical="16dp"
-                app:backgroundTint="@android:color/white"
-                android:textColor="?attr/colorOnBackground"/>
+                android:text="Register"
+                android:textColor="?attr/colorOnPrimary"
+                app:backgroundTint="@color/colorPrimary"
+                app:cornerRadius="8dp"
+                app:rippleColor="@color/rippleColorPrimary" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/loginBtn"
+                style="@style/Widget.Material3.Button.TextButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                style="@style/Widget.Material3.Button.TextButton"
+                android:layout_marginStart="4dp"
                 android:layout_weight="1"
-                android:text="Login"
-                app:rippleColor="@android:color/white"
                 android:paddingVertical="16dp"
-                android:textColor="?attr/colorOnBackground"/>
+                android:text="Login"
+                android:textColor="?attr/colorOnBackground"
+                app:cornerRadius="8dp"
+                app:rippleColor="@color/rippleColor" />
 
         </LinearLayout>
-
-
 
 
     </com.google.android.material.card.MaterialCardView>

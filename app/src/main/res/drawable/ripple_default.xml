@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ripple xmlns:android="http://schemas.android.com/apk/res/android"
+    android:color="@color/rippleColor">
+    <item android:id="@android:id/mask">
+        <shape android:shape="rectangle">
+            <corners
+                android:bottomLeftRadius="@dimen/defaultButtonCornerRadius"
+                android:bottomRightRadius="@dimen/defaultButtonCornerRadius"
+                android:topLeftRadius="@dimen/defaultButtonCornerRadius"
+                android:topRightRadius="@dimen/defaultButtonCornerRadius" />
+            <solid android:color="@color/rippleDrawableColor" />
+        </shape>
+    </item>
+</ripple>
