@@ -13,13 +13,15 @@
         <entry key="..\:/AndroidStudioProjects/DocuBox-AndroidApp/app/src/main/res/layout/item_file_and_folder.xml" value="0.21" />
         <entry key="..\:/AndroidStudioProjects/DocuBox-AndroidApp/app/src/main/res/layout/item_storage.xml" value="0.2194078947368421" />
         <entry key="app/src/main/res/drawable/ic_folder.xml" value="0.154" />
+        <entry key="app/src/main/res/drawable/ripple_dark.xml" value="0.154" />
         <entry key="app/src/main/res/drawable/ripple_default.xml" value="0.154" />
         <entry key="app/src/main/res/layout/activity_docubox.xml" value="0.17" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.16875" />
         <entry key="app/src/main/res/layout/fragment_documents.xml" value="0.2" />
-        <entry key="app/src/main/res/layout/fragment_getting_started.xml" value="0.21" />
+        <entry key="app/src/main/res/layout/fragment_getting_started.xml" value="0.19" />
         <entry key="app/src/main/res/layout/fragment_login.xml" value="0.16875" />
         <entry key="app/src/main/res/layout/fragment_register.xml" value="0.16875" />
+        <entry key="app/src/main/res/layout/item_storage.xml" value="0.16875" />
       </map>
     </option>
   </component>

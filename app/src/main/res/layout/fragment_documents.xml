@@ -64,7 +64,7 @@
                 android:layout_marginHorizontal="12dp"
                 tools:listitem="@layout/item_storage"
                 app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-                app:spanCount="4"
+                app:spanCount="3"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
