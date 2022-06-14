@@ -15,6 +15,7 @@
         <entry key="app/src/main/res/drawable/ic_folder.xml" value="0.154" />
         <entry key="app/src/main/res/drawable/ripple_dark.xml" value="0.154" />
         <entry key="app/src/main/res/drawable/ripple_default.xml" value="0.154" />
+        <entry key="app/src/main/res/layout/action_bar.xml" value="0.17135416666666667" />
         <entry key="app/src/main/res/layout/activity_docubox.xml" value="0.17" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.16875" />
         <entry key="app/src/main/res/layout/fragment_documents.xml" value="0.2" />
