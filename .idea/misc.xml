@@ -16,6 +16,7 @@
         <entry key="app/src/main/res/layout/activity_docubox.xml" value="0.17" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.16875" />
         <entry key="app/src/main/res/layout/fragment_documents.xml" value="0.2" />
+        <entry key="app/src/main/res/layout/fragment_getting_started.xml" value="0.16875" />
       </map>
     </option>
   </component>
