@@ -25,6 +25,117 @@
             android:background="@drawable/et_home_search"
             android:hint="Search" />
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="15dp"
+            android:layout_marginHorizontal="15dp"
+            android:weightSum="4">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/ripple_dark"
+                android:clickable="true"
+                android:padding="5dp"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:layout_weight="1">
+
+                <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:src="@drawable/ic_image" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Photos"
+                    android:layout_marginTop="10dp"
+                    style="@style/TextAppearance.MdcTypographyStyles.TitleSmall"
+                    android:textColor="@color/colorSecondaryText"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/ripple_dark"
+                android:clickable="true"
+                android:padding="5dp"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:layout_weight="1">
+
+                <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:src="@drawable/ic_video" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Videos"
+                    android:layout_marginTop="10dp"
+                    style="@style/TextAppearance.MdcTypographyStyles.TitleSmall"
+                    android:textColor="@color/colorSecondaryText"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/ripple_dark"
+                android:clickable="true"
+                android:padding="5dp"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:layout_weight="1">
+
+                <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:src="@drawable/ic_audio" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Audio"
+                    android:layout_marginTop="10dp"
+                    style="@style/TextAppearance.MdcTypographyStyles.TitleSmall"
+                    android:textColor="@color/colorSecondaryText"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/ripple_dark"
+                android:clickable="true"
+                android:padding="5dp"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:layout_weight="1">
+
+                <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:src="@drawable/ic_document" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Docs"
+                    android:layout_marginTop="10dp"
+                    style="@style/TextAppearance.MdcTypographyStyles.TitleSmall"
+                    android:textColor="@color/colorSecondaryText"/>
+
+            </LinearLayout>
+
+
+            </LinearLayout>
+
 
     </LinearLayout>
 
