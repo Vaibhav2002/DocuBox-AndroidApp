@@ -12,6 +12,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
 
+// Module for providing network functions like Retrofit Instance, Auth service and OkHttpClient
 @Module
 @InstallIn(SingletonComponent::class)
 object NetworkModule {

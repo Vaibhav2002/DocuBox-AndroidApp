@@ -14,6 +14,7 @@ import kotlinx.coroutines.runBlocking
 import kotlin.coroutines.resume
 import kotlin.coroutines.suspendCoroutine
 
+// Function to navigate to another activity
 fun Activity.navigate(destination: Class<*>, finishOff: Boolean = false) {
     Intent(this, destination).also {
         startActivity(it)
@@ -21,6 +22,7 @@ fun Activity.navigate(destination: Class<*>, finishOff: Boolean = false) {
     }
 }
 
+// Function to ask for storage permissions
 suspend fun Fragment.askStoragePermission() = suspendCoroutine {
     PermissionX.init(this)
         .permissions(Constants.filePermissions)
@@ -45,6 +47,7 @@ suspend fun Fragment.askStoragePermission() = suspendCoroutine {
         }
 }
 
+// Function to show get datastore value
 fun <T> DataStore<Preferences>.get(
     key: Preferences.Key<T>,
     defaultValue: T
@@ -52,6 +55,7 @@ fun <T> DataStore<Preferences>.get(
     data.first()[key] ?: defaultValue
 }
 
+// Function to show set datastore value
 fun <T> DataStore<Preferences>.set(
     key: Preferences.Key<T>,
     value: T?

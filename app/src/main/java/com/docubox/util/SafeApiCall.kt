@@ -6,6 +6,7 @@ import retrofit2.Response
 import timber.log.Timber
 import java.io.IOException
 
+// Function to safely make API calls and handle errors using timber and resource class
 suspend fun <T> safeApiCall(
     successMessage: String = "",
     errorMessage: String? = null,

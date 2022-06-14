@@ -2,6 +2,7 @@ package com.docubox.data.modes.remote
 
 import com.google.gson.annotations.SerializedName
 
+// User Data Transfer Object Class for representing structure of a User received from API
 data class UserDto(
     @SerializedName("_id")
     val id: String = "",

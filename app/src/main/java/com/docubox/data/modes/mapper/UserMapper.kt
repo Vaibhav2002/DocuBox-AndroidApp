@@ -4,6 +4,7 @@ import com.docubox.data.modes.local.User
 import com.docubox.data.modes.remote.UserDto
 import javax.inject.Inject
 
+// Class to map single and multiple users from local data to remote dto (data transfer object) and vice versa
 class UserMapper @Inject constructor() : Mapper<User, UserDto> {
     override fun toRemote(local: User): UserDto = UserDto(
         id = local.id,

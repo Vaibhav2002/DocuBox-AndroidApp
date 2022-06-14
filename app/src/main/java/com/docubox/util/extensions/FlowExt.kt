@@ -10,6 +10,7 @@ import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
+// Function to launch a flow and collect it's latest value
 inline fun <T> Flow<T>.launchAndCollectLatest(
     owner: LifecycleOwner,
     minActiveState: Lifecycle.State = Lifecycle.State.STARTED,
@@ -22,6 +23,7 @@ inline fun <T> Flow<T>.launchAndCollectLatest(
     }
 }
 
+// Function to launch a flow
 inline fun <T> Flow<T>.launchAndCollect(
     owner: LifecycleOwner,
     minActiveState: Lifecycle.State = Lifecycle.State.STARTED,

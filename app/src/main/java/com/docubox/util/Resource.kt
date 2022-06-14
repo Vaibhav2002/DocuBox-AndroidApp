@@ -1,5 +1,6 @@
 package com.docubox.util
 
+// Resource class for API calling
 sealed class Resource<T>(
     open val data: T? = null,
     open val message: String = "",

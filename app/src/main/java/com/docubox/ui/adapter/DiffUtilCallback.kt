@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import androidx.recyclerview.widget.DiffUtil
 import com.docubox.data.modes.local.StorageItem
 
+// Class for configuring DiffUtil
 internal class DiffUtilCallback<ITEM> : DiffUtil.ItemCallback<ITEM>() {
 
     override fun areItemsTheSame(oldItem: ITEM & Any, newItem: ITEM & Any): Boolean {

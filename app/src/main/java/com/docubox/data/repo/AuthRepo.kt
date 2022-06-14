@@ -8,17 +8,19 @@ import com.docubox.util.extensions.mapToUnit
 import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
 
+// Repository for all authentication functions
 class AuthRepo @Inject constructor(
-    private val authDataSource: AuthDataSource,
-    private val preferencesRepo: PreferencesRepo,
-    private val userMapper: UserMapper
+    private val authDataSource: AuthDataSource, // Class to login and signup user
+    private val preferencesRepo: PreferencesRepo, // Repository that contains data store functions
+    private val userMapper: UserMapper // To map data between local and remote
 ) {
 
-    suspend fun loginUser(
+   suspend fun loginUser(
         email: String,
         password: String
     ) = flow {
-        emit(Resource.Loading())
+       // Use resource->Resource.Success to get resource state and resource.data to get resource data
+       emit(Resource.Loading())
         val resource = authDataSource.loginUser(email, password)
         if (resource is Resource.Success)
             saveUserLocally(resource.data)

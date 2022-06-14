@@ -2,6 +2,8 @@ package com.docubox.util.extensions
 
 import com.docubox.util.Resource
 
+// Extension functions for resource class
+
 inline infix fun <T, F> Resource<T>.mapTo(change: (T) -> F): Resource<F> = when (this) {
     is Resource.Error -> Resource.Error(errorType, message)
     is Resource.Loading -> Resource.Loading()

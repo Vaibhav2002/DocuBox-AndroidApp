@@ -6,6 +6,7 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import kotlin.coroutines.resume
 import kotlin.coroutines.suspendCoroutine
 
+// Function to show an alert dialog
 suspend fun Context.showAlertDialog(
     title: String,
     message: String = "",
@@ -26,6 +27,7 @@ suspend fun Context.showAlertDialog(
     dialog.show()
 }
 
+// Function to show a toast message
 fun Context.showToast(message: String) {
     Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
 }

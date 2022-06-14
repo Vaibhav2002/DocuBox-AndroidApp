@@ -3,6 +3,7 @@ package com.docubox.data.modes.local
 import androidx.annotation.DrawableRes
 import com.docubox.R
 
+// Class to represent a single storage item in app (Eg. a file or a folder)
 sealed class StorageItem(
     open val id: String,
     open val name: String,

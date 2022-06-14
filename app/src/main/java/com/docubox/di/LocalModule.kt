@@ -20,6 +20,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
 import javax.inject.Singleton
 
+// Module for providing local data store instance
 @Module
 @InstallIn(SingletonComponent::class)
 object LocalModule {

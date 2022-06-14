@@ -5,6 +5,7 @@ import android.os.Build
 import com.docubox.data.modes.local.FileType
 import com.docubox.data.modes.local.StorageItem
 
+// All our app's constant data variables
 object Constants {
 
     const val DATASTORE_NAME = "DocuBoxDataStore"

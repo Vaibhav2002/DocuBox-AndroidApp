@@ -5,6 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.viewbinding.ViewBinding
 
+// Class for building an adapter using AbstractAdapter
 class OneAdapter<ITEM : Any, VB : ViewBinding>(
     binding: (LayoutInflater, ViewGroup?, Boolean) -> VB,
     private val onBind: VB.(ITEM, Int) -> Unit,

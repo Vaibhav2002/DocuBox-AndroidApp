@@ -17,6 +17,7 @@ fun View.singleClick(onClick: () -> Unit) {
     }
 }
 
+// Function to call a function after edit text value changes
 fun EditText.listenAfterChange(afterChange: (String) -> Unit) {
     doAfterTextChanged { afterChange(it.toString()) }
 }
@@ -41,6 +42,7 @@ fun View.setOnDelayClickListener(delayTime: Long, onClick: () -> Unit) {
     }
 }
 
+// Function to compose the recyclerview using OneAdapter class which we created
 fun <ITEM : Any, VB : ViewBinding> RecyclerView.compose(
     layout: (LayoutInflater, ViewGroup?, Boolean) -> VB,
     onBind: VB.(ITEM, Int) -> Unit,

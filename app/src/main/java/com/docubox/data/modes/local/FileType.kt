@@ -3,6 +3,7 @@ package com.docubox.data.modes.local
 import androidx.annotation.DrawableRes
 import com.docubox.R
 
+// Class to get media type of a file
 sealed class FileType(
     val type: String,
     @DrawableRes val icon: Int

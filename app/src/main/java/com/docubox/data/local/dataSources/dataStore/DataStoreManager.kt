@@ -8,12 +8,14 @@ import com.docubox.util.extensions.set
 import kotlin.properties.ReadWriteProperty
 import kotlin.reflect.KProperty
 
+// A wrapper class to store data in data store
 class DataStoreManager<T>(
     private val dataStore: DataStore<Preferences>,
     private val key: Preferences.Key<T>,
     private val defaultValue: T
 ) : ReadWriteProperty<Any, T> {
 
+    // A special thread for performing datastore operations
     @WorkerThread
     override fun getValue(thisRef: Any, property: KProperty<*>): T =
         dataStore.get(key, defaultValue)

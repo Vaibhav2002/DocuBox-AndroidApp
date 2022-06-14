@@ -3,6 +3,8 @@ package com.docubox.util
 import android.text.TextUtils
 import android.util.Patterns
 
+// Functions to validate credentials
+
 private const val PASSWORD_LENGTH = 6
 
 fun String.validateEmail(): String? = when {

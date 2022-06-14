@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewbinding.ViewBinding
 
+// An abstract adapter class for recyclerview
 abstract class AbstractAdapter<ITEM : Any, VB : ViewBinding>(
     private val binding: (LayoutInflater, ViewGroup?, Boolean) -> VB
 ) : ListAdapter<ITEM, AbstractAdapter.ViewHolder<VB>>(DiffUtilCallback()) {

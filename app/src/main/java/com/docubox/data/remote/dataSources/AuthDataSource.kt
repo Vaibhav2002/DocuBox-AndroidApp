@@ -8,6 +8,7 @@ import com.docubox.util.Resource
 import com.docubox.util.safeApiCall
 import javax.inject.Inject
 
+// Class to login and signup user by implementing AuthService interface
 class AuthDataSource @Inject constructor(private val authService: AuthService) {
 
     suspend fun loginUser(
