@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="?attr/backgroundColor"
     tools:context=".ui.screens.auth.gettingStarted.GettingStartedFragment">
 
@@ -13,24 +13,22 @@
         android:layout_height="0dp"
         android:layout_marginHorizontal="16dp"
         android:layout_marginTop="16dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        app:strokeColor="@android:color/transparent"
+        android:clickable="false"
         android:elevation="0dp"
         app:cardBackgroundColor="@color/colorPlaceholderBackground"
         app:cardCornerRadius="24dp"
         app:cardElevation="0dp"
-        android:clickable="false"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHeight_percent="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:strokeColor="@android:color/transparent">
 
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:scaleType="centerCrop"
             android:layout_margin="20dp"
+            android:scaleType="centerCrop"
             android:src="@drawable/img_lock" />
 
     </com.google.android.material.card.MaterialCardView>
@@ -39,9 +37,9 @@
         android:id="@+id/titleText"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
         android:fontFamily="@font/poppins_semi_bold"
         android:text="Securely store\nyour files"
-        android:layout_marginBottom="20dp"
         android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.MdcTypographyStyles.HeadlineLarge"
         android:textColor="@color/colorSecondaryText"
@@ -54,7 +52,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="16dp"
-        android:layout_marginBottom="32dp"
+        android:layout_marginBottom="48dp"
         android:alpha="0.7"
         android:fontFamily="@font/poppins_light"
         android:text="Save all your important documents on the cloud with maximum security"
@@ -63,7 +61,7 @@
         android:textColor="@color/colorSecondaryText"
         app:layout_constraintBottom_toTopOf="@+id/materialCardView3"
         app:layout_constraintEnd_toEndOf="@id/titleText"
-        app:layout_constraintStart_toStartOf="@+id/titleText"/>
+        app:layout_constraintStart_toStartOf="@+id/titleText" />
 
 
     <com.google.android.material.card.MaterialCardView

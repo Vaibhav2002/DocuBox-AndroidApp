@@ -7,7 +7,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.docubox.R
 import com.docubox.databinding.FragmentRegisterBinding
-import com.docubox.ui.screens.DocuBoxActivity
+import com.docubox.ui.screens.main.DocuBoxActivity
 import com.docubox.util.extensions.*
 import com.docubox.util.viewBinding.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
