@@ -35,6 +35,7 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
             )
             LoginScreenEvents.NavigateToRegisterScreen -> findNavController().navigate(R.id.action_loginFragment_to_registerFragment)
             is LoginScreenEvents.ShowToast -> requireContext().showToast(it.message)
+            else -> {}
         }
     }
 
