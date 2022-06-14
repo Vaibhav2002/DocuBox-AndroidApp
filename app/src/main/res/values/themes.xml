@@ -14,6 +14,8 @@
         <item name="colorOnSecondary">@color/colorOnSecondary</item>
 
 
+        <item name="colorAccent">@color/colorSecondaryText</item>
+
         <item name="colorOnBackground">@color/colorPrimaryText</item>
         <item name="colorOnSurface">@color/colorSecondaryText</item>
 
@@ -46,7 +48,8 @@
     <style name="DocuBox.BottomSheet" parent="ThemeOverlay.Material3.BottomSheetDialog">
         <item name="colorPrimary">@color/colorOnPrimary</item>
         <item name="colorSecondary">@color/colorOnPrimary</item>
-
     </style>
+
+
 
 </resources>
