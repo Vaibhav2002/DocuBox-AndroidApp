@@ -8,8 +8,9 @@
 
     <ImageButton
         android:id="@+id/btnBack"
-        android:layout_width="36dp"
-        android:layout_height="36dp"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:scaleType="centerCrop"
         android:src="@drawable/ic_back"
         android:layout_marginStart="10dp"
         android:background="?attr/selectableItemBackgroundBorderless"
@@ -24,16 +25,16 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="2dp"
+        android:layout_marginTop="4dp"
         android:padding="10dp"
         android:textSize="24sp"
-        android:text="Settings"
+        tools:text="Settings"
         android:textColor="@color/colorSecondaryText"
         app:layout_constraintStart_toEndOf="@+id/btnBack"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/btnListGridToggle"
+        android:id="@+id/btnMenuItem"
         android:visibility="gone"
         android:layout_width="30dp"
         android:layout_height="30dp"
