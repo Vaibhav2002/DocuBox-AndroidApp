@@ -4,7 +4,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import timber.log.Timber
 
-// Function to safely call a function and handle errors using timber and resource class
+// Function to safely call a function and handle errors using timber logging and resource class
 fun <T> runsafe(call: () -> T): Resource<T> = try {
     val result = call()
     Resource.Success(result)
