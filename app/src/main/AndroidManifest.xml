@@ -32,7 +32,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.screens.DocuBoxActivity"
+            android:name=".ui.screens.main.DocuBoxActivity"
             android:exported="true">
 
         </activity>

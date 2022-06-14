@@ -1,7 +1,10 @@
 package com.docubox.util
 
+import com.docubox.data.modes.remote.ErrorDto
+import com.google.gson.Gson
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import okhttp3.ResponseBody
 import retrofit2.Response
 import timber.log.Timber
 import java.io.IOException
@@ -16,8 +19,10 @@ suspend fun <T> safeApiCall(
         val response = call()
         if (response.isSuccessful) {
             response.body()?.let { Resource.Success(it, successMessage) }
-                ?: Resource.Error(message = errorMessage ?: response.message())
-        } else Resource.Error(message = errorMessage ?: response.message())
+                ?: Resource.Error(message = errorMessage ?: "DATA NULL")
+        } else Resource.Error(
+            message = errorMessage ?: getMessageFromErrorResponse(response.errorBody())
+        )
     } catch (e: IOException) {
         Timber.d(e.toString())
         Resource.Error(ErrorType.NoInternet, message = errorMessage ?: e.message.toString())
@@ -25,4 +30,9 @@ suspend fun <T> safeApiCall(
         Timber.d(e.toString())
         Resource.Error(ErrorType.Unknown, message = errorMessage ?: e.message.toString())
     }
+}
+
+fun getMessageFromErrorResponse(error: ResponseBody?): String {
+    return error?.let { Gson().fromJson(it.charStream(), ErrorDto::class.java).message }
+        ?: "Unknown Error Occurred"
 }
