@@ -13,3 +13,5 @@
 .externalNativeBuild
 .cxx
 local.properties
+app/src/main/java/com/docubox/util/EncryptionDetails.kt
+app/src/main/java/com/docubox/util/Secrets.kt
