@@ -15,9 +15,9 @@
         app:showAsAction="ifRoom|collapseActionView" />
 
     <item
-        android:id="@+id/downloadsFragment"
-        android:title="Downloads"
-        android:icon="@drawable/ic_downloads"
+        android:id="@+id/sharedFragment"
+        android:title="Shared"
+        android:icon="@drawable/ic_shared_folder"
         app:showAsAction="ifRoom|collapseActionView" />
 
     <item

@@ -18,10 +18,10 @@
         tools:layout="@layout/fragment_documents" />
 
     <fragment
-        android:id="@+id/downloadsFragment"
-        android:name="com.docubox.ui.screens.main.downloads.DownloadsFragment"
-        android:label="fragment_downloads"
-        tools:layout="@layout/fragment_downloads" />
+        android:id="@+id/sharedFragment"
+        android:name="com.docubox.ui.screens.main.shared.SharedFragment"
+        android:label="fragment_shared"
+        tools:layout="@layout/fragment_shared" />
 
     <fragment
         android:id="@+id/profileFragment"
