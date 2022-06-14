@@ -65,6 +65,7 @@ class RegisterViewModel @Inject constructor(private val authRepo: AuthRepo) : Vi
         email: String,
         password: String,
     ) {
+
         authRepo.registerUser(username, email, password).collectLatest {
             _uiState.emit(uiState.value.copy(isLoading = it is Resource.Loading))
             when (it) {

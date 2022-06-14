@@ -25,6 +25,7 @@
             android:textSize="16sp"
             android:textColor="@color/colorTertiaryText"/>
         <TextView
+            android:id="@+id/tvUserName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Ishant Chauhan"
@@ -47,6 +48,7 @@
             android:textSize="16sp"
             android:textColor="@color/colorTertiaryText"/>
         <TextView
+            android:id="@+id/tvUserEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="user@example.com"
@@ -69,6 +71,7 @@
             android:textSize="16sp"
             android:textColor="@color/colorTertiaryText"/>
         <TextView
+            android:id="@+id/tvUserAccountCreated"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="07 October 2021"
@@ -77,14 +80,37 @@
             android:textColor="@color/colorSecondaryText"/>
     </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginBottom="20dp">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Server Status"
+            style="@style/TextAppearance.MdcTypographyStyles.TitleSmall"
+            android:textSize="16sp"
+            android:textColor="@color/colorTertiaryText"/>
+        <TextView
+            android:id="@+id/tvServerStatus"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Running"
+            style="@style/TextAppearance.MdcTypographyStyles.TitleMedium"
+            android:textSize="18sp"
+            android:textColor="#43A047"/>
+    </LinearLayout>
+
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/registerBtn"
+        android:id="@+id/logoutBtn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="24dp"
         app:cornerRadius="8dp"
         android:text="Logout"
-        android:backgroundTint="#E53935"
+        android:backgroundTint="#F44336"
         android:paddingVertical="12dp"
         android:layout_marginTop="32dp"
         app:elevation="8dp"

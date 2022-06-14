@@ -40,7 +40,7 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
     }
 
     private fun collectUIState() = viewModel.uiState.launchAndCollectLatest(viewLifecycleOwner) {
-        // change progress bar visibiltiy acc to isLoading
+        // change progress bar visibility acc to isLoading
         with(binding) {
             emailTIL.error = it.emailError
             passwordTIL.error = it.passwordError
