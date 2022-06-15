@@ -96,7 +96,7 @@ class DocumentsFragment : Fragment(R.layout.fragment_documents) {
         if (result.resultCode == Activity.RESULT_OK) {
             val data: Intent? = result.data
 
-            Toast.makeText(requireContext(),"Data recieved",Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireContext(),"File Picker Data received",Toast.LENGTH_SHORT).show()
         }
     }
 
