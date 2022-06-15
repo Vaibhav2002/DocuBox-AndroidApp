@@ -21,6 +21,7 @@ suspend fun <T> safeApiCall(
             response.body()?.let { Resource.Success(it, successMessage) }
                 ?: Resource.Error(message = errorMessage ?: "DATA NULL")
         } else Resource.Error(
+            // git error fixing
             message = errorMessage ?: getMessageFromErrorResponse(response.errorBody())
         )
     } catch (e: IOException) {
