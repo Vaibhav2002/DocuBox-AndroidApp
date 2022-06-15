@@ -2,6 +2,7 @@ package com.docubox.data.modes.local
 
 import androidx.annotation.DrawableRes
 import com.docubox.R
+import com.google.gson.annotations.SerializedName
 
 // Class to get media type of a file
 sealed class FileType(

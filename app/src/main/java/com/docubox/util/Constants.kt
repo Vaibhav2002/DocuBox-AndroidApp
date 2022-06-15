@@ -9,6 +9,8 @@ import com.docubox.data.modes.local.StorageItem
 object Constants {
 
     const val DATASTORE_NAME = "DocuBoxDataStore"
+    const val SAMPLE_FILE_DIRECTORY = "62a770c456fe19af7106ddae"
+    const val SAMPLE_FOLDER_DIRECTORY = "62a770e156fe19af7106ddb7"
 
     val filePermissions = listOf(
         Manifest.permission.READ_EXTERNAL_STORAGE,
@@ -18,26 +20,26 @@ object Constants {
             toMutableList().add(Manifest.permission.MANAGE_EXTERNAL_STORAGE)
     }
 
-    val sampleStorageItems = listOf(
-        StorageItem.File(
-            id = "1",
-            name = "Ishant.pdf",
-            description = "120KB",
-            fileType = FileType.Document
-        ),
-        StorageItem.File(
-            id = "2",
-            name = "Vaibhav.exe",
-            description = "1.2MB",
-            fileType = FileType.File
-        ),
-        StorageItem.File(
-            id = "3",
-            name = "GoogleIO.mp4",
-            description = "120MB",
-            fileType = FileType.Video
-        ),
-        StorageItem.Folder(id = "4", name = "College", description = "10 files"),
-        StorageItem.Folder(id = "5", name = "Downloads", description = "2000 files"),
-    ).shuffled()
+//    val sampleStorageItems = listOf(
+//        StorageItem.File(
+//            id = "1",
+//            name = "Ishant.pdf",
+//            description = "120KB",
+//            fileType = FileType.Document
+//        ),
+//        StorageItem.File(
+//            id = "2",
+//            name = "Vaibhav.exe",
+//            description = "1.2MB",
+//            fileType = FileType.File
+//        ),
+//        StorageItem.File(
+//            id = "3",
+//            name = "GoogleIO.mp4",
+//            description = "120MB",
+//            fileType = FileType.Video
+//        ),
+//        StorageItem.Folder(id = "4", name = "College", description = "10 files"),
+//        StorageItem.Folder(id = "5", name = "Downloads", description = "2000 files"),
+//    ).shuffled()
 }

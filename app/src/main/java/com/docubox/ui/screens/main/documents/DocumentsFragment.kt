@@ -30,10 +30,17 @@ class DocumentsFragment : Fragment(R.layout.fragment_documents) {
         initViews()
         initListeners()
         collectUiState()
+        collectEvents()
+    }
+
+    private fun collectEvents() = viewModel.events.launchAndCollect(viewLifecycleOwner) {
+        when (it) {
+            is DocumentsScreenEvents.ShowToast -> requireContext().showToast(it.message)
+        }
     }
 
     private fun initActionBar() = with(binding) {
-        actionBar.setupActionBar("Documents",true,{
+        actionBar.setupActionBar("Documents", true, {
             findNavController().popBackStack()
         })
     }
