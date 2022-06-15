@@ -3,28 +3,59 @@ package com.docubox.ui.screens.main.documents
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.docubox.data.modes.local.StorageItem
-import com.docubox.util.Constants.sampleStorageItems
+import com.docubox.data.repo.StorageRepo
+import com.docubox.util.Constants.SAMPLE_FILE_DIRECTORY
+import com.docubox.util.Constants.SAMPLE_FOLDER_DIRECTORY
+import com.docubox.util.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class DocumentsViewModel @Inject constructor() : ViewModel() {
+class DocumentsViewModel @Inject constructor(private val storageRepo: StorageRepo) : ViewModel() {
 
     private val _uiState = MutableStateFlow(DocumentsScreenState())
     val uiState = _uiState.asStateFlow()
 
+    private val _events = MutableSharedFlow<DocumentsScreenEvents>()
+    val events = _events.asSharedFlow()
+
     init {
-        viewModelScope.launch { getFilesAndFolders() }
+        //running both in parallel
+        viewModelScope.launch { getFiles() }
+        viewModelScope.launch { getFolders() }
     }
 
-    private suspend fun getFilesAndFolders() {
-        // in real scenario if there are 2 lists one for folders 1 for files, then just sorting and adding is enough
-        val folders = sampleStorageItems.filterIsInstance<StorageItem.Folder>().sortedBy { it.name }
-        val files = sampleStorageItems.filterIsInstance<StorageItem.File>().sortedBy { it.name }
-        _uiState.update { it.copy(storageItems = folders + files) }
+    private suspend fun getFiles() {
+        storageRepo.getAllFiles(SAMPLE_FILE_DIRECTORY).collectLatest {
+            _uiState.emit(uiState.value.copy(isLoading = it is Resource.Loading))
+            when (it) {
+                is Resource.Error -> _events.emit(DocumentsScreenEvents.ShowToast(it.message))
+                is Resource.Loading -> Unit
+                is Resource.Success -> it.data?.let(this::handleGetFileSuccess)
+            }
+        }
+    }
+
+    private suspend fun getFolders() {
+        storageRepo.getAllFolders(SAMPLE_FOLDER_DIRECTORY).collectLatest {
+            _uiState.emit(uiState.value.copy(isLoading = it is Resource.Loading))
+            when (it) {
+                is Resource.Error -> _events.emit(DocumentsScreenEvents.ShowToast(it.message))
+                is Resource.Loading -> Unit
+                is Resource.Success -> it.data?.let(this::handleGetFolderSuccess)
+            }
+        }
+    }
+
+    private fun handleGetFileSuccess(files: List<StorageItem.File>) {
+        val newList = uiState.value.storageItems.toMutableList().apply { addAll(files) }
+        _uiState.update { it.copy(storageItems = newList) }
+    }
+
+    private fun handleGetFolderSuccess(folders: List<StorageItem.Folder>) {
+        val newList = uiState.value.storageItems.toMutableList().apply { addAll(folders) }
+        _uiState.update { it.copy(storageItems = newList) }
     }
 }
