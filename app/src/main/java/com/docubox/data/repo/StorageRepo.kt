@@ -22,14 +22,14 @@ class StorageRepo @Inject constructor(
 
     private val token = preferencesRepo.getUserToken()!!
 
-    suspend fun getAllFiles(fileDirectory: String) = flow {
+    suspend fun getAllFiles(fileDirectory: String?) = flow {
         emit(Resource.Loading())
         emit(storageDataSource.getAllFiles(fileDirectory, token))
     }.map { resource -> //mapping all files in GetFileResponse model to list of Local StorageItem.File
         resource mapTo { fileMapper.toLocal(it.fileList) }
     }.flowOn(Dispatchers.IO)
 
-    suspend fun getAllFolders(folderParentDirectory: String) = flow {
+    suspend fun getAllFolders(folderParentDirectory: String?) = flow {
         emit(Resource.Loading())
         emit(storageDataSource.getAllFolders(folderParentDirectory, token))
     }.map { resource -> //mapping all folders in GetFolderResponse model to list of Local StorageItem.Folder

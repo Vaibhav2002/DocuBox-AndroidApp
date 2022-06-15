@@ -9,11 +9,11 @@ import javax.inject.Inject
 
 class StorageDataSource @Inject constructor(private val service: StorageService) {
 
-    suspend fun getAllFiles(fileDirectory: String, token: String) = safeApiCall {
+    suspend fun getAllFiles(fileDirectory: String?, token: String) = safeApiCall {
         service.getFiles(GetFileRequest(fileDirectory), token.asJwt())
     }
 
-    suspend fun getAllFolders(folderParentDirectory: String, token: String) = safeApiCall {
+    suspend fun getAllFolders(folderParentDirectory: String?, token: String) = safeApiCall {
         service.getFolders(GetFolderRequest(folderParentDirectory), token.asJwt())
     }
 }

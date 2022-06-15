@@ -4,8 +4,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.docubox.data.modes.local.StorageItem
 import com.docubox.data.repo.StorageRepo
-import com.docubox.util.Constants.SAMPLE_FILE_DIRECTORY
-import com.docubox.util.Constants.SAMPLE_FOLDER_DIRECTORY
+import com.docubox.util.Constants.DEFAULT_FILE_DIRECTORY
+import com.docubox.util.Constants.DEFAULT_FOLDER_DIRECTORY
 import com.docubox.util.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.*
@@ -28,7 +28,7 @@ class DocumentsViewModel @Inject constructor(private val storageRepo: StorageRep
     }
 
     private suspend fun getFiles() {
-        storageRepo.getAllFiles(SAMPLE_FILE_DIRECTORY).collectLatest {
+        storageRepo.getAllFiles(DEFAULT_FILE_DIRECTORY).collectLatest {
             _uiState.emit(uiState.value.copy(isLoading = it is Resource.Loading))
             when (it) {
                 is Resource.Error -> _events.emit(DocumentsScreenEvents.ShowToast(it.message))
@@ -39,7 +39,7 @@ class DocumentsViewModel @Inject constructor(private val storageRepo: StorageRep
     }
 
     private suspend fun getFolders() {
-        storageRepo.getAllFolders(SAMPLE_FOLDER_DIRECTORY).collectLatest {
+        storageRepo.getAllFolders(DEFAULT_FOLDER_DIRECTORY).collectLatest {
             _uiState.emit(uiState.value.copy(isLoading = it is Resource.Loading))
             when (it) {
                 is Resource.Error -> _events.emit(DocumentsScreenEvents.ShowToast(it.message))
