@@ -14,6 +14,41 @@
             layout="@layout/action_bar" />
 
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="15dp"
+            android:backgroundTint="@color/gray">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnSharedToYou"
+                style="@style/Widget.Material3.Button"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginStart="4dp"
+                android:layout_weight="1"
+                android:paddingVertical="16dp"
+                android:text="Shared To You"
+                android:textColor="?attr/colorOnPrimary"
+                app:backgroundTint="#BF479DFF"
+                app:cornerRadius="8dp"
+                app:rippleColor="@color/rippleColorPrimary" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnSharedByYou"
+                style="@style/Widget.Material3.Button.TextButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:layout_weight="1"
+                android:paddingVertical="16dp"
+                android:text="Shared By You"
+                android:textColor="?attr/colorOnBackground"
+                app:cornerRadius="8dp"
+                app:rippleColor="@color/rippleColor" />
+
+        </LinearLayout>
+
 
     </LinearLayout>
 </ScrollView>
