@@ -10,113 +10,240 @@
 
     <include android:id="@+id/actionBar" layout="@layout/action_bar" />
 
-    <LinearLayout
+    <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_marginHorizontal="20dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginBottom="20dp">
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Username"
-            style="@style/TextAppearance.MdcTypographyStyles.TitleSmall"
-            android:textSize="16sp"
-            android:textColor="@color/colorTertiaryText"/>
-        <TextView
-            android:id="@+id/tvUserName"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Ishant Chauhan"
-            style="@style/TextAppearance.MdcTypographyStyles.TitleMedium"
-            android:textSize="18sp"
-            android:textColor="@color/colorSecondaryText"/>
-    </LinearLayout>
+        app:cardCornerRadius="8dp"
+        app:cardElevation="3dp"
+        android:layout_marginVertical="10dp"
+        android:layout_marginHorizontal="15dp">
 
-    <LinearLayout
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="15dp">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="95dp"
+                android:layout_height="95dp"
+                android:elevation="12dp"
+                app:cardCornerRadius="50dp"
+                android:innerRadius="0dp"
+                android:layout_gravity="center">
+                <ImageView
+                    android:id="@+id/ivAvatar"
+                    android:layout_height="match_parent"
+                    android:layout_width="match_parent"
+                    android:src="@drawable/img_avatar"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true">
+                </ImageView>
+            </androidx.cardview.widget.CardView>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="15dp">
+
+                <TextView
+                    android:id="@+id/tvUserName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Ishant Chauhan"
+                    android:gravity="center"
+                    android:textColor="@color/colorSecondaryText"
+                    android:fontFamily="@font/poppins_medium"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/tvUserEmail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="ishantchauhan@example.com"
+                    android:textColor="@color/colorTertiaryText"
+                    android:fontFamily="@font/poppins_regular"
+                    android:textSize="15sp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_marginHorizontal="20dp"
-        android:layout_marginBottom="20dp">
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Email"
-            style="@style/TextAppearance.MdcTypographyStyles.TitleSmall"
-            android:textSize="16sp"
-            android:textColor="@color/colorTertiaryText"/>
-        <TextView
-            android:id="@+id/tvUserEmail"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="user@example.com"
-            style="@style/TextAppearance.MdcTypographyStyles.TitleMedium"
-            android:textSize="18sp"
-            android:textColor="@color/colorSecondaryText"/>
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_marginHorizontal="20dp"
-        android:layout_marginBottom="20dp">
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Account Created"
-            style="@style/TextAppearance.MdcTypographyStyles.TitleSmall"
-            android:textSize="16sp"
-            android:textColor="@color/colorTertiaryText"/>
-        <TextView
-            android:id="@+id/tvUserAccountCreated"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="07 October 2021"
-            style="@style/TextAppearance.MdcTypographyStyles.TitleMedium"
-            android:textSize="18sp"
-            android:textColor="@color/colorSecondaryText"/>
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_marginHorizontal="20dp"
-        android:layout_marginBottom="20dp">
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Server Status"
-            style="@style/TextAppearance.MdcTypographyStyles.TitleSmall"
-            android:textSize="16sp"
-            android:textColor="@color/colorTertiaryText"/>
-        <TextView
-            android:id="@+id/tvServerStatus"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Running"
-            style="@style/TextAppearance.MdcTypographyStyles.TitleMedium"
-            android:textSize="18sp"
-            android:textColor="#43A047"/>
-    </LinearLayout>
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/logoutBtn"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="24dp"
-        app:cornerRadius="8dp"
-        android:text="Logout"
-        android:backgroundTint="#F44336"
-        android:paddingVertical="12dp"
-        android:layout_marginTop="32dp"
-        app:elevation="8dp"
-        android:fontFamily="@font/poppins_semi_bold"
-        android:textAppearance="@style/TextAppearance.MdcTypographyStyles.TitleMedium"/>
+        app:cardCornerRadius="8dp"
+        app:cardElevation="3dp"
+        android:layout_marginVertical="10dp"
+        android:layout_marginHorizontal="15dp">
 
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/btnEditUsername"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:clickable="true"
+                android:focusable="true"
+                android:background="?android:attr/selectableItemBackground"
+                android:padding="8dp">
+
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/ic_edit"
+                    android:layout_margin="8dp"
+                    app:tint="@color/colorSecondaryText" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Change Username"
+                    android:textColor="@color/colorSecondaryText"
+                    android:fontFamily="@font/poppins_regular"
+                    android:padding="8dp"/>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/btnEditUserAvatar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:clickable="true"
+                android:focusable="true"
+                android:background="?android:attr/selectableItemBackground"
+                android:padding="8dp">
+
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/ic_change_avatar"
+                    android:layout_margin="8dp"
+                    app:tint="@color/colorSecondaryText" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Change Avatar"
+                    android:fontFamily="@font/poppins_regular"
+                    android:textColor="@color/colorSecondaryText"
+                    android:padding="8dp"/>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/btnCheckServerStatus"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:clickable="true"
+                android:focusable="true"
+                android:background="?android:attr/selectableItemBackground"
+                android:padding="8dp">
+
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/ic_server_status"
+                    android:layout_margin="8dp"
+                    app:tint="@color/colorSecondaryText" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Check Server Status"
+                    android:fontFamily="@font/poppins_regular"
+                    android:textColor="@color/colorSecondaryText"
+                    android:padding="8dp"/>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/btnViewSourceCode"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:clickable="true"
+                android:focusable="true"
+                android:background="?android:attr/selectableItemBackground"
+                android:padding="8dp">
+
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/ic_code"
+                    android:layout_margin="8dp"
+                    app:tint="@color/colorSecondaryText" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="View Source Code"
+                    android:fontFamily="@font/poppins_regular"
+                    android:textColor="@color/colorSecondaryText"
+                    android:padding="8dp"/>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/btnLogout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:clickable="true"
+                android:focusable="true"
+                android:background="?android:attr/selectableItemBackground"
+                android:padding="8dp">
+
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/ic_logout"
+                    android:layout_margin="8dp"
+                    app:tint="#F44336" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Logout"
+                    android:textColor="#F44336"
+                    android:fontFamily="@font/poppins_regular"
+                    android:padding="8dp"/>
+
+
+            </LinearLayout>
+
+
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
 
 </LinearLayout>
+
