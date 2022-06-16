@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".HomeFragment">
 
     <LinearLayout
@@ -11,37 +11,39 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <include android:id="@+id/actionBar" layout="@layout/action_bar" />
+        <include
+            android:id="@+id/actionBar"
+            layout="@layout/action_bar" />
 
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="10dp"
-            android:layout_marginVertical="10dp"
-            android:padding="12dp"
+            android:layout_marginHorizontal="15dp"
+            android:layout_marginVertical="15dp"
+            android:background="@drawable/et_home_search"
             android:drawableEnd="@drawable/ic_search"
             android:drawablePadding="10dp"
             android:drawableTint="@color/colorTertiaryText"
-            android:background="@drawable/et_home_search"
-            android:hint="Search" />
+            android:hint="Search"
+            android:padding="12dp" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="15dp"
             android:layout_marginHorizontal="15dp"
+            android:layout_marginTop="15dp"
+            android:orientation="horizontal"
             android:weightSum="4">
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:background="@drawable/ripple_dark"
                 android:clickable="true"
-                android:padding="5dp"
-                android:orientation="vertical"
                 android:gravity="center"
-                android:layout_weight="1">
+                android:orientation="vertical"
+                android:padding="5dp">
 
                 <ImageView
                     android:layout_width="50dp"
@@ -49,24 +51,24 @@
                     android:src="@drawable/ic_image" />
 
                 <TextView
+                    style="@style/TextAppearance.MdcTypographyStyles.TitleSmall"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Photos"
                     android:layout_marginTop="10dp"
-                    style="@style/TextAppearance.MdcTypographyStyles.TitleSmall"
-                    android:textColor="@color/colorSecondaryText"/>
+                    android:text="Photos"
+                    android:textColor="@color/colorSecondaryText" />
 
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:background="@drawable/ripple_dark"
                 android:clickable="true"
-                android:padding="5dp"
-                android:orientation="vertical"
                 android:gravity="center"
-                android:layout_weight="1">
+                android:orientation="vertical"
+                android:padding="5dp">
 
                 <ImageView
                     android:layout_width="50dp"
@@ -74,24 +76,24 @@
                     android:src="@drawable/ic_video" />
 
                 <TextView
+                    style="@style/TextAppearance.MdcTypographyStyles.TitleSmall"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Videos"
                     android:layout_marginTop="10dp"
-                    style="@style/TextAppearance.MdcTypographyStyles.TitleSmall"
-                    android:textColor="@color/colorSecondaryText"/>
+                    android:text="Videos"
+                    android:textColor="@color/colorSecondaryText" />
 
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:background="@drawable/ripple_dark"
                 android:clickable="true"
-                android:padding="5dp"
-                android:orientation="vertical"
                 android:gravity="center"
-                android:layout_weight="1">
+                android:orientation="vertical"
+                android:padding="5dp">
 
                 <ImageView
                     android:layout_width="50dp"
@@ -99,24 +101,24 @@
                     android:src="@drawable/ic_audio" />
 
                 <TextView
+                    style="@style/TextAppearance.MdcTypographyStyles.TitleSmall"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Audio"
                     android:layout_marginTop="10dp"
-                    style="@style/TextAppearance.MdcTypographyStyles.TitleSmall"
-                    android:textColor="@color/colorSecondaryText"/>
+                    android:text="Audio"
+                    android:textColor="@color/colorSecondaryText" />
 
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:background="@drawable/ripple_dark"
                 android:clickable="true"
-                android:padding="5dp"
-                android:orientation="vertical"
                 android:gravity="center"
-                android:layout_weight="1">
+                android:orientation="vertical"
+                android:padding="5dp">
 
                 <ImageView
                     android:layout_width="50dp"
@@ -124,17 +126,213 @@
                     android:src="@drawable/ic_document" />
 
                 <TextView
+                    style="@style/TextAppearance.MdcTypographyStyles.TitleSmall"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Docs"
                     android:layout_marginTop="10dp"
-                    style="@style/TextAppearance.MdcTypographyStyles.TitleSmall"
-                    android:textColor="@color/colorSecondaryText"/>
+                    android:text="Docs"
+                    android:textColor="@color/colorSecondaryText" />
 
             </LinearLayout>
 
 
-            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="15dp"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/TextAppearance.MdcTypographyStyles.TitleMedium"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:textSize="18sp"
+                android:text="Quick Actions"
+                android:textColor="@color/colorSecondaryText" />
+
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:scrollbars="none">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/btnOpenDownloads"
+                        android:layout_width="125dp"
+                        android:layout_height="125dp"
+                        app:cardCornerRadius="8dp"
+                        android:layout_marginEnd="20dp">
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:foreground="@drawable/ripple_default"
+                            android:clickable="true"
+                            android:focusable="true">
+
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                android:src="@drawable/img_downloads" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Downloads"
+                                android:fontFamily="@font/poppins_medium"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:layout_constraintLeft_toLeftOf="parent"
+                                android:layout_marginTop="20dp"
+                                android:layout_marginStart="10dp"
+                                android:textColor="#ffffff"
+                                android:textSize="14sp" />
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/btnOpenDocumentation"
+                        android:layout_width="125dp"
+                        android:layout_height="125dp"
+                        app:cardCornerRadius="8dp"
+                        android:layout_marginEnd="20dp">
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:foreground="@drawable/ripple_default"
+                            android:clickable="true"
+                            android:focusable="true">
+
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                android:src="@drawable/img_documentation" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="How to use?"
+                                android:fontFamily="@font/poppins_medium"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:layout_constraintLeft_toLeftOf="parent"
+                                android:layout_marginTop="20dp"
+                                android:layout_marginStart="10dp"
+                                android:textColor="#ffffff"
+                                android:textSize="14sp" />
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/btnOpenAbout"
+                        android:layout_width="125dp"
+                        android:layout_height="125dp"
+                        app:cardCornerRadius="8dp"
+                        android:layout_marginEnd="20dp">
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:foreground="@drawable/ripple_default"
+                            android:clickable="true"
+                            android:focusable="true">
+
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                android:src="@drawable/img_about" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="About App"
+                                android:fontFamily="@font/poppins_medium"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:layout_constraintLeft_toLeftOf="parent"
+                                android:layout_marginTop="20dp"
+                                android:layout_marginStart="10dp"
+                                android:textColor="#ffffff"
+                                android:textSize="14sp" />
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/btnOpenContact"
+                        android:layout_width="125dp"
+                        android:layout_height="125dp"
+                        app:cardCornerRadius="8dp"
+                        android:layout_marginEnd="20dp">
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:foreground="@drawable/ripple_default"
+                            android:clickable="true"
+                            android:focusable="true">
+
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                android:src="@drawable/img_contact" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Contact Us"
+                                android:fontFamily="@font/poppins_medium"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:layout_constraintLeft_toLeftOf="parent"
+                                android:layout_marginTop="20dp"
+                                android:layout_marginStart="10dp"
+                                android:textColor="#ffffff"
+                                android:textSize="14sp" />
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                    </androidx.cardview.widget.CardView>
+
+
+
+
+                </LinearLayout>
+
+            </HorizontalScrollView>
+
+
+        </LinearLayout>
 
 
     </LinearLayout>

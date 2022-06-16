@@ -13,5 +13,5 @@ sealed class FileType(
     object Document : FileType("Documents", R.drawable.ic_document)
     object Image : FileType("Image", R.drawable.ic_image)
     object Video : FileType("Video", R.drawable.ic_video)
-    object File : FileType("File", R.drawable.ic_file)
+    object File : FileType("File", R.drawable.ic_document)
 }

@@ -9,8 +9,8 @@ import com.docubox.data.modes.local.StorageItem
 object Constants {
 
     const val DATASTORE_NAME = "DocuBoxDataStore"
-    val DEFAULT_FILE_DIRECTORY: String? = null
-    val DEFAULT_FOLDER_DIRECTORY: String? = null
+    val DEFAULT_FILE_DIRECTORY: String? = "62a770c456fe19af7106ddae"
+    val DEFAULT_FOLDER_DIRECTORY: String? = "62a770c456fe19af7106ddae"
 
     val filePermissions = listOf(
         Manifest.permission.READ_EXTERNAL_STORAGE,
