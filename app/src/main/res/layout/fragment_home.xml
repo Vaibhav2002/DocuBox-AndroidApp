@@ -190,7 +190,7 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Downloads"
+                                android:text="Offline\nDocuments"
                                 android:fontFamily="@font/poppins_medium"
                                 app:layout_constraintTop_toTopOf="parent"
                                 app:layout_constraintLeft_toLeftOf="parent"
@@ -230,7 +230,7 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="How to use?"
+                                android:text="How to use\nthis app?"
                                 android:fontFamily="@font/poppins_medium"
                                 app:layout_constraintTop_toTopOf="parent"
                                 app:layout_constraintLeft_toLeftOf="parent"
@@ -270,7 +270,7 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="About App"
+                                android:text="About\nDocuBox"
                                 android:fontFamily="@font/poppins_medium"
                                 app:layout_constraintTop_toTopOf="parent"
                                 app:layout_constraintLeft_toLeftOf="parent"
@@ -310,7 +310,7 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Contact Us"
+                                android:text="Contact\nour team"
                                 android:fontFamily="@font/poppins_medium"
                                 app:layout_constraintTop_toTopOf="parent"
                                 app:layout_constraintLeft_toLeftOf="parent"
@@ -334,6 +334,71 @@
 
         </LinearLayout>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginHorizontal="15dp">
+
+            <TextView
+                style="@style/TextAppearance.MdcTypographyStyles.TitleMedium"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:textSize="18sp"
+                android:text="App Usage"
+                android:textColor="@color/colorSecondaryText" />
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardElevation="3dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="50dp"
+                android:layout_marginHorizontal="5dp"
+                app:cardCornerRadius="8dp"
+                app:cardBackgroundColor="@color/colorOnPrimary">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:paddingHorizontal="15dp"
+                    android:paddingVertical="15dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Storage"
+                        android:textSize="18sp"
+                        android:fontFamily="@font/poppins_medium"
+                        android:textColor="@color/colorSecondaryText" />
+
+                    <TextView
+                        android:id="@+id/tvStorageConsumption"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="2 MB / 50 MB"
+                        android:textSize="15sp"
+                        android:fontFamily="@font/poppins_regular"
+                        android:textColor="@color/colorTertiaryText" />
+
+                    <com.google.android.material.progressindicator.LinearProgressIndicator
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:progress="70"/>
+
+                </LinearLayout>
+
+
+            </androidx.cardview.widget.CardView>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp" />
 
     </LinearLayout>
 
