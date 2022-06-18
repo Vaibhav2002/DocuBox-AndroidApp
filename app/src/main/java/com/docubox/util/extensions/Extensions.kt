@@ -2,6 +2,7 @@ package com.docubox.util.extensions
 
 import android.app.Activity
 import android.content.Intent
+import androidx.activity.addCallback
 import androidx.annotation.DrawableRes
 import androidx.core.view.isVisible
 import androidx.datastore.core.DataStore
@@ -99,3 +100,9 @@ fun String.getFileType() = when {
 }
 
 fun String.asJwt() = "Bearer $this"
+
+fun Fragment.onBackPress(onBackPress: () -> Unit) {
+    requireActivity().onBackPressedDispatcher.addCallback(this) {
+        onBackPress()
+    }
+}

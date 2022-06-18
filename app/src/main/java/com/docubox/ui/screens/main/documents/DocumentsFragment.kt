@@ -1,11 +1,9 @@
 package com.docubox.ui.screens.main.documents
 
-import android.app.Activity
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
-import android.widget.Toast
+import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -21,7 +19,6 @@ import com.docubox.util.extensions.*
 import com.docubox.util.viewBinding.viewBinding
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import dagger.hilt.android.AndroidEntryPoint
-import timber.log.Timber
 
 @AndroidEntryPoint
 class DocumentsFragment : Fragment(R.layout.fragment_documents) {
@@ -29,6 +26,7 @@ class DocumentsFragment : Fragment(R.layout.fragment_documents) {
     private val binding by viewBinding(FragmentDocumentsBinding::bind)
     private val viewModel by viewModels<DocumentsViewModel>()
     private lateinit var storageAdapter: OneAdapter<StorageItem, ItemStorageBinding>
+    private lateinit var filePickerLauncher: ActivityResultLauncher<String>
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -37,22 +35,29 @@ class DocumentsFragment : Fragment(R.layout.fragment_documents) {
         initListeners()
         collectUiState()
         collectEvents()
+        onBackPress(viewModel::onBackPress)
+        filePickerLauncher = registerForActivityResult(ActivityResultContracts.GetContent()) {
+        }
     }
 
     private fun collectEvents() = viewModel.events.launchAndCollect(viewLifecycleOwner) {
         when (it) {
             is DocumentsScreenEvents.ShowToast -> requireContext().showToast(it.message)
+            DocumentsScreenEvents.NavigateBack -> findNavController().popBackStack()
         }
     }
 
     private fun initActionBar() = with(binding) {
-        actionBar.setupActionBar("Documents", true, {
-            findNavController().popBackStack()
-        })
+        actionBar.setupActionBar(
+            title = DocumentsViewModel.ROOT_FOLDER_NAME,
+            backButtonEnabled = true,
+            backButtonOnClickListener = viewModel::onBackPress
+        )
     }
 
     private fun collectUiState() = viewModel.uiState.launchAndCollectLatest(viewLifecycleOwner) {
         storageAdapter.submitList(it.storageItems)
+        binding.actionBar.tvActionBarTitle.text = it.actionBarTitle
     }
 
     private fun initViews() = with(binding) {
@@ -65,6 +70,7 @@ class DocumentsFragment : Fragment(R.layout.fragment_documents) {
                 itemImage.setImageResource(item.icon)
             },
         ) {
+            handleStorageItemPress(this)
         }
     }
 
@@ -72,44 +78,37 @@ class DocumentsFragment : Fragment(R.layout.fragment_documents) {
         addFileBtn.singleClick(this@DocumentsFragment::openBottomSheet)
     }
 
+    private fun handleStorageItemPress(item: StorageItem) {
+        when (item) {
+            is StorageItem.Folder -> viewModel.onFolderPress(item)
+            is StorageItem.File -> Unit
+        }
+    }
+
     private fun openBottomSheet() {
 
-        val bottomSheetBinding = SheetUploadDocumentBinding.inflate(LayoutInflater.from(requireContext()))
+        val bottomSheetBinding =
+            SheetUploadDocumentBinding.inflate(LayoutInflater.from(requireContext()))
 
         val bottomSheetDialog = BottomSheetDialog(
             requireContext(),
             R.style.DocuBox_BottomSheet
         ).apply {
             setContentView(bottomSheetBinding.root)
+            bottomSheetBinding.btnUploadFile.setOnClickListener {
+                dismiss()
+                openFilePicker()
+            }
         }.also {
             it.show()
         }
 
-        bottomSheetBinding.btnUploadFile.setOnClickListener {
-            bottomSheetDialog.dismiss()
-            openFilePicker()
-        }
 
-    }
-
-    private val filePickerResultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-        if (result.resultCode == Activity.RESULT_OK) {
-            val data: Intent? = result.data
-
-            Toast.makeText(requireContext(),"File Picker Data received",Toast.LENGTH_SHORT).show()
-        }
     }
 
     private fun openFilePicker() = lifecycleScope.launchWhenStarted {
         askStoragePermission().also {
-            if (it) {
-                val intent = Intent(Intent.ACTION_OPEN_DOCUMENT).apply {
-                    addCategory(Intent.CATEGORY_OPENABLE)
-                    type = "*/*"
-                }
-                filePickerResultLauncher.launch(intent)
-            }
-
+            if (it) filePickerLauncher.launch("*/*")
         }
     }
 }
