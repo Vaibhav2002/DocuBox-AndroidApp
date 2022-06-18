@@ -2,8 +2,10 @@ package com.docubox.ui.screens.main.documents
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.docubox.data.local.dataSources.CacheData
 import com.docubox.data.local.dataSources.StorageCache
 import com.docubox.data.modes.local.StorageItem
+import com.docubox.data.repo.PreferencesRepo
 import com.docubox.data.repo.StorageRepo
 import com.docubox.util.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -14,9 +16,12 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class DocumentsViewModel @Inject constructor(private val storageRepo: StorageRepo) : ViewModel() {
+class DocumentsViewModel @Inject constructor(
+    private val storageRepo: StorageRepo,
+    private val preferencesRepo: PreferencesRepo
+) : ViewModel() {
 
-    companion object{
+    companion object {
         const val ROOT_FOLDER_NAME = "Documents"
     }
 
@@ -26,15 +31,15 @@ class DocumentsViewModel @Inject constructor(private val storageRepo: StorageRep
     private val _events = MutableSharedFlow<DocumentsScreenEvents>()
     val events = _events.asSharedFlow()
 
-    private var directory = MutableStateFlow<String?>(null)
+    private var directory: String? = null
 
     init {
-        collectDirectory()
+        getAllData(directory)
     }
 
-    private fun collectDirectory() = viewModelScope.launch {
-        directory.collectLatest { getAllData(it) }
-    }
+    fun getCurrentDirectory() = directory
+
+    val userToken = preferencesRepo.getUserToken()!!
 
     private fun getAllData(directory: String?) = viewModelScope.launch {
         _uiState.update { it.copy(storageItems = emptyList()) }
@@ -78,22 +83,31 @@ class DocumentsViewModel @Inject constructor(private val storageRepo: StorageRep
         _uiState.update { it.copy(storageItems = data) }
     }
 
-    private suspend fun updateActionBarTitle(folderName:String?){
-        _uiState.update { it.copy(actionBarTitle = folderName?: ROOT_FOLDER_NAME) }
+    private fun updateActionBarTitle(folderName: String?) {
+        _uiState.update { it.copy(actionBarTitle = folderName ?: ROOT_FOLDER_NAME) }
     }
 
     fun onBackPress() = viewModelScope.launch {
         if (StorageCache.isEmpty())
             _events.emit(DocumentsScreenEvents.NavigateBack)
-        else {
-            replaceData(StorageCache.popCache())
-            if (StorageCache.isEmpty()) updateActionBarTitle(null)
-        }
+        else
+            StorageCache.popCache().apply {
+                replaceData(items)
+                this@DocumentsViewModel.directory = directory
+                updateActionBarTitle(folderName)
+            }
     }
 
     fun onFolderPress(folder: StorageItem.Folder) = viewModelScope.launch {
-        StorageCache.addToCache(uiState.value.storageItems)
-        updateActionBarTitle(folder.name)
-        directory.emit(folder.folder.id)
+        StorageCache.addToCache(
+            CacheData(
+                uiState.value.storageItems,
+                directory,
+                uiState.value.actionBarTitle
+            )
+        )
+        directory = folder.folder.id
+        getAllData(directory)
+        updateActionBarTitle(folder.folder.folderName)
     }
 }
