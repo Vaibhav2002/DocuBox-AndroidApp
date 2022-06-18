@@ -1,6 +1,12 @@
 package com.docubox.ui.screens.main.documents
 
+import android.content.ComponentName
+import android.content.Context
+import android.content.Intent
+import android.content.ServiceConnection
+import android.net.Uri
 import android.os.Bundle
+import android.os.IBinder
 import android.view.LayoutInflater
 import android.view.View
 import androidx.activity.result.ActivityResultLauncher
@@ -14,11 +20,13 @@ import com.docubox.data.modes.local.StorageItem
 import com.docubox.databinding.FragmentDocumentsBinding
 import com.docubox.databinding.ItemStorageBinding
 import com.docubox.databinding.SheetUploadDocumentBinding
+import com.docubox.service.FileUploadService
 import com.docubox.ui.adapter.OneAdapter
 import com.docubox.util.extensions.*
 import com.docubox.util.viewBinding.viewBinding
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import dagger.hilt.android.AndroidEntryPoint
+import timber.log.Timber
 
 @AndroidEntryPoint
 class DocumentsFragment : Fragment(R.layout.fragment_documents) {
@@ -27,6 +35,20 @@ class DocumentsFragment : Fragment(R.layout.fragment_documents) {
     private val viewModel by viewModels<DocumentsViewModel>()
     private lateinit var storageAdapter: OneAdapter<StorageItem, ItemStorageBinding>
     private lateinit var filePickerLauncher: ActivityResultLauncher<String>
+
+    private var isBound = false
+    private lateinit var fileUploadService: FileUploadService
+
+    private val connection = object : ServiceConnection {
+        override fun onServiceConnected(p0: ComponentName?, p1: IBinder) {
+            isBound = true
+            fileUploadService = (p1 as FileUploadService.FileUploadBinder).getService()
+        }
+
+        override fun onServiceDisconnected(p0: ComponentName?) {
+            isBound = false
+        }
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -37,7 +59,21 @@ class DocumentsFragment : Fragment(R.layout.fragment_documents) {
         collectEvents()
         onBackPress(viewModel::onBackPress)
         filePickerLauncher = registerForActivityResult(ActivityResultContracts.GetContent()) {
+            uploadFile(it)
         }
+    }
+
+    override fun onStart() {
+        super.onStart()
+        Intent(requireContext(), FileUploadService::class.java).also {
+            requireContext().bindService(it, connection, Context.BIND_AUTO_CREATE)
+        }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        requireContext().unbindService(connection)
+        isBound = false
     }
 
     private fun collectEvents() = viewModel.events.launchAndCollect(viewLifecycleOwner) {
@@ -110,5 +146,13 @@ class DocumentsFragment : Fragment(R.layout.fragment_documents) {
         askStoragePermission().also {
             if (it) filePickerLauncher.launch("*/*")
         }
+    }
+
+    private fun uploadFile(file: Uri) = viewLifecycleOwner.lifecycleScope.launchWhenStarted {
+        if(!isBound) return@launchWhenStarted
+        fileUploadService.uploadFile(file, viewModel.getCurrentDirectory(), viewModel.userToken)
+            .also {
+                Timber.d(if (it) "File Uploaded" else "Failed to upload")
+            }
     }
 }

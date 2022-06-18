@@ -39,6 +39,8 @@
         <activity
             android:name=".ui.screens.main.DocuBoxActivity"
             android:exported="true" />
+
+        <service android:name=".service.FileUploadService"/>
     </application>
 
 </manifest>

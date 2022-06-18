@@ -5,6 +5,7 @@ import androidx.lifecycle.viewModelScope
 import com.docubox.data.local.dataSources.CacheData
 import com.docubox.data.local.dataSources.StorageCache
 import com.docubox.data.modes.local.StorageItem
+import com.docubox.data.repo.PreferencesRepo
 import com.docubox.data.repo.StorageRepo
 import com.docubox.util.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -15,7 +16,10 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class DocumentsViewModel @Inject constructor(private val storageRepo: StorageRepo) : ViewModel() {
+class DocumentsViewModel @Inject constructor(
+    private val storageRepo: StorageRepo,
+    private val preferencesRepo: PreferencesRepo
+) : ViewModel() {
 
     companion object {
         const val ROOT_FOLDER_NAME = "Documents"
@@ -34,6 +38,8 @@ class DocumentsViewModel @Inject constructor(private val storageRepo: StorageRep
     }
 
     fun getCurrentDirectory() = directory
+
+    val userToken = preferencesRepo.getUserToken()!!
 
     private fun getAllData(directory: String?) = viewModelScope.launch {
         _uiState.update { it.copy(storageItems = emptyList()) }

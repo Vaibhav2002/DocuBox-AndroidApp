@@ -1,8 +1,8 @@
-package com.docubox.data.modes.remote.responses.folder
+package com.docubox.data.modes.remote.responses
 
 import com.google.gson.annotations.SerializedName
 
-data class FolderParentDirectory(
+data class ParentDirectory(
     @SerializedName("folderName")
     val folderName: String = "",
     @SerializedName("folderOwner")
