@@ -34,33 +34,6 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/btnUploadFolder"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:clickable="true"
-        android:focusable="true"
-        android:background="?android:attr/selectableItemBackground"
-        android:padding="8dp">
-
-        <ImageView
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:src="@drawable/ic_upload_folder"
-            android:layout_margin="8dp"
-            app:tint="@color/colorSecondaryText" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Upload Folder"
-            android:layout_gravity="center_vertical"
-            android:textColor="@color/colorSecondaryText"
-            android:padding="8dp"/>
-
-    </LinearLayout>
-
-    <LinearLayout
         android:id="@+id/btnCreateFolder"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -81,33 +54,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Create Folder"
-            android:textColor="@color/colorSecondaryText"
-            android:layout_gravity="center_vertical"
-            android:padding="8dp"/>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/btnFolderInfo"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:background="?android:attr/selectableItemBackground"
-        android:clickable="true"
-        android:focusable="true"
-        android:padding="8dp">
-
-        <ImageView
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:src="@drawable/ic_info"
-            android:layout_margin="8dp"
-            app:tint="@color/colorSecondaryText"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="About"
             android:textColor="@color/colorSecondaryText"
             android:layout_gravity="center_vertical"
             android:padding="8dp"/>
