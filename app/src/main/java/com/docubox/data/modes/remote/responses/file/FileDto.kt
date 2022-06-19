@@ -20,5 +20,8 @@ data class FileDto(
     @SerializedName("_id")
     val id: String = "",
     @SerializedName("__v")
-    val v: Int = 0
+    val v: Int = 0,
+    @SerializedName("fileSharedTo")
+    val fileSharedTo: List<String> = emptyList()
+
 )

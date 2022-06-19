@@ -25,4 +25,11 @@ class StorageDataSource @Inject constructor(private val service: StorageService)
     ) = safeApiCall {
         service.createFolder(CreateFolderRequest(folderName, folderDirectory), token.asJwt())
     }
+
+    suspend fun getFilesSharedByMe(token: String) = safeApiCall {
+        service.getFilesSharedByMe(token.asJwt())
+    }
+    suspend fun getFilesSharedToMe(token: String) = safeApiCall {
+        service.getFilesSharedToMe(token.asJwt())
+    }
 }

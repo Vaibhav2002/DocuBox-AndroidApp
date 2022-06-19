@@ -43,4 +43,18 @@ class StorageRepo @Inject constructor(
     }.map { res ->
         res.mapTo { folderMapper.toLocal(it.folder) }
     }.flowOn(Dispatchers.IO)
+
+    suspend fun getFilesSharedByMe() = flow {
+        emit(Resource.Loading())
+        emit(storageDataSource.getFilesSharedByMe(token))
+    }.map { res->
+        res.mapTo { fileMapper.toLocal(it.fileList) }
+    }.flowOn(Dispatchers.IO)
+
+    suspend fun getFilesSharedToMe() = flow {
+        emit(Resource.Loading())
+        emit(storageDataSource.getFilesSharedToMe(token))
+    }.map { res->
+        res.mapTo { fileMapper.toLocal(it.fileList) }
+    }.flowOn(Dispatchers.IO)
 }
