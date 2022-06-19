@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:id="@+id/btnUploadFile"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:clickable="true"
+    android:focusable="true"
+    android:background="?android:attr/selectableItemBackground"
+    android:paddingVertical="8dp"
+    android:gravity="center_vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <ImageView
+        android:id="@+id/icon"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        tools:src="@drawable/ic_file_upload"
+        android:layout_margin="8dp"
+        android:visibility="gone"
+        tools:visibility="visible"
+        app:tint="@color/colorSecondaryText" />
+
+    <TextView
+        android:id="@+id/text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="Upload File"
+        android:includeFontPadding="false"
+        android:textAppearance="@style/TextAppearance.MdcTypographyStyles.TitleMedium"
+        android:layout_gravity="center_vertical"
+        android:textColor="@color/colorSecondaryText"
+        android:padding="8dp"/>
+
+</LinearLayout>
