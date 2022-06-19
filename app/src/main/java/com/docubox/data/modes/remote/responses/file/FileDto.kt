@@ -6,11 +6,11 @@ import com.google.gson.annotations.SerializedName
 
 data class FileDto(
     @SerializedName("fileDirectory")
-    val fileDirectory: String = "",
+    val fileDirectory: List<String> = emptyList(),
     @SerializedName("fileName")
     val fileName: String = "",
-    @SerializedName("fileOwner")
-    val fileOwner: OwnerDto = OwnerDto(),
+//    @SerializedName("fileOwner")
+//    val fileOwner: OwnerDto = OwnerDto(),
     @SerializedName("fileSize")
     val fileSize: String = "",
     @SerializedName("fileStorageUrl")

@@ -7,7 +7,9 @@ import android.widget.EditText
 import androidx.core.widget.doAfterTextChanged
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewbinding.ViewBinding
+import com.docubox.R
 import com.docubox.ui.adapter.OneAdapter
+import com.google.android.material.button.MaterialButton
 import kotlinx.coroutines.*
 
 // Function to launch an onclick listener
@@ -49,4 +51,17 @@ fun <ITEM : Any, VB : ViewBinding> RecyclerView.compose(
     itemClick: ITEM.(View) -> Unit = {}
 ): OneAdapter<ITEM, VB> {
     return OneAdapter(layout, onBind, itemClick).also { adapter = it }
+}
+
+fun MaterialButton.setSelectedState(isSelected: Boolean) {
+    setBackgroundColor(
+        resources.getColor(
+            if (isSelected) R.color.colorPrimary else R.color.colorAppBackground,
+        )
+    )
+    setTextColor(
+        resources.getColor(
+            if (isSelected) R.color.colorOnPrimary else R.color.colorPrimaryText,
+        )
+    )
 }

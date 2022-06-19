@@ -8,13 +8,16 @@ import com.docubox.data.modes.local.StorageItem
 internal class DiffUtilCallback<ITEM> : DiffUtil.ItemCallback<ITEM>() {
 
     override fun areItemsTheSame(oldItem: ITEM & Any, newItem: ITEM & Any): Boolean {
-        return oldItem === newItem
+        return when {
+            oldItem is StorageItem && newItem is StorageItem -> oldItem.id == newItem.id
+            else -> oldItem === newItem
+        }
     }
 
     @SuppressLint("DiffUtilEquals")
     override fun areContentsTheSame(oldItem: ITEM & Any, newItem: ITEM & Any): Boolean {
         return when {
-            oldItem is StorageItem && newItem is StorageItem -> oldItem.id == newItem.id
+            oldItem is StorageItem && newItem is StorageItem -> oldItem == newItem
             else -> oldItem.hashCode() == newItem.hashCode()
         }
     }
