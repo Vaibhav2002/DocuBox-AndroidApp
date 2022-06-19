@@ -30,4 +30,14 @@ interface StorageService {
         @Body body: CreateFolderRequest,
         @Header("Authorization") token: String
     ): Response<CreateFolderResponse>
+
+    @POST("documents/get-files-shared-to-me")
+    suspend fun getFilesSharedToMe(
+        @Header("Authorization") token:String
+    ):Response<GetFileResponse>
+
+    @POST("documents/get-files-shared-by-me")
+    suspend fun getFilesSharedByMe(
+        @Header("Authorization") token:String
+    ):Response<GetFileResponse>
 }
