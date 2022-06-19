@@ -110,4 +110,20 @@ class DocumentsViewModel @Inject constructor(
         getAllData(directory)
         updateActionBarTitle(folder.folder.folderName)
     }
+
+    fun createFolder(folderName:String) = viewModelScope.launch {
+        storageRepo.createFolder(folderName, directory?:"").collectLatest {
+            _uiState.emit(uiState.value.copy(isLoading = it is Resource.Loading))
+            when (it) {
+                is Resource.Error -> _events.emit(DocumentsScreenEvents.ShowToast(it.message))
+                is Resource.Loading -> Unit
+                is Resource.Success -> it.data?.let(this@DocumentsViewModel::createFolderSuccess)
+            }
+        }
+    }
+
+    private fun createFolderSuccess(folder:StorageItem.Folder){
+        val newItems = uiState.value.storageItems.toMutableList().apply { add(folder) }
+        _uiState.update { it.copy(storageItems = newItems) }
+    }
 }
