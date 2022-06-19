@@ -1,8 +1,10 @@
 package com.docubox.data.remote.api
 
+import com.docubox.data.modes.remote.requests.CreateFolderRequest
 import com.docubox.data.modes.remote.requests.GetFileRequest
 import com.docubox.data.modes.remote.requests.GetFolderRequest
 import com.docubox.data.modes.remote.responses.file.GetFileResponse
+import com.docubox.data.modes.remote.responses.folder.CreateFolderResponse
 import com.docubox.data.modes.remote.responses.folder.GetFolderResponse
 import retrofit2.Response
 import retrofit2.http.Body
@@ -22,4 +24,10 @@ interface StorageService {
         @Body body: GetFileRequest,
         @Header("Authorization") token: String
     ): Response<GetFileResponse>
+
+    @POST("documents/create-folder")
+    suspend fun createFolder(
+        @Body body: CreateFolderRequest,
+        @Header("Authorization") token: String
+    ): Response<CreateFolderResponse>
 }
