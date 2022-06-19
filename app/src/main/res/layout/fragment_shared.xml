@@ -1,4 +1,4 @@
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -6,8 +6,10 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <include
             android:id="@+id/actionBar"
@@ -16,7 +18,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_margin="15dp"
             android:backgroundTint="@color/gray">
 
@@ -24,31 +26,39 @@
                 android:id="@+id/btnSharedToYou"
                 style="@style/Widget.Material3.Button"
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="4dp"
                 android:layout_weight="1"
                 android:paddingVertical="16dp"
                 android:text="Shared To You"
                 android:textColor="?attr/colorOnPrimary"
-                app:backgroundTint="#BF479DFF"
                 app:cornerRadius="8dp"
                 app:rippleColor="@color/rippleColorPrimary" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnSharedByYou"
-                style="@style/Widget.Material3.Button.TextButton"
+                style="@style/Widget.Material3.Button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="4dp"
                 android:layout_weight="1"
+                android:checkable="true"
                 android:paddingVertical="16dp"
                 android:text="Shared By You"
-                android:textColor="?attr/colorOnBackground"
+                android:textColor="?attr/colorOnPrimary"
                 app:cornerRadius="8dp"
                 app:rippleColor="@color/rippleColor" />
 
         </LinearLayout>
 
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/storageRv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:listitem="@layout/item_storage"
+            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+            app:spanCount="3"
+            android:layout_marginTop="8dp"/>
 
     </LinearLayout>
-</ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>
