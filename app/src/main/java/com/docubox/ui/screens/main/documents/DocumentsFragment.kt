@@ -16,12 +16,20 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.docubox.R
+import com.docubox.data.modes.local.FileOption
+import com.docubox.data.modes.local.FolderOptions
 import com.docubox.data.modes.local.StorageItem
 import com.docubox.databinding.FragmentDocumentsBinding
 import com.docubox.databinding.ItemStorageBinding
 import com.docubox.databinding.SheetUploadDocumentBinding
 import com.docubox.service.FileUploadService
 import com.docubox.ui.adapter.OneAdapter
+import com.docubox.ui.screens.dialogs.FileOptionsBottomSheetFragment
+import com.docubox.ui.screens.dialogs.FolderOptionsBottomSheetFragment
+import com.docubox.util.Constants.FILE_OPTION_DIALOG
+import com.docubox.util.Constants.FOLDER_OPTION_DIALOG
+import com.docubox.util.Constants.fileOptions
+import com.docubox.util.Constants.folderOptions
 import com.docubox.util.extensions.*
 import com.docubox.util.viewBinding.viewBinding
 import com.google.android.material.bottomsheet.BottomSheetDialog
@@ -104,6 +112,13 @@ class DocumentsFragment : Fragment(R.layout.fragment_documents) {
                 title.text = item.name
                 description.text = item.description
                 itemImage.setImageResource(item.icon)
+                root.setOnLongClickListener {
+                    when (item) {
+                        is StorageItem.File -> handleFileLongPress(item)
+                        is StorageItem.Folder -> handleFolderLongPress(item)
+                    }
+                    true
+                }
             },
         ) {
             handleStorageItemPress(this)
@@ -164,5 +179,27 @@ class DocumentsFragment : Fragment(R.layout.fragment_documents) {
             .also {
                 Timber.d(if (it) "File Uploaded" else "Failed to upload")
             }
+    }
+
+    private fun handleFileLongPress(file: StorageItem.File) {
+        FileOptionsBottomSheetFragment(fileOptions) {
+            when (it) {
+                FileOption.Delete -> Timber.d("Delete File")
+                FileOption.Rename -> Timber.d("Rename File")
+                FileOption.RevokeShare -> Timber.d("Revoke File Share")
+                FileOption.Share -> Timber.d("Share File")
+            }
+        }.show(childFragmentManager, FILE_OPTION_DIALOG)
+    }
+
+    private fun handleFolderLongPress(folder: StorageItem.Folder) {
+        FolderOptionsBottomSheetFragment(folderOptions) {
+            when (it) {
+                FolderOptions.Delete -> Timber.d("Delete Folder")
+                FolderOptions.Rename -> Timber.d("Rename Folder")
+                FolderOptions.RevokeShare -> Unit
+                FolderOptions.Share -> Unit
+            }
+        }.show(childFragmentManager, FOLDER_OPTION_DIALOG)
     }
 }

@@ -2,7 +2,9 @@ package com.docubox.util
 
 import android.Manifest
 import android.os.Build
+import com.docubox.data.modes.local.FileOption
 import com.docubox.data.modes.local.FileType
+import com.docubox.data.modes.local.FolderOptions
 import com.docubox.data.modes.local.StorageItem
 
 // All our app's constant data variables
@@ -11,6 +13,21 @@ object Constants {
     const val DATASTORE_NAME = "DocuBoxDataStore"
     val DEFAULT_FILE_DIRECTORY: String? = "62a770c456fe19af7106ddae"
     val DEFAULT_FOLDER_DIRECTORY: String? = "62a770c456fe19af7106ddae"
+
+    const val FILE_OPTION_DIALOG = "FileOptionsDialog"
+    const val FOLDER_OPTION_DIALOG = "FolderOptionsDialog"
+
+    val folderOptions = listOf(
+        FolderOptions.Rename,
+        FolderOptions.Delete
+    )
+
+    val fileOptions = listOf(
+        FileOption.Rename,
+        FileOption.Share,
+        FileOption.RevokeShare,
+        FileOption.Delete
+    )
 
     val filePermissions = listOf(
         Manifest.permission.READ_EXTERNAL_STORAGE,
