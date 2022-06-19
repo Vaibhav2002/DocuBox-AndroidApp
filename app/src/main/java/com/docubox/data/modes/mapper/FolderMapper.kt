@@ -8,7 +8,7 @@ class FolderMapper @Inject constructor() : Mapper<StorageItem.Folder, FolderDto>
     override fun toRemote(local: StorageItem.Folder): FolderDto = FolderDto(
         folderName = local.folder.folderName,
         folderOwner = local.folder.folderOwner,
-        folderParentDirectory = local.folder.folderParentDirectory,
+//        folderParentDirectory = local.folder.folderParentDirectory,
         id = local.folder.id,
         v = local.folder.v,
     )
