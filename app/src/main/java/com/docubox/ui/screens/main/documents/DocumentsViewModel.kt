@@ -117,13 +117,8 @@ class DocumentsViewModel @Inject constructor(
             when (it) {
                 is Resource.Error -> _events.emit(DocumentsScreenEvents.ShowToast(it.message))
                 is Resource.Loading -> Unit
-                is Resource.Success -> it.data?.let(this@DocumentsViewModel::createFolderSuccess)
+                is Resource.Success -> getAllData(directory)
             }
         }
-    }
-
-    private fun createFolderSuccess(folder:StorageItem.Folder){
-        val newItems = uiState.value.storageItems.toMutableList().apply { add(folder) }
-        _uiState.update { it.copy(storageItems = newItems) }
     }
 }
