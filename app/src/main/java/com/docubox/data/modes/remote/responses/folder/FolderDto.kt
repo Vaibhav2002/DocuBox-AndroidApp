@@ -9,8 +9,8 @@ data class FolderDto(
     val folderName: String = "",
     @SerializedName("folderOwner")
     val folderOwner: OwnerDto = OwnerDto(),
-    @SerializedName("folderParentDirectory")
-    val folderParentDirectory: ParentDirectory = ParentDirectory(),
+//    @SerializedName("folderParentDirectory")
+//    val folderParentDirectory: ParentDirectory = ParentDirectory(),
     @SerializedName("_id")
     val id: String = "",
     @SerializedName("__v")

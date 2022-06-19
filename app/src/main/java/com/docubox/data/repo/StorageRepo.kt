@@ -20,7 +20,8 @@ class StorageRepo @Inject constructor(
     private val folderMapper: FolderMapper
 ) {
 
-    private val token = preferencesRepo.getUserToken()!!
+    private val token
+        get() = preferencesRepo.getUserToken()!!
 
     suspend fun getAllFiles(fileDirectory: String?) = flow {
         emit(Resource.Loading())
@@ -34,5 +35,12 @@ class StorageRepo @Inject constructor(
         emit(storageDataSource.getAllFolders(folderParentDirectory, token))
     }.map { resource -> //mapping all folders in GetFolderResponse model to list of Local StorageItem.Folder
         resource mapTo { folderMapper.toLocal(it.folderList) }
+    }.flowOn(Dispatchers.IO)
+
+    suspend fun createFolder(folderName: String, folderDirectory: String) = flow {
+        emit(Resource.Loading())
+        emit(storageDataSource.createFolder(folderName, folderDirectory, token))
+    }.map { res ->
+        res.mapTo { folderMapper.toLocal(it.folder) }
     }.flowOn(Dispatchers.IO)
 }

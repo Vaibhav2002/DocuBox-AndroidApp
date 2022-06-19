@@ -131,15 +131,25 @@ class DocumentsFragment : Fragment(R.layout.fragment_documents) {
             R.style.DocuBox_BottomSheet
         ).apply {
             setContentView(bottomSheetBinding.root)
-            bottomSheetBinding.btnUploadFile.setOnClickListener {
+            bottomSheetBinding.btnUploadFile.singleClick {
                 dismiss()
                 openFilePicker()
+            }
+            bottomSheetBinding.btnCreateFolder.singleClick {
+                dismiss()
+                handleCreateFolder()
             }
         }.also {
             it.show()
         }
 
+    }
 
+    private fun handleCreateFolder() = lifecycleScope.launchWhenStarted {
+        requireContext().showInputDialog("Enter Folder name", "").also {
+            if (it.isEmpty()) return@also
+            viewModel.createFolder(it)
+        }
     }
 
     private fun openFilePicker() = lifecycleScope.launchWhenStarted {
@@ -149,7 +159,7 @@ class DocumentsFragment : Fragment(R.layout.fragment_documents) {
     }
 
     private fun uploadFile(file: Uri) = viewLifecycleOwner.lifecycleScope.launchWhenStarted {
-        if(!isBound) return@launchWhenStarted
+        if (!isBound) return@launchWhenStarted
         fileUploadService.uploadFile(file, viewModel.getCurrentDirectory(), viewModel.userToken)
             .also {
                 Timber.d(if (it) "File Uploaded" else "Failed to upload")

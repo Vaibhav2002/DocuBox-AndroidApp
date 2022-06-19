@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/nameTIL"
+        style="@style/Widget.Material3.TextInputLayout.FilledBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="24dp"
+        android:layout_marginTop="64dp"
+        app:boxBackgroundColor="@android:color/white"
+        app:boxStrokeWidth="0dp"
+        android:hint="Name"
+        app:boxStrokeWidthFocused="0dp"
+        app:placeholderText="Enter name">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/nameTIET"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_light"
+            android:imeOptions="actionNext"
+            android:inputType="textEmailAddress"
+            android:singleLine="true"
+            android:textAppearance="@style/TextAppearance.MdcTypographyStyles.TitleMedium" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+</FrameLayout>

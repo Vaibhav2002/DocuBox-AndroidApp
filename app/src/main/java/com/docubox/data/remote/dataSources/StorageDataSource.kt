@@ -1,5 +1,6 @@
 package com.docubox.data.remote.dataSources
 
+import com.docubox.data.modes.remote.requests.CreateFolderRequest
 import com.docubox.data.modes.remote.requests.GetFileRequest
 import com.docubox.data.modes.remote.requests.GetFolderRequest
 import com.docubox.data.remote.api.StorageService
@@ -15,5 +16,13 @@ class StorageDataSource @Inject constructor(private val service: StorageService)
 
     suspend fun getAllFolders(folderParentDirectory: String?, token: String) = safeApiCall {
         service.getFolders(GetFolderRequest(folderParentDirectory), token.asJwt())
+    }
+
+    suspend fun createFolder(
+        folderName: String,
+        folderDirectory: String,
+        token: String
+    ) = safeApiCall {
+        service.createFolder(CreateFolderRequest(folderName, folderDirectory), token.asJwt())
     }
 }
