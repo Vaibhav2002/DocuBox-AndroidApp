@@ -8,6 +8,7 @@ import com.docubox.data.modes.local.StorageItem
 import com.docubox.data.repo.PreferencesRepo
 import com.docubox.data.repo.StorageRepo
 import com.docubox.util.Resource
+import com.docubox.util.isValidEmail
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.async
 import kotlinx.coroutines.awaitAll
@@ -111,13 +112,30 @@ class DocumentsViewModel @Inject constructor(
         updateActionBarTitle(folder.folder.folderName)
     }
 
-    fun createFolder(folderName:String) = viewModelScope.launch {
-        storageRepo.createFolder(folderName, directory?:"").collectLatest {
+    fun createFolder(folderName: String) = viewModelScope.launch {
+        storageRepo.createFolder(folderName, directory ?: "").collectLatest {
             _uiState.emit(uiState.value.copy(isLoading = it is Resource.Loading))
             when (it) {
                 is Resource.Error -> _events.emit(DocumentsScreenEvents.ShowToast(it.message))
                 is Resource.Loading -> Unit
                 is Resource.Success -> getAllData(directory)
+            }
+        }
+    }
+
+    fun shareFile(file: StorageItem.File, email: String) = viewModelScope.launch {
+        if (!email.isValidEmail()) {
+            _events.emit(DocumentsScreenEvents.ShowToast("Invalid Email"))
+            return@launch
+        }
+        storageRepo.shareFile(file.file.id, email).collectLatest {
+            _uiState.emit(uiState.value.copy(isLoading = it is Resource.Loading))
+            when (it) {
+                is Resource.Error -> _events.emit(DocumentsScreenEvents.ShowToast(it.message))
+                is Resource.Loading -> Unit
+                is Resource.Success -> _events.emit(
+                    DocumentsScreenEvents.ShowToast(it.data?.message ?: "")
+                )
             }
         }
     }

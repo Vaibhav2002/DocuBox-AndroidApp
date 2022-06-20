@@ -37,10 +37,14 @@ fun Context.showToast(message: String) {
 
 suspend fun Context.showInputDialog(
     title: String,
-    text: String
+    text: String = "",
+    placeholder: String,
+    label: String,
 ) = suspendCoroutine<String> {
     val binding = TextInputDialogBinding.inflate(LayoutInflater.from(this)).apply {
         nameTIET.setText(text)
+        nameTIL.placeholderText = placeholder
+        nameTIL.hint = label
     }
 
     MaterialAlertDialogBuilder(this).apply {

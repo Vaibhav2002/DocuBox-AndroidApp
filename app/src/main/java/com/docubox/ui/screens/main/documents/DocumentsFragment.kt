@@ -161,7 +161,12 @@ class DocumentsFragment : Fragment(R.layout.fragment_documents) {
     }
 
     private fun handleCreateFolder() = lifecycleScope.launchWhenStarted {
-        requireContext().showInputDialog("Enter Folder name", "").also {
+        requireContext().showInputDialog(
+            "Enter Folder name",
+            "",
+            "Enter folder name",
+            "Folder name"
+        ).also {
             if (it.isEmpty()) return@also
             viewModel.createFolder(it)
         }
@@ -187,7 +192,7 @@ class DocumentsFragment : Fragment(R.layout.fragment_documents) {
                 FileOption.Delete -> Timber.d("Delete File")
                 FileOption.Rename -> Timber.d("Rename File")
                 FileOption.RevokeShare -> Timber.d("Revoke File Share")
-                FileOption.Share -> Timber.d("Share File")
+                FileOption.Share -> handleShareFile(file)
             }
         }.show(childFragmentManager, FILE_OPTION_DIALOG)
     }
@@ -202,4 +207,16 @@ class DocumentsFragment : Fragment(R.layout.fragment_documents) {
             }
         }.show(childFragmentManager, FOLDER_OPTION_DIALOG)
     }
+
+    private fun handleShareFile(file: StorageItem.File) =
+        viewLifecycleOwner.lifecycleScope.launchWhenStarted {
+            requireContext().showInputDialog(
+                title = "Enter email",
+                placeholder = "Enter email",
+                label = "Email"
+            ).also {
+                if (it.isEmpty()) return@also
+                viewModel.shareFile(file, it)
+            }
+        }
 }
