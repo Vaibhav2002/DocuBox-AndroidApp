@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.docubox.data.modes.local.StorageItem
 import com.docubox.data.repo.StorageRepo
+import com.docubox.ui.screens.main.documents.DocumentsScreenEvents
 import com.docubox.util.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.*
@@ -53,5 +54,21 @@ class SharedViewModel @Inject constructor(private val storageRepo: StorageRepo) 
     }
     fun onSharedToMeButtonPress() = viewModelScope.launch {
         isSharedByMeState.emit(false)
+    }
+
+    fun revokeShareFile(file: StorageItem.File, email: String) = viewModelScope.launch {
+        storageRepo.revokeShareFile(file.file.id, email).collectLatest {
+            _uiState.emit(uiState.value.copy(isLoading = it is Resource.Loading))
+            when (it) {
+                is Resource.Error -> _events.emit(SharedScreenEvents.ShowToast(it.message))
+                is Resource.Loading -> Unit
+                is Resource.Success -> {
+                    _events.emit(
+                        SharedScreenEvents.ShowToast(it.data?.message ?: "")
+                    )
+                    getSharedFiles(true)
+                }
+            }
+        }
     }
 }
