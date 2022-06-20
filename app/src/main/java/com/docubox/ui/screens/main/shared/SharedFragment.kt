@@ -36,8 +36,11 @@ class SharedFragment : Fragment(R.layout.fragment_shared) {
 
     private fun collectUiState() = viewModel.uiState.launchAndCollectLatest(viewLifecycleOwner) {
         storageAdapter.submitList(it.storageItems)
-        binding.btnSharedToMe.setSelectedState(!it.isSharedByMeState)
-        binding.btnSharedByMe.setSelectedState(it.isSharedByMeState)
+        binding.apply {
+            btnSharedToMe.setSelectedState(!it.isSharedByMeState)
+            btnSharedByMe.setSelectedState(it.isSharedByMeState)
+            swipeRefresh.isRefreshing = it.isRefreshing
+        }
     }
 
     private fun collectUiEvents() = viewModel.events.launchAndCollect(viewLifecycleOwner) {
@@ -49,6 +52,7 @@ class SharedFragment : Fragment(R.layout.fragment_shared) {
     private fun initListeners() = with(binding) {
         btnSharedByMe.singleClick(viewModel::onSharedByMeButtonPress)
         btnSharedToMe.singleClick(viewModel::onSharedToMeButtonPress)
+        swipeRefresh.setOnRefreshListener(viewModel::onRefresh)
     }
 
     private fun initViews() = with(binding) {
