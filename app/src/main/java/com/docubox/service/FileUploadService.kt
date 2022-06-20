@@ -7,6 +7,7 @@ import android.os.Binder
 import android.os.IBinder
 import androidx.lifecycle.LifecycleService
 import com.docubox.util.Secrets.BASE_URL
+import com.docubox.util.Secrets.BASE_URL_FILE_UPLOAD
 import net.gotev.uploadservice.data.UploadInfo
 import net.gotev.uploadservice.network.ServerResponse
 import net.gotev.uploadservice.observer.request.RequestObserverDelegate
@@ -18,7 +19,7 @@ import kotlin.coroutines.suspendCoroutine
 class FileUploadService : LifecycleService() {
 
     companion object {
-        private const val UPLOAD_FILE_URL = "$BASE_URL/documents/create-file"
+        private val UPLOAD_FILE_URL = "$BASE_URL_FILE_UPLOAD/documents/create-file"
     }
 
     private val binder = FileUploadBinder()
@@ -55,7 +56,7 @@ class FileUploadService : LifecycleService() {
                             uploadInfo: UploadInfo,
                             exception: Throwable
                         ) {
-                            Timber.d(exception.message)
+                            Timber.d("DOCUBOX_ERROR: ${exception.message}")
                             it.resume(false)
                         }
 
