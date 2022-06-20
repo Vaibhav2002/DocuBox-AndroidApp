@@ -58,4 +58,9 @@ interface StorageService {
         @Header("Authorization") token: String
     ): Response<MessageResponse>
 
+    @POST("documents/delete-folder")
+    suspend fun deleteFolder(
+        @Body body: Map<String, String>,
+        @Header("Authorization") token: String
+    ): Response<MessageResponse>
 }

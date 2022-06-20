@@ -206,7 +206,7 @@ class DocumentsFragment : Fragment(R.layout.fragment_documents) {
     private fun handleFolderLongPress(folder: StorageItem.Folder) {
         FolderOptionsBottomSheetFragment(folderOptions) {
             when (it) {
-                FolderOptions.Delete -> Timber.d("Delete Folder")
+                FolderOptions.Delete -> handleDeleteFolder(folder)
                 FolderOptions.Rename -> Timber.d("Rename Folder")
                 FolderOptions.RevokeShare -> Unit
                 FolderOptions.Share -> Unit
@@ -244,6 +244,17 @@ class DocumentsFragment : Fragment(R.layout.fragment_documents) {
                 positiveButtonText = "Delete"
             ).also {
                 if (it) viewModel.deleteFile(file)
+            }
+        }
+
+    private fun handleDeleteFolder(folder: StorageItem.Folder) =
+        viewLifecycleOwner.lifecycleScope.launchWhenStarted {
+            requireContext().showAlertDialog(
+                title = "Delete Folder",
+                message = "Are you sure you want to delete this folder?",
+                positiveButtonText = "Delete"
+            ).also {
+                if (it) viewModel.deleteFolder(folder)
             }
         }
 }
