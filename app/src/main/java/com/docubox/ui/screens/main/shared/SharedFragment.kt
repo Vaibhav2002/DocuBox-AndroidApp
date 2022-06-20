@@ -8,6 +8,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.docubox.R
 import com.docubox.data.modes.local.FileOption
+import com.docubox.data.modes.local.FolderOptions
 import com.docubox.data.modes.local.StorageItem
 import com.docubox.databinding.FragmentSharedBinding
 import com.docubox.databinding.ItemStorageBinding
@@ -85,9 +86,9 @@ class SharedFragment : Fragment(R.layout.fragment_shared) {
     }
 
     private fun handleFileLongPress(file: StorageItem.File) {
-        FileOptionsBottomSheetFragment(listOf(FileOption.RevokeShare)) {
+        FileOptionsBottomSheetFragment(listOf(FileOption.RevokeShare, FileOption.Delete)) {
             when (it) {
-                FileOption.Delete -> Unit
+                FileOption.Delete -> handleDeleteFile(file)
                 FileOption.Rename -> Unit
                 FileOption.RevokeShare -> handleRevokeShareFile(file)
                 FileOption.Share -> Unit
@@ -104,4 +105,13 @@ class SharedFragment : Fragment(R.layout.fragment_shared) {
                 email?.let { viewModel.revokeShareFile(file, it) }
             }
         }
+    private fun handleDeleteFile(file:StorageItem.File) = viewLifecycleOwner.lifecycleScope.launchWhenStarted {
+        requireContext().showAlertDialog(
+            title = "Delete File",
+            message = "Are you sure you want to delete this file?",
+            positiveButtonText = "Delete"
+        ).also {
+            if(it) viewModel.deleteFile(file)
+        }
+    }
 }

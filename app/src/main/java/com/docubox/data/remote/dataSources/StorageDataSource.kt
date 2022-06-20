@@ -39,4 +39,8 @@ class StorageDataSource @Inject constructor(private val service: StorageService)
     suspend fun revokeFile(fileId: String, ofEmail: String, token: String) = safeApiCall {
         service.revokeFile(RevokeFileRequest(fileId, ofEmail), token.asJwt())
     }
+
+    suspend fun deleteFile(fileId: String, token: String) = safeApiCall {
+        service.deleteFile(mapOf("fileId" to fileId), token.asJwt())
+    }
 }

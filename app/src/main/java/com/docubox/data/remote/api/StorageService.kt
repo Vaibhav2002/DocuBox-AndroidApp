@@ -51,4 +51,11 @@ interface StorageService {
         @Body body: RevokeFileRequest,
         @Header("Authorization") token: String
     ): Response<MessageResponse>
+
+    @POST("documents/delete-file")
+    suspend fun deleteFile(
+        @Body body: Map<String, String>,
+        @Header("Authorization") token: String
+    ): Response<MessageResponse>
+
 }

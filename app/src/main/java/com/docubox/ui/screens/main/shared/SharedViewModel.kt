@@ -84,4 +84,20 @@ class SharedViewModel @Inject constructor(private val storageRepo: StorageRepo) 
             }
         }
     }
+
+    fun deleteFile(file: StorageItem.File) = viewModelScope.launch {
+        storageRepo.deleteFile(file.file.id).collectLatest {
+            _uiState.emit(uiState.value.copy(isLoading = it is Resource.Loading))
+            when (it) {
+                is Resource.Error -> _events.emit(SharedScreenEvents.ShowToast(it.message))
+                is Resource.Loading -> Unit
+                is Resource.Success -> {
+                    _events.emit(
+                        SharedScreenEvents.ShowToast(it.data?.message ?: "")
+                    )
+                    getSharedFiles(true)
+                }
+            }
+        }
+    }
 }

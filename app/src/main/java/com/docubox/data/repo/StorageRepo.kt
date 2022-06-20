@@ -67,4 +67,9 @@ class StorageRepo @Inject constructor(
         emit(Resource.Loading())
         emit(storageDataSource.revokeFile(fileId, email, token))
     }.flowOn(Dispatchers.IO)
+
+    suspend fun deleteFile(fileId: String) = flow {
+        emit(Resource.Loading())
+        emit(storageDataSource.deleteFile(fileId, token))
+    }.flowOn(Dispatchers.IO)
 }
