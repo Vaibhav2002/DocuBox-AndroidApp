@@ -4,6 +4,7 @@ import com.docubox.data.modes.mapper.FileMapper
 import com.docubox.data.modes.mapper.FolderMapper
 import com.docubox.data.remote.dataSources.StorageDataSource
 import com.docubox.util.Resource
+import com.docubox.util.extensions.mapMessages
 import com.docubox.util.extensions.mapTo
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.flow
@@ -61,15 +62,21 @@ class StorageRepo @Inject constructor(
     suspend fun shareFile(fileId: String, email: String) = flow {
         emit(Resource.Loading())
         emit(storageDataSource.shareFile(fileId, email, token))
+    }.map { res ->
+        res.mapMessages(successMessage = res.data?.message)
     }.flowOn(Dispatchers.IO)
 
     suspend fun revokeShareFile(fileId: String, email: String) = flow {
         emit(Resource.Loading())
         emit(storageDataSource.revokeFile(fileId, email, token))
+    }.map { res ->
+        res.mapMessages(successMessage = res.data?.message)
     }.flowOn(Dispatchers.IO)
 
     suspend fun deleteFile(fileId: String) = flow {
         emit(Resource.Loading())
         emit(storageDataSource.deleteFile(fileId, token))
+    }.map { res ->
+        res.mapMessages(successMessage = res.data?.message)
     }.flowOn(Dispatchers.IO)
 }

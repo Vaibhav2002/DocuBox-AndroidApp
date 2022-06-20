@@ -35,7 +35,6 @@ import com.docubox.util.viewBinding.viewBinding
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
-import java.io.File
 
 @AndroidEntryPoint
 class DocumentsFragment : Fragment(R.layout.fragment_documents) {
@@ -190,7 +189,11 @@ class DocumentsFragment : Fragment(R.layout.fragment_documents) {
     }
 
     private fun handleFileLongPress(file: StorageItem.File) {
-        FileOptionsBottomSheetFragment(fileOptions) {
+        val options = fileOptions.toMutableList()
+            .apply {
+                if (file.file.fileSharedTo.isEmpty()) remove(FileOption.RevokeShare)
+            }
+        FileOptionsBottomSheetFragment(options) {
             when (it) {
                 FileOption.Delete -> handleDeleteFile(file)
                 FileOption.Rename -> Timber.d("Rename File")
@@ -233,13 +236,14 @@ class DocumentsFragment : Fragment(R.layout.fragment_documents) {
             }
         }
 
-    private fun handleDeleteFile(file:StorageItem.File) = viewLifecycleOwner.lifecycleScope.launchWhenStarted {
-        requireContext().showAlertDialog(
-            title = "Delete File",
-            message = "Are you sure you want to delete this file?",
-            positiveButtonText = "Delete"
-        ).also {
-            if(it) viewModel.deleteFile(file)
+    private fun handleDeleteFile(file: StorageItem.File) =
+        viewLifecycleOwner.lifecycleScope.launchWhenStarted {
+            requireContext().showAlertDialog(
+                title = "Delete File",
+                message = "Are you sure you want to delete this file?",
+                positiveButtonText = "Delete"
+            ).also {
+                if (it) viewModel.deleteFile(file)
+            }
         }
-    }
 }
