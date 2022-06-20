@@ -139,4 +139,17 @@ class DocumentsViewModel @Inject constructor(
             }
         }
     }
+
+    fun revokeShareFile(file: StorageItem.File, email: String) = viewModelScope.launch {
+        storageRepo.revokeShareFile(file.file.id, email).collectLatest {
+            _uiState.emit(uiState.value.copy(isLoading = it is Resource.Loading))
+            when (it) {
+                is Resource.Error -> _events.emit(DocumentsScreenEvents.ShowToast(it.message))
+                is Resource.Loading -> Unit
+                is Resource.Success -> _events.emit(
+                    DocumentsScreenEvents.ShowToast(it.data?.message ?: "")
+                )
+            }
+        }
+    }
 }

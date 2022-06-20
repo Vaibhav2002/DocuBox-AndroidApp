@@ -46,7 +46,7 @@ interface StorageService {
         @Header("Authorization") token: String
     ): Response<MessageResponse>
 
-    @POST("/documents/revoke-file")
+    @POST("documents/revoke-file")
     suspend fun revokeFile(
         @Body body: RevokeFileRequest,
         @Header("Authorization") token: String

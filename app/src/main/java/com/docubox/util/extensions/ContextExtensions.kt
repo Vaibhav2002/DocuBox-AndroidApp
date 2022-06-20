@@ -59,3 +59,21 @@ suspend fun Context.showInputDialog(
         show()
     }
 }
+
+suspend fun Context.showSelectItemDialog(
+    title: String,
+    items: List<String>,
+) = suspendCoroutine<String?> {
+    var selectedItemIndex = 0
+    MaterialAlertDialogBuilder(this).apply {
+        setTitle(title)
+        setSingleChoiceItems(items.toTypedArray(), 0) {_,pos->
+            selectedItemIndex = pos
+        }
+        setNegativeButton("Cancel") { _, _ -> it.resume(null) }
+        setPositiveButton("Confirm") { _, _ ->
+            it.resume(items[selectedItemIndex])
+        }
+        show()
+    }
+}
