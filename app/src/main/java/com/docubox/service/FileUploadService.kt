@@ -39,7 +39,7 @@ class FileUploadService : LifecycleService() {
             MultipartUploadRequest(this@FileUploadService, UPLOAD_FILE_URL)
                 .setMethod("POST")
                 .addFileToUpload(filePath = file.toString(), parameterName = "upload")
-                .addParameter("fileDirectory", directory.toString())
+                .addArrayParameter("fileDirectory", directory)
                 .setBearerAuth(token)
                 .subscribe(
                     this@FileUploadService,
