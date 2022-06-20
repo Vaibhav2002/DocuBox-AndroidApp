@@ -167,6 +167,13 @@ class DocumentsViewModel @Inject constructor(
         }
     }
 
+    fun deleteFolder(folder: StorageItem.Folder) = viewModelScope.launch {
+        storageRepo.deleteFolder(folder.folder.id).collectLatest {
+            _uiState.emit(uiState.value.copy(isLoading = it is Resource.Loading))
+            handleMessageResponse(it)
+        }
+    }
+
     private suspend fun handleMessageResponse(
         res: Resource<MessageResponse>,
         getData: Boolean = true
