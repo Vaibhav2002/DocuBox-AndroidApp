@@ -79,4 +79,11 @@ class StorageRepo @Inject constructor(
     }.map { res ->
         res.mapMessages(successMessage = res.data?.message)
     }.flowOn(Dispatchers.IO)
+
+    suspend fun deleteFolder(folderId: String) = flow {
+        emit(Resource.Loading())
+        emit(storageDataSource.deleteFolder(folderId, token))
+    }.map { res ->
+        res.mapMessages(successMessage = res.data?.message)
+    }.flowOn(Dispatchers.IO)
 }
