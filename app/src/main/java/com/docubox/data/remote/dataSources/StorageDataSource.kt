@@ -44,6 +44,6 @@ class StorageDataSource @Inject constructor(private val service: StorageService)
         service.deleteFile(mapOf("fileId" to fileId), token.asJwt())
     }
     suspend fun deleteFolder(folderId: String, token: String) = safeApiCall {
-        service.deleteFile(mapOf("folderId" to folderId), token.asJwt())
+        service.deleteFolder(mapOf("folderId" to folderId), token.asJwt())
     }
 }
