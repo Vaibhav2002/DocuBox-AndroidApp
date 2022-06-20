@@ -102,6 +102,7 @@ class DocumentsFragment : Fragment(R.layout.fragment_documents) {
     private fun collectUiState() = viewModel.uiState.launchAndCollectLatest(viewLifecycleOwner) {
         storageAdapter.submitList(it.storageItems)
         binding.actionBar.tvActionBarTitle.text = it.actionBarTitle
+        binding.swipeRefresh.isRefreshing = it.isRefreshing
     }
 
     private fun initViews() = with(binding) {
@@ -127,6 +128,7 @@ class DocumentsFragment : Fragment(R.layout.fragment_documents) {
 
     private fun initListeners() = with(binding) {
         addFileBtn.singleClick(this@DocumentsFragment::openBottomSheet)
+        swipeRefresh.setOnRefreshListener(viewModel::onRefresh)
     }
 
     private fun handleStorageItemPress(item: StorageItem) {

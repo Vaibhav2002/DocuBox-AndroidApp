@@ -42,14 +42,27 @@ class DocumentsViewModel @Inject constructor(
 
     val userToken = preferencesRepo.getUserToken()!!
 
-    private fun getAllData(directory: String?) = viewModelScope.launch {
-        _uiState.update { it.copy(storageItems = emptyList()) }
-        listOf(async { getFiles(directory) }, async { getFolders(directory) }).awaitAll()
+    private fun getAllData(directory: String?, overrideProgressBar: Boolean = false) =
+        viewModelScope.launch {
+            _uiState.update { it.copy(storageItems = emptyList()) }
+            listOf(
+                async { getFiles(directory, overrideProgressBar) },
+                async { getFolders(directory, overrideProgressBar) }
+            ).awaitAll()
+        }
+
+    fun onRefresh() = viewModelScope.launch {
+        getAllData(directory, true)
     }
 
-    private suspend fun getFiles(directory: String?) {
+    private suspend fun getFiles(directory: String?, overrideProgressBar: Boolean = false) {
         storageRepo.getAllFiles(directory).collectLatest {
-            _uiState.emit(uiState.value.copy(isLoading = it is Resource.Loading))
+            _uiState.emit(
+                uiState.value.copy(
+                    isLoading = it is Resource.Loading && !overrideProgressBar,
+                    isRefreshing = it is Resource.Loading && overrideProgressBar
+                )
+            )
             when (it) {
                 is Resource.Error -> _events.emit(DocumentsScreenEvents.ShowToast(it.message))
                 is Resource.Loading -> Unit
@@ -59,9 +72,14 @@ class DocumentsViewModel @Inject constructor(
     }
 
 
-    private suspend fun getFolders(directory: String?) {
+    private suspend fun getFolders(directory: String?, overrideProgressBar: Boolean = false) {
         storageRepo.getAllFolders(directory).collectLatest {
-            _uiState.emit(uiState.value.copy(isLoading = it is Resource.Loading))
+            _uiState.emit(
+                uiState.value.copy(
+                    isLoading = it is Resource.Loading && !overrideProgressBar,
+                    isRefreshing = it is Resource.Loading && overrideProgressBar
+                )
+            )
             when (it) {
                 is Resource.Error -> _events.emit(DocumentsScreenEvents.ShowToast(it.message))
                 is Resource.Loading -> Unit
