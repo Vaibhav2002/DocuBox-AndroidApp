@@ -62,4 +62,9 @@ class StorageRepo @Inject constructor(
         emit(Resource.Loading())
         emit(storageDataSource.shareFile(fileId, email, token))
     }.flowOn(Dispatchers.IO)
+
+    suspend fun revokeShareFile(fileId: String, email: String) = flow {
+        emit(Resource.Loading())
+        emit(storageDataSource.revokeFile(fileId, email, token))
+    }.flowOn(Dispatchers.IO)
 }

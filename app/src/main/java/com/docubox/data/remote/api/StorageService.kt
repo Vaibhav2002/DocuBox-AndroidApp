@@ -1,10 +1,7 @@
 package com.docubox.data.remote.api
 
 import com.docubox.data.modes.remote.MessageResponse
-import com.docubox.data.modes.remote.requests.CreateFolderRequest
-import com.docubox.data.modes.remote.requests.GetFileRequest
-import com.docubox.data.modes.remote.requests.GetFolderRequest
-import com.docubox.data.modes.remote.requests.ShareFileRequest
+import com.docubox.data.modes.remote.requests.*
 import com.docubox.data.modes.remote.responses.file.GetFileResponse
 import com.docubox.data.modes.remote.responses.folder.CreateFolderResponse
 import com.docubox.data.modes.remote.responses.folder.GetFolderResponse
@@ -46,6 +43,12 @@ interface StorageService {
     @POST("documents/share-file")
     suspend fun shareFile(
         @Body body: ShareFileRequest,
+        @Header("Authorization") token: String
+    ): Response<MessageResponse>
+
+    @POST("documents/revoke-file")
+    suspend fun revokeFile(
+        @Body body: RevokeFileRequest,
         @Header("Authorization") token: String
     ): Response<MessageResponse>
 }

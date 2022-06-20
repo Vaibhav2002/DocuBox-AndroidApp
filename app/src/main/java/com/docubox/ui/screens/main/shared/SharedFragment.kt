@@ -4,12 +4,16 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.docubox.R
+import com.docubox.data.modes.local.FileOption
 import com.docubox.data.modes.local.StorageItem
 import com.docubox.databinding.FragmentSharedBinding
 import com.docubox.databinding.ItemStorageBinding
 import com.docubox.ui.adapter.OneAdapter
+import com.docubox.ui.screens.dialogs.FileOptionsBottomSheetFragment
+import com.docubox.util.Constants
 import com.docubox.util.extensions.*
 import com.docubox.util.viewBinding.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -19,7 +23,7 @@ class SharedFragment : Fragment(R.layout.fragment_shared) {
 
     private val viewModel by viewModels<SharedViewModel>()
     private val binding by viewBinding(FragmentSharedBinding::bind)
-    private lateinit var storageAdapter:OneAdapter<StorageItem, ItemStorageBinding>
+    private lateinit var storageAdapter: OneAdapter<StorageItem, ItemStorageBinding>
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -36,8 +40,8 @@ class SharedFragment : Fragment(R.layout.fragment_shared) {
         binding.btnSharedByMe.setSelectedState(it.isSharedByMeState)
     }
 
-    private fun collectUiEvents() = viewModel.events.launchAndCollect(viewLifecycleOwner){
-        when(it){
+    private fun collectUiEvents() = viewModel.events.launchAndCollect(viewLifecycleOwner) {
+        when (it) {
             is SharedScreenEvents.ShowToast -> requireContext().showToast(it.message)
         }
     }
@@ -47,7 +51,7 @@ class SharedFragment : Fragment(R.layout.fragment_shared) {
         btnSharedToMe.singleClick(viewModel::onSharedToMeButtonPress)
     }
 
-    private fun initViews() = with(binding){
+    private fun initViews() = with(binding) {
         storageRv.setHasFixedSize(false)
         storageAdapter = storageRv.compose(
             ItemStorageBinding::inflate,
@@ -55,6 +59,16 @@ class SharedFragment : Fragment(R.layout.fragment_shared) {
                 title.text = item.name
                 description.text = item.description
                 itemImage.setImageResource(item.icon)
+                root.setOnLongClickListener {
+                    if (!viewModel.uiState.value.isSharedByMeState) true
+                    else {
+                        when (item) {
+                            is StorageItem.File -> handleFileLongPress(item)
+                            is StorageItem.Folder -> Unit
+                        }
+                        true
+                    }
+                }
             },
         ) {
         }
@@ -66,5 +80,24 @@ class SharedFragment : Fragment(R.layout.fragment_shared) {
         })
     }
 
+    private fun handleFileLongPress(file: StorageItem.File) {
+        FileOptionsBottomSheetFragment(listOf(FileOption.RevokeShare)) {
+            when (it) {
+                FileOption.Delete -> Unit
+                FileOption.Rename -> Unit
+                FileOption.RevokeShare -> handleRevokeShareFile(file)
+                FileOption.Share -> Unit
+            }
+        }.show(childFragmentManager, Constants.FILE_OPTION_DIALOG)
+    }
 
+    private fun handleRevokeShareFile(file: StorageItem.File) =
+        viewLifecycleOwner.lifecycleScope.launchWhenStarted {
+            requireContext().showSelectItemDialog(
+                title = "Select User",
+                items = file.file.fileSharedTo
+            ).also { email ->
+                email?.let { viewModel.revokeShareFile(file, it) }
+            }
+        }
 }

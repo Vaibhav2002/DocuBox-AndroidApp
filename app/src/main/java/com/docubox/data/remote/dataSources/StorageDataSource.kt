@@ -1,9 +1,6 @@
 package com.docubox.data.remote.dataSources
 
-import com.docubox.data.modes.remote.requests.CreateFolderRequest
-import com.docubox.data.modes.remote.requests.GetFileRequest
-import com.docubox.data.modes.remote.requests.GetFolderRequest
-import com.docubox.data.modes.remote.requests.ShareFileRequest
+import com.docubox.data.modes.remote.requests.*
 import com.docubox.data.remote.api.StorageService
 import com.docubox.util.extensions.asJwt
 import com.docubox.util.safeApiCall
@@ -37,5 +34,9 @@ class StorageDataSource @Inject constructor(private val service: StorageService)
 
     suspend fun shareFile(fileId: String, toEmail: String, token: String) = safeApiCall {
         service.shareFile(ShareFileRequest(fileId, toEmail), token.asJwt())
+    }
+
+    suspend fun revokeFile(fileId: String, ofEmail: String, token: String) = safeApiCall {
+        service.revokeFile(RevokeFileRequest(fileId, ofEmail), token.asJwt())
     }
 }
