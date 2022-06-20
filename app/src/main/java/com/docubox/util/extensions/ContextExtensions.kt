@@ -37,10 +37,14 @@ fun Context.showToast(message: String) {
 
 suspend fun Context.showInputDialog(
     title: String,
-    text: String
+    text: String = "",
+    placeholder: String,
+    label: String,
 ) = suspendCoroutine<String> {
     val binding = TextInputDialogBinding.inflate(LayoutInflater.from(this)).apply {
         nameTIET.setText(text)
+        nameTIL.placeholderText = placeholder
+        nameTIL.hint = label
     }
 
     MaterialAlertDialogBuilder(this).apply {
@@ -51,6 +55,24 @@ suspend fun Context.showInputDialog(
         }
         setNegativeButton("Cancel") { _, _ ->
             it.resume(text)
+        }
+        show()
+    }
+}
+
+suspend fun Context.showSelectItemDialog(
+    title: String,
+    items: List<String>,
+) = suspendCoroutine<String?> {
+    var selectedItemIndex = 0
+    MaterialAlertDialogBuilder(this).apply {
+        setTitle(title)
+        setSingleChoiceItems(items.toTypedArray(), 0) {_,pos->
+            selectedItemIndex = pos
+        }
+        setNegativeButton("Cancel") { _, _ -> it.resume(null) }
+        setPositiveButton("Confirm") { _, _ ->
+            it.resume(items[selectedItemIndex])
         }
         show()
     }

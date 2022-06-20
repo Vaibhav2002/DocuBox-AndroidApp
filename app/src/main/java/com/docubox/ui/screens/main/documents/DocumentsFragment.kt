@@ -102,6 +102,7 @@ class DocumentsFragment : Fragment(R.layout.fragment_documents) {
     private fun collectUiState() = viewModel.uiState.launchAndCollectLatest(viewLifecycleOwner) {
         storageAdapter.submitList(it.storageItems)
         binding.actionBar.tvActionBarTitle.text = it.actionBarTitle
+        binding.swipeRefresh.isRefreshing = it.isRefreshing
     }
 
     private fun initViews() = with(binding) {
@@ -127,6 +128,7 @@ class DocumentsFragment : Fragment(R.layout.fragment_documents) {
 
     private fun initListeners() = with(binding) {
         addFileBtn.singleClick(this@DocumentsFragment::openBottomSheet)
+        swipeRefresh.setOnRefreshListener(viewModel::onRefresh)
     }
 
     private fun handleStorageItemPress(item: StorageItem) {
@@ -161,7 +163,12 @@ class DocumentsFragment : Fragment(R.layout.fragment_documents) {
     }
 
     private fun handleCreateFolder() = lifecycleScope.launchWhenStarted {
-        requireContext().showInputDialog("Enter Folder name", "").also {
+        requireContext().showInputDialog(
+            "Enter Folder name",
+            "",
+            "Enter folder name",
+            "Folder name"
+        ).also {
             if (it.isEmpty()) return@also
             viewModel.createFolder(it)
         }
@@ -186,8 +193,8 @@ class DocumentsFragment : Fragment(R.layout.fragment_documents) {
             when (it) {
                 FileOption.Delete -> Timber.d("Delete File")
                 FileOption.Rename -> Timber.d("Rename File")
-                FileOption.RevokeShare -> Timber.d("Revoke File Share")
-                FileOption.Share -> Timber.d("Share File")
+                FileOption.RevokeShare -> handleRevokeShareFile(file)
+                FileOption.Share -> handleShareFile(file)
             }
         }.show(childFragmentManager, FILE_OPTION_DIALOG)
     }
@@ -202,4 +209,26 @@ class DocumentsFragment : Fragment(R.layout.fragment_documents) {
             }
         }.show(childFragmentManager, FOLDER_OPTION_DIALOG)
     }
+
+    private fun handleShareFile(file: StorageItem.File) =
+        viewLifecycleOwner.lifecycleScope.launchWhenStarted {
+            requireContext().showInputDialog(
+                title = "Enter email",
+                placeholder = "Enter email",
+                label = "Email"
+            ).also {
+                if (it.isEmpty()) return@also
+                viewModel.shareFile(file, it)
+            }
+        }
+
+    private fun handleRevokeShareFile(file: StorageItem.File) =
+        viewLifecycleOwner.lifecycleScope.launchWhenStarted {
+            requireContext().showSelectItemDialog(
+                title = "Select User",
+                items = file.file.fileSharedTo
+            ).also { email ->
+                email?.let { viewModel.revokeShareFile(file, it) }
+            }
+        }
 }

@@ -1,6 +1,6 @@
 package com.docubox.util
 
-import com.docubox.data.modes.remote.ErrorDto
+import com.docubox.data.modes.remote.MessageResponse
 import com.google.gson.Gson
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -34,6 +34,6 @@ suspend fun <T> safeApiCall(
 }
 
 fun getMessageFromErrorResponse(error: ResponseBody?): String {
-    return error?.let { Gson().fromJson(it.charStream(), ErrorDto::class.java).message }
+    return error?.let { Gson().fromJson(it.charStream(), MessageResponse::class.java).message }
         ?: "Unknown Error Occurred"
 }

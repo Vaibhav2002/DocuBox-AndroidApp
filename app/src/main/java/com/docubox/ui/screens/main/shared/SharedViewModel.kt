@@ -24,6 +24,7 @@ class SharedViewModel @Inject constructor(private val storageRepo: StorageRepo) 
     init {
         collectIsSharedByMeState()
     }
+
     private fun collectIsSharedByMeState() = viewModelScope.launch {
         isSharedByMeState.collectLatest {
             _uiState.update { state -> state.copy(isSharedByMeState = it) }
@@ -31,11 +32,23 @@ class SharedViewModel @Inject constructor(private val storageRepo: StorageRepo) 
         }
     }
 
-    private suspend fun getSharedFiles(isSharedByMe: Boolean) {
+    fun onRefresh() = viewModelScope.launch {
+        getSharedFiles(uiState.value.isSharedByMeState, true)
+    }
+
+    private suspend fun getSharedFiles(
+        isSharedByMe: Boolean,
+        overrideProgressBar: Boolean = false
+    ) {
         val reqFlow =
             if (isSharedByMe) storageRepo.getFilesSharedByMe() else storageRepo.getFilesSharedToMe()
         reqFlow.collectLatest {
-            _uiState.emit(uiState.value.copy(isLoading = it is Resource.Loading))
+            _uiState.emit(
+                uiState.value.copy(
+                    isLoading = it is Resource.Loading && !overrideProgressBar,
+                    isRefreshing = it is Resource.Loading && overrideProgressBar
+                )
+            )
             when (it) {
                 is Resource.Error -> _events.emit(SharedScreenEvents.ShowToast(it.message))
                 is Resource.Loading -> Unit
@@ -51,7 +64,24 @@ class SharedViewModel @Inject constructor(private val storageRepo: StorageRepo) 
     fun onSharedByMeButtonPress() = viewModelScope.launch {
         isSharedByMeState.emit(true)
     }
+
     fun onSharedToMeButtonPress() = viewModelScope.launch {
         isSharedByMeState.emit(false)
+    }
+
+    fun revokeShareFile(file: StorageItem.File, email: String) = viewModelScope.launch {
+        storageRepo.revokeShareFile(file.file.id, email).collectLatest {
+            _uiState.emit(uiState.value.copy(isLoading = it is Resource.Loading))
+            when (it) {
+                is Resource.Error -> _events.emit(SharedScreenEvents.ShowToast(it.message))
+                is Resource.Loading -> Unit
+                is Resource.Success -> {
+                    _events.emit(
+                        SharedScreenEvents.ShowToast(it.data?.message ?: "")
+                    )
+                    getSharedFiles(true)
+                }
+            }
+        }
     }
 }

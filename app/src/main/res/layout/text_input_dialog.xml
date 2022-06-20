@@ -2,7 +2,8 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/nameTIL"
@@ -13,9 +14,9 @@
         android:layout_marginTop="64dp"
         app:boxBackgroundColor="@android:color/white"
         app:boxStrokeWidth="0dp"
-        android:hint="Name"
+        tools:hint="Name"
         app:boxStrokeWidthFocused="0dp"
-        app:placeholderText="Enter name">
+        tools:placeholderText="Enter name">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/nameTIET"

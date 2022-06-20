@@ -47,14 +47,24 @@ class StorageRepo @Inject constructor(
     suspend fun getFilesSharedByMe() = flow {
         emit(Resource.Loading())
         emit(storageDataSource.getFilesSharedByMe(token))
-    }.map { res->
+    }.map { res ->
         res.mapTo { fileMapper.toLocal(it.fileList) }
     }.flowOn(Dispatchers.IO)
 
     suspend fun getFilesSharedToMe() = flow {
         emit(Resource.Loading())
         emit(storageDataSource.getFilesSharedToMe(token))
-    }.map { res->
+    }.map { res ->
         res.mapTo { fileMapper.toLocal(it.fileList) }
+    }.flowOn(Dispatchers.IO)
+
+    suspend fun shareFile(fileId: String, email: String) = flow {
+        emit(Resource.Loading())
+        emit(storageDataSource.shareFile(fileId, email, token))
+    }.flowOn(Dispatchers.IO)
+
+    suspend fun revokeShareFile(fileId: String, email: String) = flow {
+        emit(Resource.Loading())
+        emit(storageDataSource.revokeFile(fileId, email, token))
     }.flowOn(Dispatchers.IO)
 }
