@@ -2,6 +2,7 @@ package com.docubox.data.remote.api
 
 import com.docubox.data.modes.remote.MessageResponse
 import com.docubox.data.modes.remote.requests.*
+import com.docubox.data.modes.remote.responses.StorageConsumption
 import com.docubox.data.modes.remote.responses.file.GetFileResponse
 import com.docubox.data.modes.remote.responses.folder.CreateFolderResponse
 import com.docubox.data.modes.remote.responses.folder.GetFolderResponse
@@ -63,4 +64,9 @@ interface StorageService {
         @Body body: Map<String, String>,
         @Header("Authorization") token: String
     ): Response<MessageResponse>
+
+    @POST("documents/storage-consumption")
+    suspend fun getStorageConsumption(
+        @Header("Authorization") token: String
+    ): Response<StorageConsumption>
 }

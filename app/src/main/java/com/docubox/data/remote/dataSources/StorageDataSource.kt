@@ -43,7 +43,12 @@ class StorageDataSource @Inject constructor(private val service: StorageService)
     suspend fun deleteFile(fileId: String, token: String) = safeApiCall {
         service.deleteFile(mapOf("fileId" to fileId), token.asJwt())
     }
+
     suspend fun deleteFolder(folderId: String, token: String) = safeApiCall {
         service.deleteFolder(mapOf("folderId" to folderId), token.asJwt())
+    }
+
+    suspend fun getStorageConsumption(token: String) = safeApiCall {
+        service.getStorageConsumption(token.asJwt())
     }
 }

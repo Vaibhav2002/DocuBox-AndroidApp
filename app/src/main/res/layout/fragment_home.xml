@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".HomeFragment">
+    tools:context=".ui.screens.main.home.HomeFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -24,7 +24,9 @@
             android:drawableEnd="@drawable/ic_search"
             android:drawablePadding="10dp"
             android:drawableTint="@color/colorTertiaryText"
+            android:imeOptions="actionSearch"
             android:hint="Search"
+            android:singleLine="true"
             android:padding="12dp" />
 
         <LinearLayout
@@ -378,18 +380,19 @@
                         android:id="@+id/tvStorageConsumption"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="2 MB / 50 MB"
+                        tools:text="2 MB / 50 MB"
                         android:textSize="15sp"
                         android:fontFamily="@font/poppins_regular"
                         android:textColor="@color/colorTertiaryText" />
 
                     <com.google.android.material.progressindicator.LinearProgressIndicator
+                        android:id="@+id/storageProgress"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
                         app:trackCornerRadius="6dp"
                         app:trackThickness="7dp"
-                        android:progress="70"/>
+                        tools:progress="70"/>
 
                 </LinearLayout>
 
