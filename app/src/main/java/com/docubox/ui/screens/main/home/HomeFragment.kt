@@ -10,10 +10,7 @@ import com.docubox.R
 import com.docubox.data.modes.local.SearchResult
 import com.docubox.data.modes.local.StorageItem
 import com.docubox.databinding.FragmentHomeBinding
-import com.docubox.util.extensions.launchAndCollect
-import com.docubox.util.extensions.launchAndCollectLatest
-import com.docubox.util.extensions.setupActionBar
-import com.docubox.util.extensions.showToast
+import com.docubox.util.extensions.*
 import com.docubox.util.viewBinding.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -52,8 +49,10 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
     private fun initListeners() = with(binding) {
         searchBar.setOnEditorActionListener { _, actionId, _ ->
-            if (actionId == EditorInfo.IME_ACTION_SEARCH)
+            if (actionId == EditorInfo.IME_ACTION_SEARCH) {
                 viewModel.onSearch(searchBar.text.toString())
+                searchBar.hideKeyboard()
+            }
             true
         }
     }
