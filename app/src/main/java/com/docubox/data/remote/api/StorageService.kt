@@ -75,4 +75,10 @@ interface StorageService {
         @Body body: Map<String, String>,
         @Header("Authorization") token: String
     ): Response<FileListResponse>
+
+    @POST("documents/search-file-type")
+    suspend fun searchFilesByType(
+        @Body body: Map<String, String>,
+        @Header("Authorization") token: String
+    ): Response<FileListResponse>
 }
