@@ -7,10 +7,12 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.docubox.R
+import com.docubox.data.modes.local.FileOption
 import com.docubox.data.modes.local.StorageItem
 import com.docubox.databinding.FragmentSearchResultsBinding
 import com.docubox.databinding.ItemStorageBinding
 import com.docubox.ui.adapter.OneAdapter
+import com.docubox.util.Constants
 import com.docubox.util.extensions.*
 import com.docubox.util.viewBinding.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -21,7 +23,7 @@ class SearchResultsFragment : Fragment(R.layout.fragment_search_results) {
     private val binding by viewBinding(FragmentSearchResultsBinding::bind)
     private val viewModel by viewModels<SearchResultsViewModel>()
     private val args by navArgs<SearchResultsFragmentArgs>()
-    private lateinit var resultsAdapter: OneAdapter<StorageItem, ItemStorageBinding>
+    private lateinit var resultsAdapter: OneAdapter<StorageItem.File, ItemStorageBinding>
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -47,10 +49,14 @@ class SearchResultsFragment : Fragment(R.layout.fragment_search_results) {
         storageRv.setHasFixedSize(false)
         resultsAdapter = storageRv.compose(
             ItemStorageBinding::inflate,
-            onBind = { item: StorageItem, _ ->
+            onBind = { item: StorageItem.File, _ ->
                 title.text = item.name
                 description.text = item.description
                 itemImage.setImageResource(item.icon)
+                root.setOnLongClickListener {
+                    onFileLongPressed(item)
+                    true
+                }
             }
         ) {
 
@@ -60,5 +66,17 @@ class SearchResultsFragment : Fragment(R.layout.fragment_search_results) {
         })
     }
 
+    private fun onFileLongPressed(file: StorageItem.File) {
+        val options = Constants.fileOptions.toMutableList().apply {
+            if (file.file.fileSharedTo.isEmpty()) remove(FileOption.RevokeShare)
+        }
+        showFileOptions(
+            file = file,
+            options = options,
+            onDelete = viewModel::deleteFile,
+            onShare = viewModel::shareFile,
+            onRevokeShare = viewModel::revokeShareFile
+        )
+    }
 
 }

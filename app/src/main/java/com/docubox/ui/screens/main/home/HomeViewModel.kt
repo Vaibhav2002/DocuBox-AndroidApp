@@ -69,7 +69,7 @@ class HomeViewModel @Inject constructor(private val storageRepo: StorageRepo) : 
         }
     }
 
-    private suspend fun handleSearchFileSuccess(query: String, files: List<StorageItem>) {
+    private suspend fun handleSearchFileSuccess(query: String, files: List<StorageItem.File>) {
         if (files.isEmpty()) _events.emit(HomeScreenEvents.ShowToast("No results found"))
         else _events.emit(HomeScreenEvents.NavigateToSearchResults(query, files))
     }
