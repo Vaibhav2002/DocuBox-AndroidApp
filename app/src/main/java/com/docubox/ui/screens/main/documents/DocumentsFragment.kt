@@ -24,12 +24,7 @@ import com.docubox.databinding.ItemStorageBinding
 import com.docubox.databinding.SheetUploadDocumentBinding
 import com.docubox.service.FileUploadService
 import com.docubox.ui.adapter.OneAdapter
-import com.docubox.ui.screens.dialogs.FileOptionsBottomSheetFragment
-import com.docubox.ui.screens.dialogs.FolderOptionsBottomSheetFragment
-import com.docubox.util.Constants.FILE_OPTION_DIALOG
-import com.docubox.util.Constants.FOLDER_OPTION_DIALOG
 import com.docubox.util.Constants.fileOptions
-import com.docubox.util.Constants.folderOptions
 import com.docubox.util.extensions.*
 import com.docubox.util.viewBinding.viewBinding
 import com.google.android.material.bottomsheet.BottomSheetDialog
@@ -189,46 +184,25 @@ class DocumentsFragment : Fragment(R.layout.fragment_documents) {
     }
 
     private fun handleFileLongPress(file: StorageItem.File) {
-        FileOptionsBottomSheetFragment(fileOptions) {
-            when (it) {
-                FileOption.Delete -> Timber.d("Delete File")
-                FileOption.Rename -> Timber.d("Rename File")
-                FileOption.RevokeShare -> handleRevokeShareFile(file)
-                FileOption.Share -> handleShareFile(file)
+        val options = fileOptions.toMutableList()
+            .apply {
+                if (file.file.fileSharedTo.isEmpty()) remove(FileOption.RevokeShare)
             }
-        }.show(childFragmentManager, FILE_OPTION_DIALOG)
+        showFileOptions(
+            file = file,
+            options = options,
+            onShare = viewModel::shareFile,
+            onDelete = viewModel::deleteFile,
+            onRevokeShare = viewModel::revokeShareFile
+        )
     }
 
     private fun handleFolderLongPress(folder: StorageItem.Folder) {
-        FolderOptionsBottomSheetFragment(folderOptions) {
-            when (it) {
-                FolderOptions.Delete -> Timber.d("Delete Folder")
-                FolderOptions.Rename -> Timber.d("Rename Folder")
-                FolderOptions.RevokeShare -> Unit
-                FolderOptions.Share -> Unit
-            }
-        }.show(childFragmentManager, FOLDER_OPTION_DIALOG)
+        val options = listOf(FolderOptions.Delete)
+        showFolderOptions(
+            folder = folder,
+            options = options,
+            onDelete = viewModel::deleteFolder
+        )
     }
-
-    private fun handleShareFile(file: StorageItem.File) =
-        viewLifecycleOwner.lifecycleScope.launchWhenStarted {
-            requireContext().showInputDialog(
-                title = "Enter email",
-                placeholder = "Enter email",
-                label = "Email"
-            ).also {
-                if (it.isEmpty()) return@also
-                viewModel.shareFile(file, it)
-            }
-        }
-
-    private fun handleRevokeShareFile(file: StorageItem.File) =
-        viewLifecycleOwner.lifecycleScope.launchWhenStarted {
-            requireContext().showSelectItemDialog(
-                title = "Select User",
-                items = file.file.fileSharedTo
-            ).also { email ->
-                email?.let { viewModel.revokeShareFile(file, it) }
-            }
-        }
 }

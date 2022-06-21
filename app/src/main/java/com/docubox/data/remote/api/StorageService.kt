@@ -2,7 +2,8 @@ package com.docubox.data.remote.api
 
 import com.docubox.data.modes.remote.MessageResponse
 import com.docubox.data.modes.remote.requests.*
-import com.docubox.data.modes.remote.responses.file.GetFileResponse
+import com.docubox.data.modes.remote.responses.StorageConsumption
+import com.docubox.data.modes.remote.responses.file.FileListResponse
 import com.docubox.data.modes.remote.responses.folder.CreateFolderResponse
 import com.docubox.data.modes.remote.responses.folder.GetFolderResponse
 import retrofit2.Response
@@ -22,7 +23,7 @@ interface StorageService {
     suspend fun getFiles(
         @Body body: GetFileRequest,
         @Header("Authorization") token: String
-    ): Response<GetFileResponse>
+    ): Response<FileListResponse>
 
     @POST("documents/create-folder")
     suspend fun createFolder(
@@ -33,12 +34,12 @@ interface StorageService {
     @POST("documents/get-files-shared-to-me")
     suspend fun getFilesSharedToMe(
         @Header("Authorization") token: String
-    ): Response<GetFileResponse>
+    ): Response<FileListResponse>
 
     @POST("documents/get-files-shared-by-me")
     suspend fun getFilesSharedByMe(
         @Header("Authorization") token: String
-    ): Response<GetFileResponse>
+    ): Response<FileListResponse>
 
     @POST("documents/share-file")
     suspend fun shareFile(
@@ -51,4 +52,33 @@ interface StorageService {
         @Body body: RevokeFileRequest,
         @Header("Authorization") token: String
     ): Response<MessageResponse>
+
+    @POST("documents/delete-file")
+    suspend fun deleteFile(
+        @Body body: Map<String, String>,
+        @Header("Authorization") token: String
+    ): Response<MessageResponse>
+
+    @POST("documents/delete-folder")
+    suspend fun deleteFolder(
+        @Body body: Map<String, String>,
+        @Header("Authorization") token: String
+    ): Response<MessageResponse>
+
+    @POST("documents/storage-consumption")
+    suspend fun getStorageConsumption(
+        @Header("Authorization") token: String
+    ): Response<StorageConsumption>
+
+    @POST("documents/search-file-name")
+    suspend fun searchFilesByName(
+        @Body body: Map<String, String>,
+        @Header("Authorization") token: String
+    ): Response<FileListResponse>
+
+    @POST("documents/search-file-type")
+    suspend fun searchFilesByType(
+        @Body body: Map<String, String>,
+        @Header("Authorization") token: String
+    ): Response<FileListResponse>
 }

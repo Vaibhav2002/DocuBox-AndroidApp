@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".HomeFragment">
+    tools:context=".ui.screens.main.home.HomeFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -16,26 +16,30 @@
             layout="@layout/action_bar" />
 
         <EditText
+            android:id="@+id/searchBar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="15dp"
-            android:layout_marginVertical="15dp"
+            android:layout_margin = "16dp"
             android:background="@drawable/et_home_search"
             android:drawableEnd="@drawable/ic_search"
-            android:drawablePadding="10dp"
+            android:drawablePadding="16dp"
+            android:textAppearance="@style/TextAppearance.MdcTypographyStyles.TitleSmall"
             android:drawableTint="@color/colorTertiaryText"
+            android:imeOptions="actionSearch"
             android:hint="Search"
+            android:inputType="text"
+            android:singleLine="true"
             android:padding="12dp" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="15dp"
-            android:layout_marginTop="15dp"
+            android:layout_marginHorizontal="16dp"
             android:orientation="horizontal"
             android:weightSum="4">
 
             <LinearLayout
+                android:id="@+id/imageOption"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -61,6 +65,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/videoOption"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -86,6 +91,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/audioOption"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -111,6 +117,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/docsOption"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -141,7 +148,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="15dp"
+            android:paddingVertical="16dp"
             android:orientation="vertical">
 
             <TextView
@@ -150,6 +157,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:textSize="18sp"
+                android:layout_marginHorizontal="16dp"
                 android:text="Quick Actions"
                 android:textColor="@color/colorSecondaryText" />
 
@@ -157,6 +165,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
+                android:layout_marginStart="16dp"
                 android:scrollbars="none">
 
                 <LinearLayout
@@ -169,7 +178,7 @@
                         android:layout_width="125dp"
                         android:layout_height="125dp"
                         app:cardCornerRadius="8dp"
-                        android:layout_marginEnd="20dp">
+                        android:layout_marginEnd="16dp">
 
                         <androidx.constraintlayout.widget.ConstraintLayout
                             android:layout_width="match_parent"
@@ -209,7 +218,7 @@
                         android:layout_width="125dp"
                         android:layout_height="125dp"
                         app:cardCornerRadius="8dp"
-                        android:layout_marginEnd="20dp">
+                        android:layout_marginEnd="16dp">
 
                         <androidx.constraintlayout.widget.ConstraintLayout
                             android:layout_width="match_parent"
@@ -249,7 +258,7 @@
                         android:layout_width="125dp"
                         android:layout_height="125dp"
                         app:cardCornerRadius="8dp"
-                        android:layout_marginEnd="20dp">
+                        android:layout_marginEnd="16dp">
 
                         <androidx.constraintlayout.widget.ConstraintLayout
                             android:layout_width="match_parent"
@@ -337,14 +346,14 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginHorizontal="15dp">
+            android:orientation="vertical">
 
             <TextView
-                style="@style/TextAppearance.MdcTypographyStyles.TitleMedium"
+                android:textAppearance="@style/TextAppearance.MdcTypographyStyles.TitleMedium"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
+                android:layout_marginHorizontal="16dp"
                 android:textSize="18sp"
                 android:text="App Usage"
                 android:textColor="@color/colorSecondaryText" />
@@ -355,7 +364,7 @@
                 app:cardElevation="3dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="50dp"
-                android:layout_marginHorizontal="5dp"
+                android:layout_marginHorizontal="16dp"
                 app:cardCornerRadius="8dp"
                 app:cardBackgroundColor="@color/colorOnPrimary">
 
@@ -378,18 +387,19 @@
                         android:id="@+id/tvStorageConsumption"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="2 MB / 50 MB"
+                        tools:text="2 MB / 50 MB"
                         android:textSize="15sp"
                         android:fontFamily="@font/poppins_regular"
                         android:textColor="@color/colorTertiaryText" />
 
                     <com.google.android.material.progressindicator.LinearProgressIndicator
+                        android:id="@+id/storageProgress"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
                         app:trackCornerRadius="6dp"
                         app:trackThickness="7dp"
-                        android:progress="70"/>
+                        tools:progress="70"/>
 
                 </LinearLayout>
 

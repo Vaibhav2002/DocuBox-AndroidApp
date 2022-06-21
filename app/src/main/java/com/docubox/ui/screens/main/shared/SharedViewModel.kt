@@ -3,6 +3,7 @@ package com.docubox.ui.screens.main.shared
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.docubox.data.modes.local.StorageItem
+import com.docubox.data.modes.remote.MessageResponse
 import com.docubox.data.repo.StorageRepo
 import com.docubox.util.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -72,16 +73,22 @@ class SharedViewModel @Inject constructor(private val storageRepo: StorageRepo) 
     fun revokeShareFile(file: StorageItem.File, email: String) = viewModelScope.launch {
         storageRepo.revokeShareFile(file.file.id, email).collectLatest {
             _uiState.emit(uiState.value.copy(isLoading = it is Resource.Loading))
-            when (it) {
-                is Resource.Error -> _events.emit(SharedScreenEvents.ShowToast(it.message))
-                is Resource.Loading -> Unit
-                is Resource.Success -> {
-                    _events.emit(
-                        SharedScreenEvents.ShowToast(it.data?.message ?: "")
-                    )
-                    getSharedFiles(true)
-                }
-            }
+            handleMessageResponse(it)
         }
+    }
+
+    fun deleteFile(file: StorageItem.File) = viewModelScope.launch {
+        storageRepo.deleteFile(file.file.id).collectLatest {
+            _uiState.emit(uiState.value.copy(isLoading = it is Resource.Loading))
+            handleMessageResponse(it)
+        }
+    }
+
+    private suspend fun handleMessageResponse(
+        res: Resource<MessageResponse>,
+        getData: Boolean = true
+    ) {
+        if (res !is Resource.Loading) _events.emit(SharedScreenEvents.ShowToast(res.message))
+        if (getData && res is Resource.Success) getSharedFiles(true)
     }
 }

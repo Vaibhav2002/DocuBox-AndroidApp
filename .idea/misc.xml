@@ -3,14 +3,17 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/AndroidStudioProjects/DocuBox-AndroidApp/app/src/main/res/drawable/et_home_search.xml" value="0.1245" />
         <entry key="..\:/AndroidStudioProjects/DocuBox-AndroidApp/app/src/main/res/layout/activity_auth.xml" value="0.2194078947368421" />
         <entry key="..\:/AndroidStudioProjects/DocuBox-AndroidApp/app/src/main/res/layout/activity_docubox.xml" value="0.34739583333333335" />
         <entry key="..\:/AndroidStudioProjects/DocuBox-AndroidApp/app/src/main/res/layout/fragment_documents.xml" value="0.2" />
         <entry key="..\:/AndroidStudioProjects/DocuBox-AndroidApp/app/src/main/res/layout/fragment_downloads.xml" value="0.2194078947368421" />
         <entry key="..\:/AndroidStudioProjects/DocuBox-AndroidApp/app/src/main/res/layout/fragment_file_options_bottom_sheet.xml" value="0.2194078947368421" />
         <entry key="..\:/AndroidStudioProjects/DocuBox-AndroidApp/app/src/main/res/layout/fragment_getting_started.xml" value="0.22" />
+        <entry key="..\:/AndroidStudioProjects/DocuBox-AndroidApp/app/src/main/res/layout/fragment_home.xml" value="0.25" />
         <entry key="..\:/AndroidStudioProjects/DocuBox-AndroidApp/app/src/main/res/layout/fragment_login.xml" value="0.2194078947368421" />
         <entry key="..\:/AndroidStudioProjects/DocuBox-AndroidApp/app/src/main/res/layout/fragment_register.xml" value="0.21052631578947367" />
+        <entry key="..\:/AndroidStudioProjects/DocuBox-AndroidApp/app/src/main/res/layout/fragment_search_results.xml" value="0.17" />
         <entry key="..\:/AndroidStudioProjects/DocuBox-AndroidApp/app/src/main/res/layout/fragment_shared.xml" value="0.22" />
         <entry key="..\:/AndroidStudioProjects/DocuBox-AndroidApp/app/src/main/res/layout/item_file_and_folder.xml" value="0.21" />
         <entry key="..\:/AndroidStudioProjects/DocuBox-AndroidApp/app/src/main/res/layout/item_options.xml" value="0.21875" />

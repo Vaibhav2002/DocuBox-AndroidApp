@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.docubox.R
 import com.docubox.data.modes.local.FileOption
@@ -12,8 +11,6 @@ import com.docubox.data.modes.local.StorageItem
 import com.docubox.databinding.FragmentSharedBinding
 import com.docubox.databinding.ItemStorageBinding
 import com.docubox.ui.adapter.OneAdapter
-import com.docubox.ui.screens.dialogs.FileOptionsBottomSheetFragment
-import com.docubox.util.Constants
 import com.docubox.util.extensions.*
 import com.docubox.util.viewBinding.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -85,23 +82,12 @@ class SharedFragment : Fragment(R.layout.fragment_shared) {
     }
 
     private fun handleFileLongPress(file: StorageItem.File) {
-        FileOptionsBottomSheetFragment(listOf(FileOption.RevokeShare)) {
-            when (it) {
-                FileOption.Delete -> Unit
-                FileOption.Rename -> Unit
-                FileOption.RevokeShare -> handleRevokeShareFile(file)
-                FileOption.Share -> Unit
-            }
-        }.show(childFragmentManager, Constants.FILE_OPTION_DIALOG)
+        val options = listOf(FileOption.RevokeShare, FileOption.Delete)
+        showFileOptions(
+            file = file,
+            options = options,
+            onRevokeShare = viewModel::revokeShareFile,
+            onDelete = viewModel::deleteFile
+        )
     }
-
-    private fun handleRevokeShareFile(file: StorageItem.File) =
-        viewLifecycleOwner.lifecycleScope.launchWhenStarted {
-            requireContext().showSelectItemDialog(
-                title = "Select User",
-                items = file.file.fileSharedTo
-            ).also { email ->
-                email?.let { viewModel.revokeShareFile(file, it) }
-            }
-        }
 }

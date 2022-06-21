@@ -5,6 +5,7 @@ import androidx.lifecycle.viewModelScope
 import com.docubox.data.local.dataSources.CacheData
 import com.docubox.data.local.dataSources.StorageCache
 import com.docubox.data.modes.local.StorageItem
+import com.docubox.data.modes.remote.MessageResponse
 import com.docubox.data.repo.PreferencesRepo
 import com.docubox.data.repo.StorageRepo
 import com.docubox.util.Resource
@@ -148,26 +149,36 @@ class DocumentsViewModel @Inject constructor(
         }
         storageRepo.shareFile(file.file.id, email).collectLatest {
             _uiState.emit(uiState.value.copy(isLoading = it is Resource.Loading))
-            when (it) {
-                is Resource.Error -> _events.emit(DocumentsScreenEvents.ShowToast(it.message))
-                is Resource.Loading -> Unit
-                is Resource.Success -> _events.emit(
-                    DocumentsScreenEvents.ShowToast(it.data?.message ?: "")
-                )
-            }
+            handleMessageResponse(it)
         }
     }
 
     fun revokeShareFile(file: StorageItem.File, email: String) = viewModelScope.launch {
         storageRepo.revokeShareFile(file.file.id, email).collectLatest {
             _uiState.emit(uiState.value.copy(isLoading = it is Resource.Loading))
-            when (it) {
-                is Resource.Error -> _events.emit(DocumentsScreenEvents.ShowToast(it.message))
-                is Resource.Loading -> Unit
-                is Resource.Success -> _events.emit(
-                    DocumentsScreenEvents.ShowToast(it.data?.message ?: "")
-                )
-            }
+            handleMessageResponse(it)
         }
+    }
+
+    fun deleteFile(file: StorageItem.File) = viewModelScope.launch {
+        storageRepo.deleteFile(file.file.id).collectLatest {
+            _uiState.emit(uiState.value.copy(isLoading = it is Resource.Loading))
+            handleMessageResponse(it)
+        }
+    }
+
+    fun deleteFolder(folder: StorageItem.Folder) = viewModelScope.launch {
+        storageRepo.deleteFolder(folder.folder.id).collectLatest {
+            _uiState.emit(uiState.value.copy(isLoading = it is Resource.Loading))
+            handleMessageResponse(it)
+        }
+    }
+
+    private suspend fun handleMessageResponse(
+        res: Resource<MessageResponse>,
+        getData: Boolean = true
+    ) {
+        if (res !is Resource.Loading) _events.emit(DocumentsScreenEvents.ShowToast(res.message))
+        if (getData && res is Resource.Success) getAllData(directory)
     }
 }

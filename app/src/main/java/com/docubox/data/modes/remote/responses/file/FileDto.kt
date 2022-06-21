@@ -1,8 +1,8 @@
 package com.docubox.data.modes.remote.responses.file
 
 
-import com.docubox.data.modes.remote.responses.OwnerDto
 import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 
 data class FileDto(
     @SerializedName("fileDirectory")
@@ -24,4 +24,4 @@ data class FileDto(
     @SerializedName("fileSharedTo")
     val fileSharedTo: List<String> = emptyList()
 
-)
+) : Serializable

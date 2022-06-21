@@ -4,6 +4,7 @@ import com.docubox.data.modes.mapper.FileMapper
 import com.docubox.data.modes.mapper.FolderMapper
 import com.docubox.data.remote.dataSources.StorageDataSource
 import com.docubox.util.Resource
+import com.docubox.util.extensions.mapMessages
 import com.docubox.util.extensions.mapTo
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.flow
@@ -61,10 +62,47 @@ class StorageRepo @Inject constructor(
     suspend fun shareFile(fileId: String, email: String) = flow {
         emit(Resource.Loading())
         emit(storageDataSource.shareFile(fileId, email, token))
+    }.map { res ->
+        res.mapMessages(successMessage = res.data?.message)
     }.flowOn(Dispatchers.IO)
 
     suspend fun revokeShareFile(fileId: String, email: String) = flow {
         emit(Resource.Loading())
         emit(storageDataSource.revokeFile(fileId, email, token))
+    }.map { res ->
+        res.mapMessages(successMessage = res.data?.message)
+    }.flowOn(Dispatchers.IO)
+
+    suspend fun deleteFile(fileId: String) = flow {
+        emit(Resource.Loading())
+        emit(storageDataSource.deleteFile(fileId, token))
+    }.map { res ->
+        res.mapMessages(successMessage = res.data?.message)
+    }.flowOn(Dispatchers.IO)
+
+    suspend fun deleteFolder(folderId: String) = flow {
+        emit(Resource.Loading())
+        emit(storageDataSource.deleteFolder(folderId, token))
+    }.map { res ->
+        res.mapMessages(successMessage = res.data?.message)
+    }.flowOn(Dispatchers.IO)
+
+    suspend fun getStorageConsumption() = flow {
+        emit(Resource.Loading())
+        emit(storageDataSource.getStorageConsumption(token))
+    }.flowOn(Dispatchers.IO)
+
+    suspend fun searchFileByQuery(query: String) = flow {
+        emit(Resource.Loading())
+        emit(storageDataSource.searchFilesByName(query, token))
+    }.map { res ->
+        res.mapTo { fileMapper.toLocal(it.fileList) }
+    }.flowOn(Dispatchers.IO)
+
+    suspend fun searchFileByType(type: String) = flow {
+        emit(Resource.Loading())
+        emit(storageDataSource.searchFilesByType(type, token))
+    }.map { res ->
+        res.mapTo { fileMapper.toLocal(it.fileList) }
     }.flowOn(Dispatchers.IO)
 }
