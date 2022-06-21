@@ -86,4 +86,9 @@ class StorageRepo @Inject constructor(
     }.map { res ->
         res.mapMessages(successMessage = res.data?.message)
     }.flowOn(Dispatchers.IO)
+
+    suspend fun getStorageConsumption() = flow {
+        emit(Resource.Loading())
+        emit(storageDataSource.getStorageConsumption(token))
+    }.flowOn(Dispatchers.IO)
 }
