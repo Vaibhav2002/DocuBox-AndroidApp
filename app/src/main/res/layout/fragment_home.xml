@@ -39,6 +39,7 @@
             android:weightSum="4">
 
             <LinearLayout
+                android:id="@+id/imageOption"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -64,6 +65,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/videoOption"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -89,6 +91,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/audioOption"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -114,6 +117,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/docsOption"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"

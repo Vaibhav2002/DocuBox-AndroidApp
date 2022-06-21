@@ -2,6 +2,7 @@ package com.docubox.ui.screens.main.home
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.docubox.data.modes.local.FileType
 import com.docubox.data.modes.local.StorageItem
 import com.docubox.data.modes.remote.responses.StorageConsumption
 import com.docubox.data.repo.StorageRepo
@@ -49,8 +50,13 @@ class HomeViewModel @Inject constructor(private val storageRepo: StorageRepo) : 
             searchFiles(query.trim())
     }
 
+    fun onFileTypePress(fileType: FileType) = viewModelScope.launch {
+        searchFiles(fileType.mimeType, true)
+    }
+
     private suspend fun searchFiles(query: String, isByType: Boolean = false) {
-        val res = storageRepo.searchFileByQuery(query)
+        val res = if (!isByType) storageRepo.searchFileByQuery(query)
+        else storageRepo.searchFileByType(query)
         res.collectLatest {
             _uiState.emit(uiState.value.copy(isLoading = it is Resource.Loading))
             when (it) {
