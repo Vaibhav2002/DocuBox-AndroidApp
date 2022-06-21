@@ -95,5 +95,7 @@ class StorageRepo @Inject constructor(
     suspend fun searchFileByQuery(query: String) = flow {
         emit(Resource.Loading())
         emit(storageDataSource.searchFilesByName(query, token))
+    }.map { res ->
+        res.mapTo { fileMapper.toLocal(it.fileList) }
     }.flowOn(Dispatchers.IO)
 }
