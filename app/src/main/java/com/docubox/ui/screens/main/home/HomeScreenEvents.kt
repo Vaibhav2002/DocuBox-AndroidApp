@@ -6,6 +6,6 @@ sealed class HomeScreenEvents {
     data class ShowToast(val message: String) : HomeScreenEvents()
     data class NavigateToSearchResults(
         val title: String,
-        val files: List<StorageItem>
+        val files: List<StorageItem.File>
     ) : HomeScreenEvents()
 }

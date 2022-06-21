@@ -68,7 +68,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         actionBar.setupActionBar("Home")
     }
 
-    private fun navigateToSearchResults(title: String, items: List<StorageItem>) {
+    private fun navigateToSearchResults(title: String, items: List<StorageItem.File>) {
         val action = HomeFragmentDirections.actionHomeFragmentToSearchResultsFragment(
             SearchResult(items), title
         )
