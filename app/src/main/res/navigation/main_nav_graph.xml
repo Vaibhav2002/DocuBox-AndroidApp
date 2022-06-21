@@ -9,7 +9,11 @@
         android:id="@+id/homeFragment"
         android:name="com.docubox.ui.screens.main.home.HomeFragment"
         android:label="fragment_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_searchResultsFragment"
+            app:destination="@id/searchResultsFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/documentsFragment"
@@ -28,5 +32,17 @@
         android:name="com.docubox.ui.screens.main.profile.ProfileFragment"
         android:label="fragment_profile"
         tools:layout="@layout/fragment_profile" />
+    <fragment
+        android:id="@+id/searchResultsFragment"
+        android:name="com.docubox.ui.screens.main.searchResults.SearchResultsFragment"
+        android:label="fragment_search_results"
+        tools:layout="@layout/fragment_search_results" >
+        <argument
+            android:name="results"
+            app:argType="com.docubox.data.modes.local.SearchResult" />
+        <argument
+            android:name="title"
+            app:argType="string" />
+    </fragment>
 
 </navigation>

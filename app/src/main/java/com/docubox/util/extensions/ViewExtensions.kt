@@ -1,8 +1,10 @@
 package com.docubox.util.extensions
 
+import android.app.Activity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import androidx.core.widget.doAfterTextChanged
 import androidx.recyclerview.widget.RecyclerView
@@ -11,6 +13,7 @@ import com.docubox.R
 import com.docubox.ui.adapter.OneAdapter
 import com.google.android.material.button.MaterialButton
 import kotlinx.coroutines.*
+
 
 // Function to launch an onclick listener
 fun View.singleClick(onClick: () -> Unit) {
@@ -64,4 +67,10 @@ fun MaterialButton.setSelectedState(isSelected: Boolean) {
             if (isSelected) R.color.colorOnPrimary else R.color.colorPrimaryText,
         )
     )
+}
+
+fun View.hideKeyboard() {
+    (context.getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager).also {
+        it.hideSoftInputFromWindow(windowToken, 0)
+    }
 }

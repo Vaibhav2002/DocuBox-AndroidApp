@@ -5,6 +5,7 @@ import com.docubox.R
 import com.docubox.data.modes.remote.responses.file.FileDto
 import com.docubox.data.modes.remote.responses.folder.FolderDto
 import com.docubox.util.extensions.getFileType
+import java.io.Serializable
 
 // Class to represent a single storage item in app (Eg. a file or a folder)
 sealed class StorageItem(
@@ -12,7 +13,7 @@ sealed class StorageItem(
     open val name: String,
     open val description: String,
     @DrawableRes open val icon: Int
-) {
+) : Serializable {
     data class File(
         val file: FileDto,
         val fileType: FileType = file.fileType.getFileType()
