@@ -18,22 +18,22 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="15dp"
-            android:layout_marginVertical="15dp"
+            android:layout_margin = "16dp"
             android:background="@drawable/et_home_search"
             android:drawableEnd="@drawable/ic_search"
-            android:drawablePadding="10dp"
+            android:drawablePadding="16dp"
+            android:textAppearance="@style/TextAppearance.MdcTypographyStyles.TitleSmall"
             android:drawableTint="@color/colorTertiaryText"
             android:imeOptions="actionSearch"
             android:hint="Search"
+            android:inputType="text"
             android:singleLine="true"
             android:padding="12dp" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="15dp"
-            android:layout_marginTop="15dp"
+            android:layout_marginHorizontal="16dp"
             android:orientation="horizontal"
             android:weightSum="4">
 
@@ -143,7 +143,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="15dp"
+            android:paddingVertical="16dp"
             android:orientation="vertical">
 
             <TextView
@@ -152,6 +152,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:textSize="18sp"
+                android:layout_marginHorizontal="16dp"
                 android:text="Quick Actions"
                 android:textColor="@color/colorSecondaryText" />
 
@@ -159,6 +160,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
+                android:layout_marginStart="16dp"
                 android:scrollbars="none">
 
                 <LinearLayout
@@ -171,7 +173,7 @@
                         android:layout_width="125dp"
                         android:layout_height="125dp"
                         app:cardCornerRadius="8dp"
-                        android:layout_marginEnd="20dp">
+                        android:layout_marginEnd="16dp">
 
                         <androidx.constraintlayout.widget.ConstraintLayout
                             android:layout_width="match_parent"
@@ -211,7 +213,7 @@
                         android:layout_width="125dp"
                         android:layout_height="125dp"
                         app:cardCornerRadius="8dp"
-                        android:layout_marginEnd="20dp">
+                        android:layout_marginEnd="16dp">
 
                         <androidx.constraintlayout.widget.ConstraintLayout
                             android:layout_width="match_parent"
@@ -251,7 +253,7 @@
                         android:layout_width="125dp"
                         android:layout_height="125dp"
                         app:cardCornerRadius="8dp"
-                        android:layout_marginEnd="20dp">
+                        android:layout_marginEnd="16dp">
 
                         <androidx.constraintlayout.widget.ConstraintLayout
                             android:layout_width="match_parent"
@@ -339,14 +341,14 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginHorizontal="15dp">
+            android:orientation="vertical">
 
             <TextView
-                style="@style/TextAppearance.MdcTypographyStyles.TitleMedium"
+                android:textAppearance="@style/TextAppearance.MdcTypographyStyles.TitleMedium"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
+                android:layout_marginHorizontal="16dp"
                 android:textSize="18sp"
                 android:text="App Usage"
                 android:textColor="@color/colorSecondaryText" />
@@ -357,7 +359,7 @@
                 app:cardElevation="3dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="50dp"
-                android:layout_marginHorizontal="5dp"
+                android:layout_marginHorizontal="16dp"
                 app:cardCornerRadius="8dp"
                 app:cardBackgroundColor="@color/colorOnPrimary">
 
