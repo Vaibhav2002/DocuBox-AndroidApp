@@ -193,14 +193,13 @@ class DocumentsFragment : Fragment(R.layout.fragment_documents) {
             .apply {
                 if (file.file.fileSharedTo.isEmpty()) remove(FileOption.RevokeShare)
             }
-        FileOptionsBottomSheetFragment(options) {
-            when (it) {
-                FileOption.Delete -> handleDeleteFile(file)
-                FileOption.Rename -> Timber.d("Rename File")
-                FileOption.RevokeShare -> handleRevokeShareFile(file)
-                FileOption.Share -> handleShareFile(file)
-            }
-        }.show(childFragmentManager, FILE_OPTION_DIALOG)
+        showFileOptions(
+            file = file,
+            options = options,
+            onShare = viewModel::shareFile,
+            onDelete = viewModel::deleteFile,
+            onRevokeShare = viewModel::revokeShareFile
+        )
     }
 
     private fun handleFolderLongPress(folder: StorageItem.Folder) {
@@ -213,39 +212,6 @@ class DocumentsFragment : Fragment(R.layout.fragment_documents) {
             }
         }.show(childFragmentManager, FOLDER_OPTION_DIALOG)
     }
-
-    private fun handleShareFile(file: StorageItem.File) =
-        viewLifecycleOwner.lifecycleScope.launchWhenStarted {
-            requireContext().showInputDialog(
-                title = "Enter email",
-                placeholder = "Enter email",
-                label = "Email"
-            ).also {
-                if (it.isEmpty()) return@also
-                viewModel.shareFile(file, it)
-            }
-        }
-
-    private fun handleRevokeShareFile(file: StorageItem.File) =
-        viewLifecycleOwner.lifecycleScope.launchWhenStarted {
-            requireContext().showSelectItemDialog(
-                title = "Select User",
-                items = file.file.fileSharedTo
-            ).also { email ->
-                email?.let { viewModel.revokeShareFile(file, it) }
-            }
-        }
-
-    private fun handleDeleteFile(file: StorageItem.File) =
-        viewLifecycleOwner.lifecycleScope.launchWhenStarted {
-            requireContext().showAlertDialog(
-                title = "Delete File",
-                message = "Are you sure you want to delete this file?",
-                positiveButtonText = "Delete"
-            ).also {
-                if (it) viewModel.deleteFile(file)
-            }
-        }
 
     private fun handleDeleteFolder(folder: StorageItem.Folder) =
         viewLifecycleOwner.lifecycleScope.launchWhenStarted {
