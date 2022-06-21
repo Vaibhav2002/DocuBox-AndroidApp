@@ -25,6 +25,7 @@ class SearchResultsFragment : Fragment(R.layout.fragment_search_results) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        viewModel.setSearchResults(args.results.results)
         initViews()
         collectUiEvents()
         collectUiState()
@@ -44,14 +45,14 @@ class SearchResultsFragment : Fragment(R.layout.fragment_search_results) {
 
     private fun initViews() = with(binding) {
         storageRv.setHasFixedSize(false)
-        storageRv.compose(
+        resultsAdapter = storageRv.compose(
             ItemStorageBinding::inflate,
             onBind = { item: StorageItem, _ ->
                 title.text = item.name
                 description.text = item.description
                 itemImage.setImageResource(item.icon)
             }
-        ){
+        ) {
 
         }
         actionBar.setupActionBar(args.title, true, {

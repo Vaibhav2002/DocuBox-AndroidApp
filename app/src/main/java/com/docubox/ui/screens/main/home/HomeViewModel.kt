@@ -2,6 +2,7 @@ package com.docubox.ui.screens.main.home
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.docubox.data.modes.local.StorageItem
 import com.docubox.data.modes.remote.responses.StorageConsumption
 import com.docubox.data.repo.StorageRepo
 import com.docubox.util.Resource
@@ -41,5 +42,29 @@ class HomeViewModel @Inject constructor(private val storageRepo: StorageRepo) : 
                 totalStorage = storageConsumption.totalStorage.toFloatOrNull() ?: 0f
             )
         }
+    }
+
+    fun onSearch(query: String) = viewModelScope.launch {
+        if (query.trim().isNotEmpty())
+            searchFiles(query.trim())
+    }
+
+    private suspend fun searchFiles(query: String, isByType: Boolean = false) {
+        val res = storageRepo.searchFileByQuery(query)
+        res.collectLatest {
+            _uiState.emit(uiState.value.copy(isLoading = it is Resource.Loading))
+            when (it) {
+                is Resource.Error -> _events.emit(HomeScreenEvents.ShowToast(it.message))
+                is Resource.Loading -> Unit
+                is Resource.Success -> it.data?.let { items ->
+                    handleSearchFileSuccess(query, items)
+                }
+            }
+        }
+    }
+
+    private suspend fun handleSearchFileSuccess(query: String, files: List<StorageItem>) {
+        if (files.isEmpty()) _events.emit(HomeScreenEvents.ShowToast("No results found"))
+        else _events.emit(HomeScreenEvents.NavigateToSearchResults(query, files))
     }
 }

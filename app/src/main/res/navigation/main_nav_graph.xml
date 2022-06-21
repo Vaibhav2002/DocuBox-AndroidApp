@@ -39,7 +39,7 @@
         tools:layout="@layout/fragment_search_results" >
         <argument
             android:name="results"
-            app:argType="com.docubox.data.modes.local.StorageItem[]" />
+            app:argType="com.docubox.data.modes.local.SearchResult" />
         <argument
             android:name="title"
             app:argType="string" />
