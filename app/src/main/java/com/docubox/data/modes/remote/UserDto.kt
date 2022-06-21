@@ -11,5 +11,7 @@ data class UserDto(
     @SerializedName("userEmail")
     val userEmail: String = "",
     @SerializedName("userName")
-    val userName: String = ""
+    val userName: String = "",
+    @SerializedName("userDataFolder")
+    val rootDirectory: List<String> = emptyList()
 )

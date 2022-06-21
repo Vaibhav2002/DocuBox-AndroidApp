@@ -10,14 +10,16 @@ class UserMapper @Inject constructor() : Mapper<User, UserDto> {
         id = local.id,
         userEmail = local.userEmail,
         userName = local.userName,
-        token = local.token
+        token = local.token,
+        rootDirectory = listOf(local.rootDirectory)
     )
 
     override fun toLocal(remote: UserDto): User = User(
         id = remote.id,
         userEmail = remote.userEmail,
         userName = remote.userName,
-        token = remote.token
+        token = remote.token,
+        rootDirectory = remote.rootDirectory.getOrNull(0) ?: ""
     )
 
     override fun toRemote(local: List<User>): List<UserDto> = local.map { toRemote(it) }
