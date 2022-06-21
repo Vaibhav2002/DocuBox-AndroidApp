@@ -55,4 +55,8 @@ class StorageDataSource @Inject constructor(private val service: StorageService)
     suspend fun searchFilesByName(query: String, token: String) = safeApiCall {
         service.searchFilesByName(mapOf("fileNameQuery" to query), token.asJwt())
     }
+
+    suspend fun searchFilesByType(query: String, token: String) = safeApiCall {
+        service.searchFilesByName(mapOf("fileTypeQuery" to query), token.asJwt())
+    }
 }

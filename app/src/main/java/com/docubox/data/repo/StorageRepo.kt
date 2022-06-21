@@ -98,4 +98,11 @@ class StorageRepo @Inject constructor(
     }.map { res ->
         res.mapTo { fileMapper.toLocal(it.fileList) }
     }.flowOn(Dispatchers.IO)
+
+    suspend fun searchFileByType(type: String) = flow {
+        emit(Resource.Loading())
+        emit(storageDataSource.searchFilesByType(type, token))
+    }.map { res ->
+        res.mapTo { fileMapper.toLocal(it.fileList) }
+    }.flowOn(Dispatchers.IO)
 }
