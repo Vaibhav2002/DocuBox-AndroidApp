@@ -24,12 +24,7 @@ import com.docubox.databinding.ItemStorageBinding
 import com.docubox.databinding.SheetUploadDocumentBinding
 import com.docubox.service.FileUploadService
 import com.docubox.ui.adapter.OneAdapter
-import com.docubox.ui.screens.dialogs.FileOptionsBottomSheetFragment
-import com.docubox.ui.screens.dialogs.FolderOptionsBottomSheetFragment
-import com.docubox.util.Constants.FILE_OPTION_DIALOG
-import com.docubox.util.Constants.FOLDER_OPTION_DIALOG
 import com.docubox.util.Constants.fileOptions
-import com.docubox.util.Constants.folderOptions
 import com.docubox.util.extensions.*
 import com.docubox.util.viewBinding.viewBinding
 import com.google.android.material.bottomsheet.BottomSheetDialog
@@ -203,24 +198,11 @@ class DocumentsFragment : Fragment(R.layout.fragment_documents) {
     }
 
     private fun handleFolderLongPress(folder: StorageItem.Folder) {
-        FolderOptionsBottomSheetFragment(folderOptions) {
-            when (it) {
-                FolderOptions.Delete -> handleDeleteFolder(folder)
-                FolderOptions.Rename -> Timber.d("Rename Folder")
-                FolderOptions.RevokeShare -> Unit
-                FolderOptions.Share -> Unit
-            }
-        }.show(childFragmentManager, FOLDER_OPTION_DIALOG)
+        val options = listOf(FolderOptions.Delete)
+        showFolderOptions(
+            folder = folder,
+            options = options,
+            onDelete = viewModel::deleteFolder
+        )
     }
-
-    private fun handleDeleteFolder(folder: StorageItem.Folder) =
-        viewLifecycleOwner.lifecycleScope.launchWhenStarted {
-            requireContext().showAlertDialog(
-                title = "Delete Folder",
-                message = "Are you sure you want to delete this folder?",
-                positiveButtonText = "Delete"
-            ).also {
-                if (it) viewModel.deleteFolder(folder)
-            }
-        }
 }
