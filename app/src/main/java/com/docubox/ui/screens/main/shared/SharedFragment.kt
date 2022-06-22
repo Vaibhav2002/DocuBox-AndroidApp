@@ -11,6 +11,7 @@ import com.docubox.data.modes.local.StorageItem
 import com.docubox.databinding.FragmentSharedBinding
 import com.docubox.databinding.ItemStorageBinding
 import com.docubox.ui.adapter.OneAdapter
+import com.docubox.ui.screens.main.documents.DocumentsFragmentDirections
 import com.docubox.util.extensions.*
 import com.docubox.util.viewBinding.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -72,6 +73,7 @@ class SharedFragment : Fragment(R.layout.fragment_shared) {
                 }
             },
         ) {
+            handleStorageItemPress(this)
         }
     }
 
@@ -79,6 +81,15 @@ class SharedFragment : Fragment(R.layout.fragment_shared) {
         actionBar.setupActionBar("Shared", true, {
             findNavController().popBackStack()
         })
+    }
+    private fun handleStorageItemPress(item: StorageItem) {
+        when (item) {
+            is StorageItem.Folder -> Unit
+            is StorageItem.File -> {
+                val action = SharedFragmentDirections.actionSharedFragmentToViewDocumentFragment(item.id)
+                findNavController().navigate(action)
+            }
+        }
     }
 
     private fun handleFileLongPress(file: StorageItem.File) {
