@@ -5,6 +5,7 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Binder
 import android.os.IBinder
+import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.LifecycleService
 import com.docubox.util.Secrets.BASE_URL
 import net.gotev.uploadservice.data.UploadInfo
@@ -32,7 +33,12 @@ class FileUploadService : LifecycleService() {
         return binder
     }
 
-    suspend fun uploadFile(file: Uri, fileDirectory: String?, token: String) =
+    suspend fun uploadFile(
+        file: Uri,
+        fileDirectory: String?,
+        token: String,
+        lifeCycleOwner: LifecycleOwner
+    ) =
         suspendCoroutine<Boolean> {
             val directory = fileDirectory?.let { dir -> listOf(dir) } ?: emptyList()
             MultipartUploadRequest(this@FileUploadService, UPLOAD_FILE_URL)
@@ -42,11 +48,9 @@ class FileUploadService : LifecycleService() {
                 .setBearerAuth(token)
                 .subscribe(
                     this@FileUploadService,
-                    this@FileUploadService,
+                    lifeCycleOwner,
                     object : RequestObserverDelegate {
-                        override fun onCompleted(context: Context, uploadInfo: UploadInfo) {
-                            Timber.d("Complete")
-                        }
+                        override fun onCompleted(context: Context, uploadInfo: UploadInfo) = Unit
 
                         override fun onCompletedWhileNotObserving() = Unit
 
@@ -66,7 +70,6 @@ class FileUploadService : LifecycleService() {
                             uploadInfo: UploadInfo,
                             serverResponse: ServerResponse
                         ) {
-                            Timber.d("Success")
                             it.resume(true)
                         }
                     })
