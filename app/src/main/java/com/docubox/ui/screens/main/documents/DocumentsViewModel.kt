@@ -33,7 +33,7 @@ class DocumentsViewModel @Inject constructor(
     private val _events = MutableSharedFlow<DocumentsScreenEvents>()
     val events = _events.asSharedFlow()
 
-    private var directory: String? = null
+    private var directory = preferencesRepo.getUser()?.rootDirectory
 
     init {
         getAllData(directory)

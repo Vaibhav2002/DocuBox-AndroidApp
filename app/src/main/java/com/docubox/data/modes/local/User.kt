@@ -7,5 +7,6 @@ data class User(
     val id: String = "", // User Id
     val token: String = "", // Authentication token
     val userEmail: String = "",
-    val userName: String = ""
+    val userName: String = "",
+    val rootDirectory:String = ""
 ) : Serializable
