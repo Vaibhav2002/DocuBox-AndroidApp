@@ -23,6 +23,9 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".ViewDocumentActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.screens.splash.SplashActivity"
             android:exported="true">
             <intent-filter>
@@ -33,14 +36,12 @@
         </activity>
         <activity
             android:name=".ui.screens.auth.AuthActivity"
-            android:exported="true">
-
-        </activity>
+            android:exported="true" />
         <activity
             android:name=".ui.screens.main.DocuBoxActivity"
             android:exported="true" />
 
-        <service android:name=".service.FileUploadService"/>
+        <service android:name=".service.FileUploadService" />
     </application>
 
 </manifest>

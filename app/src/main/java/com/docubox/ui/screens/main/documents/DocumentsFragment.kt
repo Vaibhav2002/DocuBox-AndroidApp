@@ -129,7 +129,11 @@ class DocumentsFragment : Fragment(R.layout.fragment_documents) {
     private fun handleStorageItemPress(item: StorageItem) {
         when (item) {
             is StorageItem.Folder -> viewModel.onFolderPress(item)
-            is StorageItem.File -> Unit
+            is StorageItem.File -> {
+                    val args = Bundle()
+                    args.putString("fileId",item.id)
+                    findNavController().navigate(R.id.viewDocumentFragment,args)
+            }
         }
     }
 
