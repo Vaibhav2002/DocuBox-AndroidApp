@@ -29,7 +29,6 @@ import com.docubox.util.extensions.*
 import com.docubox.util.viewBinding.viewBinding
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import dagger.hilt.android.AndroidEntryPoint
-import timber.log.Timber
 
 @AndroidEntryPoint
 class DocumentsFragment : Fragment(R.layout.fragment_documents) {
@@ -130,9 +129,9 @@ class DocumentsFragment : Fragment(R.layout.fragment_documents) {
         when (item) {
             is StorageItem.Folder -> viewModel.onFolderPress(item)
             is StorageItem.File -> {
-                    val args = Bundle()
-                    args.putString("fileId",item.id)
-                    findNavController().navigate(R.id.viewDocumentFragment,args)
+                val args = Bundle()
+                args.putString("fileId", item.id)
+                findNavController().navigate(R.id.viewDocumentFragment, args)
             }
         }
     }
@@ -181,10 +180,14 @@ class DocumentsFragment : Fragment(R.layout.fragment_documents) {
 
     private fun uploadFile(file: Uri) = viewLifecycleOwner.lifecycleScope.launchWhenStarted {
         if (!isBound) return@launchWhenStarted
-        fileUploadService.uploadFile(file, viewModel.getCurrentDirectory(), viewModel.userToken)
-            .also {
-                Timber.d(if (it) "File Uploaded" else "Failed to upload")
-            }
+        fileUploadService.uploadFile(
+            file,
+            viewModel.getCurrentDirectory(),
+            viewModel.userToken,
+            this@DocumentsFragment
+        ).also {
+            if (it) viewModel.getData()
+        }
     }
 
     private fun handleFileLongPress(file: StorageItem.File) {

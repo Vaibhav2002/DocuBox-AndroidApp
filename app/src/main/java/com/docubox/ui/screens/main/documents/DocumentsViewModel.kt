@@ -43,6 +43,10 @@ class DocumentsViewModel @Inject constructor(
 
     val userToken = preferencesRepo.getUserToken()!!
 
+    fun getData() = viewModelScope.launch {
+        getAllData(directory)
+    }
+
     private fun getAllData(directory: String?, overrideProgressBar: Boolean = false) =
         viewModelScope.launch {
             _uiState.update { it.copy(storageItems = emptyList()) }
