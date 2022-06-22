@@ -19,13 +19,21 @@
         android:id="@+id/documentsFragment"
         android:name="com.docubox.ui.screens.main.documents.DocumentsFragment"
         android:label="fragment_documents"
-        tools:layout="@layout/fragment_documents" />
+        tools:layout="@layout/fragment_documents" >
+        <action
+            android:id="@+id/action_documentsFragment_to_viewDocumentFragment"
+            app:destination="@id/viewDocumentFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/sharedFragment"
         android:name="com.docubox.ui.screens.main.shared.SharedFragment"
         android:label="fragment_shared"
-        tools:layout="@layout/fragment_shared" />
+        tools:layout="@layout/fragment_shared" >
+        <action
+            android:id="@+id/action_sharedFragment_to_viewDocumentFragment"
+            app:destination="@id/viewDocumentFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/profileFragment"
@@ -43,6 +51,9 @@
         <argument
             android:name="title"
             app:argType="string" />
+        <action
+            android:id="@+id/action_searchResultsFragment_to_viewDocumentFragment"
+            app:destination="@id/viewDocumentFragment" />
     </fragment>
     <fragment
         android:id="@+id/viewDocumentFragment"

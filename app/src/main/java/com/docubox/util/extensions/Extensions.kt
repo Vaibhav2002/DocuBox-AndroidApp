@@ -13,6 +13,7 @@ import com.docubox.R
 import com.docubox.data.modes.local.FileType
 import com.docubox.databinding.ActionBarBinding
 import com.docubox.util.Constants
+import com.docubox.util.Secrets.BASE_URL
 import com.permissionx.guolindev.PermissionX
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking
@@ -100,6 +101,8 @@ fun String.getFileType() = when {
 }
 
 fun String.asJwt() = "Bearer $this"
+
+fun String.toFileViewUrl() = BASE_URL+"documents/file/$this"
 
 fun Fragment.onBackPress(onBackPress: () -> Unit) {
     requireActivity().onBackPressedDispatcher.addCallback(this) {
