@@ -12,6 +12,7 @@ import androidx.datastore.preferences.core.edit
 import androidx.fragment.app.Fragment
 import com.docubox.R
 import com.docubox.data.modes.local.FileType
+import com.docubox.data.modes.local.StorageItem
 import com.docubox.databinding.ActionBarBinding
 import com.docubox.util.Constants
 import com.docubox.util.Secrets.BASE_URL
@@ -112,3 +113,8 @@ fun Fragment.onBackPress(onBackPress: () -> Unit) {
     }
 }
 
+fun List<StorageItem>.sortStorageItems():List<StorageItem>{
+    val folders = filterIsInstance(StorageItem.Folder::class.java)
+    val files = filterIsInstance(StorageItem.File::class.java)
+    return folders+files
+}
