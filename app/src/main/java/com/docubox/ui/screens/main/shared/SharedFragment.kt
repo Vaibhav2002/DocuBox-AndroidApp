@@ -84,7 +84,7 @@ class SharedFragment : Fragment(R.layout.fragment_shared) {
             is StorageItem.Folder -> Unit
             is StorageItem.File -> {
                 val action =
-                    SharedFragmentDirections.actionSharedFragmentToViewDocumentFragment(item.id)
+                    SharedFragmentDirections.actionSharedFragmentToViewDocumentFragment(item)
                 findNavController().navigate(action)
             }
         }

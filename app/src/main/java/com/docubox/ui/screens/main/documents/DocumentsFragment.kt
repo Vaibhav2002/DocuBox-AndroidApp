@@ -130,7 +130,7 @@ class DocumentsFragment : Fragment(R.layout.fragment_documents) {
             is StorageItem.Folder -> viewModel.onFolderPress(item)
             is StorageItem.File -> {
                 val action =
-                    DocumentsFragmentDirections.actionDocumentsFragmentToViewDocumentFragment(item.id)
+                    DocumentsFragmentDirections.actionDocumentsFragmentToViewDocumentFragment(item)
                 findNavController().navigate(action)
             }
         }

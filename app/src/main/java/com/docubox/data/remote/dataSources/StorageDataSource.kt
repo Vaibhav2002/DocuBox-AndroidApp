@@ -7,10 +7,12 @@ import android.os.Environment
 import com.docubox.data.modes.local.StorageItem
 import com.docubox.data.modes.remote.requests.*
 import com.docubox.data.remote.api.StorageService
+import com.docubox.util.FileUtil
 import com.docubox.util.extensions.asJwt
 import com.docubox.util.runSafeAsync
 import com.docubox.util.safeApiCall
 import dagger.hilt.android.qualifiers.ApplicationContext
+import timber.log.Timber
 import javax.inject.Inject
 
 class StorageDataSource @Inject constructor(
@@ -70,15 +72,28 @@ class StorageDataSource @Inject constructor(
         service.searchFilesByType(mapOf("fileTypeQuery" to query), token.asJwt())
     }
 
+    private fun download() {
+
+    }
+
     suspend fun downloadFile(file: StorageItem.File) = runSafeAsync {
-        val manager = context.getSystemService(Context.DOWNLOAD_SERVICE) as DownloadManager
-        val uri = Uri.parse(file.file.fileStorageUrl)
-        DownloadManager.Request(uri).apply {
-            setTitle(file.file.fileName)
-            setDescription("Downloading")
-            setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, file.file.fileName);
-            setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED)
-            manager.enqueue(this)
+        try {
+            val manager = context.getSystemService(Context.DOWNLOAD_SERVICE) as DownloadManager
+            val fileStorageUrl = FileUtil.getParsedFileUrl(file.file.fileStorageUrl)
+
+            Timber.d("DocuBox Download: File Storage Url = $fileStorageUrl")
+
+            val uri = Uri.parse(fileStorageUrl)
+            DownloadManager.Request(uri).apply {
+                setTitle(file.file.fileName)
+                setDescription("Downloading")
+                setMimeType(FileUtil.getMimeTypeFromFile(file.file.fileName))
+                setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, file.file.fileName);
+                setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED)
+                manager.enqueue(this)
+            }
+        } catch(e: Exception) {
+            Timber.d("DocuBox Download Error:\n${e.localizedMessage}\n${e.localizedMessage}\n\n")
         }
     }
 

@@ -60,6 +60,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         videoOption.singleClick { viewModel.onFileTypePress(FileType.Video) }
         audioOption.singleClick { viewModel.onFileTypePress(FileType.Audio) }
         docsOption.singleClick { viewModel.onFileTypePress(FileType.File) }
+        btnRefreshStorageConsumption.singleClick { viewModel.getStorageConsumption() }
     }
 
     private fun initViews() = Unit
