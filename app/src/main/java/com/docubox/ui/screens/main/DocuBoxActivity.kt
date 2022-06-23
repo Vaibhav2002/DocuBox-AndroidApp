@@ -26,7 +26,7 @@ class DocuBoxActivity : AppCompatActivity() {
 
     private fun setUpBottomNav() = binding.apply {
         bottomNavView.setupWithNavController(navController)
-        val hiddenInFragments = listOf(R.id.viewDocumentFragment)
+        val hiddenInFragments = listOf(R.id.viewDocumentFragment, R.id.searchResultsFragment)
         navController.addOnDestinationChangedListener { _, destination, _ ->
             bottomNavView.visibleOrGone(destination.id !in hiddenInFragments)
         }

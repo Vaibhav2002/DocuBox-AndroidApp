@@ -81,4 +81,10 @@ interface StorageService {
         @Body body: Map<String, String>,
         @Header("Authorization") token: String
     ): Response<FileListResponse>
+
+    @POST("documents/rename-file")
+    suspend fun renameFile(
+        @Body body:RenameFileRequest,
+        @Header("Authorization") token:String
+    ):Response<MessageResponse>
 }

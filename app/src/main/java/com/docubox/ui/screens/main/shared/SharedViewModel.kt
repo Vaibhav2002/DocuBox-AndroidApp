@@ -84,6 +84,13 @@ class SharedViewModel @Inject constructor(private val storageRepo: StorageRepo) 
         }
     }
 
+    fun renameFile(file: StorageItem.File, newName: String) = viewModelScope.launch {
+        storageRepo.renameFile(file, newName).collectLatest {
+            _uiState.emit(uiState.value.copy(isLoading = it is Resource.Loading))
+            handleMessageResponse(it)
+        }
+    }
+
     fun downloadFile(file: StorageItem.File) = viewModelScope.launch {
         storageRepo.downloadFile(file)
     }

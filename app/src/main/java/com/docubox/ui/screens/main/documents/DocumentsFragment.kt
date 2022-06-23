@@ -214,7 +214,8 @@ class DocumentsFragment : Fragment(R.layout.fragment_documents) {
             onShare = viewModel::shareFile,
             onDelete = viewModel::deleteFile,
             onRevokeShare = viewModel::revokeShareFile,
-            onDownload = viewModel::downloadFile
+            onDownload = viewModel::downloadFile,
+            onRename = viewModel::renameFile
         )
     }
 

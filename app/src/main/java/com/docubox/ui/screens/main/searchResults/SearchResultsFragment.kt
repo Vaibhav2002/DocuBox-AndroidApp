@@ -88,7 +88,8 @@ class SearchResultsFragment : Fragment(R.layout.fragment_search_results) {
             onDelete = viewModel::deleteFile,
             onShare = viewModel::shareFile,
             onRevokeShare = viewModel::revokeShareFile,
-            onDownload = viewModel::downloadFile
+            onDownload = viewModel::downloadFile,
+            onRename = viewModel::renameFile
         )
     }
 

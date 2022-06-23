@@ -81,4 +81,8 @@ class StorageDataSource @Inject constructor(
             manager.enqueue(this)
         }
     }
+
+    suspend fun renameFile(file: StorageItem.File, newName: String, token: String) = safeApiCall {
+        service.renameFile(RenameFileRequest(file.id, newName), token.asJwt())
+    }
 }
