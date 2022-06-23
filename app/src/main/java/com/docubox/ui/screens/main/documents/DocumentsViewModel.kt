@@ -45,6 +45,9 @@ class DocumentsViewModel @Inject constructor(
 
     val userToken = preferencesRepo.getUserToken()!!
 
+    val storageLeft:Float
+    get() = uiState.value.totalStorage - uiState.value.storageUsed
+
     fun getData() = viewModelScope.launch {
         getAllData(directory)
     }
