@@ -26,10 +26,12 @@ import com.docubox.databinding.SheetUploadDocumentBinding
 import com.docubox.service.FileUploadService
 import com.docubox.ui.adapter.OneAdapter
 import com.docubox.util.Constants.fileOptions
+import com.docubox.util.FileUtil
 import com.docubox.util.extensions.*
 import com.docubox.util.viewBinding.viewBinding
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import dagger.hilt.android.AndroidEntryPoint
+import timber.log.Timber
 
 @AndroidEntryPoint
 class DocumentsFragment : Fragment(R.layout.fragment_documents) {
@@ -180,13 +182,24 @@ class DocumentsFragment : Fragment(R.layout.fragment_documents) {
 
     private fun uploadFile(file: Uri) = viewLifecycleOwner.lifecycleScope.launchWhenStarted {
         if (!isBound) return@launchWhenStarted
-        fileUploadService.uploadFile(
-            file,
-            viewModel.getCurrentDirectory(),
-            viewModel.userToken,
-            this@DocumentsFragment
-        ).also {
-            if (it) viewModel.getData()
+        val fileSize = FileUtil.getFileSize(requireContext(),file)
+        viewModel.uiState.launchAndCollectLatest(viewLifecycleOwner) {
+            if(it.storageUsed>it.totalStorage) {
+                Toast.makeText(requireContext(), "Unable to upload file, you have crossed your file storage limit", Toast.LENGTH_SHORT).show()
+                return@launchAndCollectLatest
+            }
+            if(fileSize>=(it.totalStorage-it.storageUsed)) {
+                Toast.makeText(requireContext(), "Unable to upload file, you have crossed your file storage limit", Toast.LENGTH_SHORT).show()
+                return@launchAndCollectLatest
+            }
+            fileUploadService.uploadFile(
+                file,
+                viewModel.getCurrentDirectory(),
+                viewModel.userToken,
+                this@DocumentsFragment
+            ).also {
+                if (it) viewModel.getData()
+            }
         }
     }
 
