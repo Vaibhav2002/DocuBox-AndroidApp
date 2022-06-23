@@ -180,15 +180,15 @@ class DocumentsFragment : Fragment(R.layout.fragment_documents) {
 
     private fun uploadFile(file: Uri) = viewLifecycleOwner.lifecycleScope.launchWhenStarted {
         if (!isBound) return@launchWhenStarted
-        val storageLeft = viewModel.getStorageLeft()
+       /* val storageLeft = viewModel.getStorageLeft()
         if (storageLeft == null) {
             requireContext().showToast("Cannot upload file, failed to get storage Available")
             return@launchWhenStarted
-        }
+        }*/
         fileUploadService.uploadFile(
             file = file,
             fileDirectory = viewModel.getCurrentDirectory(),
-            storageLeft = storageLeft,
+//            storageLeft = storageLeft,
             token = viewModel.userToken,
             lifeCycleOwner = this@DocumentsFragment
         ).also {
