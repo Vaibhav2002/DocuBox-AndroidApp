@@ -22,7 +22,7 @@ fun Fragment.showFileOptions(
     onRevokeShare: (StorageItem.File, String) -> Unit = { _, _ -> },
     onShare: (StorageItem.File, String) -> Unit = { _, _ -> },
     onRename: (StorageItem.File, String) -> Unit = { _, _ -> },
-    onDownload: Unit = Unit
+    onDownload: (StorageItem.File) -> Unit = {}
 ) {
     FileOptionsBottomSheetFragment(options) {
         when (it) {
