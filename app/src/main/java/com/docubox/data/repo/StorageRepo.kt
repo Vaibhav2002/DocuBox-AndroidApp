@@ -1,5 +1,6 @@
 package com.docubox.data.repo
 
+import com.docubox.data.modes.local.StorageItem
 import com.docubox.data.modes.mapper.FileMapper
 import com.docubox.data.modes.mapper.FolderMapper
 import com.docubox.data.remote.dataSources.StorageDataSource
@@ -105,4 +106,8 @@ class StorageRepo @Inject constructor(
     }.map { res ->
         res.mapTo { fileMapper.toLocal(it.fileList) }
     }.flowOn(Dispatchers.IO)
+
+    suspend fun downloadFile(file:StorageItem.File){
+        storageDataSource.downloadFile(file)
+    }
 }
