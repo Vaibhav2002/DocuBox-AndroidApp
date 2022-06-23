@@ -25,7 +25,7 @@ class HomeViewModel @Inject constructor(private val storageRepo: StorageRepo) : 
         getStorageConsumption()
     }
 
-    private fun getStorageConsumption() = viewModelScope.launch {
+    fun getStorageConsumption() = viewModelScope.launch {
         storageRepo.getStorageConsumption().collectLatest {
             _uiState.emit(uiState.value.copy(isLoading = it is Resource.Loading))
             when (it) {
