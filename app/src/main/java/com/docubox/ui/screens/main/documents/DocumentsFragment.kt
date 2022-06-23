@@ -9,6 +9,7 @@ import android.os.Bundle
 import android.os.IBinder
 import android.view.LayoutInflater
 import android.view.View
+import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
@@ -199,7 +200,8 @@ class DocumentsFragment : Fragment(R.layout.fragment_documents) {
             options = options,
             onShare = viewModel::shareFile,
             onDelete = viewModel::deleteFile,
-            onRevokeShare = viewModel::revokeShareFile
+            onRevokeShare = viewModel::revokeShareFile,
+            onDownload = { fileItem -> handleDownloadFile(fileItem) }
         )
     }
 

@@ -1,5 +1,8 @@
 package com.docubox.ui.screens.main.documents
 
+import android.app.DownloadManager
+import android.content.Context
+import android.widget.Toast
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.docubox.data.local.dataSources.CacheData

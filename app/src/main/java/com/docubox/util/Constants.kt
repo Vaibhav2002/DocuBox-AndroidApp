@@ -24,9 +24,10 @@ object Constants {
 
     val fileOptions = listOf(
         FileOption.Rename,
+        FileOption.Download,
         FileOption.Share,
         FileOption.RevokeShare,
-        FileOption.Delete
+        FileOption.Delete,
     )
 
     val filePermissions = listOf(
