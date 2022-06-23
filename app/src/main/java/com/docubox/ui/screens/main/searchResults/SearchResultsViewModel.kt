@@ -50,6 +50,10 @@ class SearchResultsViewModel @Inject constructor(private val storageRepo: Storag
         }
     }
 
+    fun downloadFile(file: StorageItem.File) = viewModelScope.launch {
+        storageRepo.downloadFile(file)
+    }
+
     private fun handleShareFileSuccess(sharedFile: StorageItem.File, email: String) {
         replaceFile(sharedFile) {
             val newShares = it.file.fileSharedTo.toMutableList().apply { add(email) }
