@@ -107,7 +107,17 @@ class StorageRepo @Inject constructor(
         res.mapTo { fileMapper.toLocal(it.fileList) }
     }.flowOn(Dispatchers.IO)
 
-    suspend fun downloadFile(file:StorageItem.File){
+    suspend fun downloadFile(file: StorageItem.File) {
         storageDataSource.downloadFile(file)
     }
+
+    suspend fun renameFile(
+        file: StorageItem.File,
+        newName: String
+    ) = flow {
+        emit(Resource.Loading())
+        emit(storageDataSource.renameFile(file, newName, token))
+    }.map {
+        it.mapMessages(successMessage = it.data?.message)
+    }.flowOn(Dispatchers.IO)
 }
