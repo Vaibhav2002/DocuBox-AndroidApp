@@ -36,7 +36,7 @@
         <entry key="app/src/main/res/layout/fragment_profile.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_register.xml" value="0.16875" />
         <entry key="app/src/main/res/layout/fragment_shared.xml" value="0.16875" />
-        <entry key="app/src/main/res/layout/fragment_view_document.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/fragment_view_document.xml" value="0.22" />
         <entry key="app/src/main/res/layout/item_storage.xml" value="0.16875" />
         <entry key="app/src/main/res/layout/sheet_upload_document.xml" value="0.16875" />
         <entry key="app/src/main/res/menu/bottom_nav_menu.xml" value="0.16875" />

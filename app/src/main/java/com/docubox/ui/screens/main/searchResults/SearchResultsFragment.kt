@@ -72,7 +72,7 @@ class SearchResultsFragment : Fragment(R.layout.fragment_search_results) {
         when (item) {
             is StorageItem.Folder -> Unit
             is StorageItem.File -> {
-                val action = SearchResultsFragmentDirections.actionSearchResultsFragmentToViewDocumentFragment(item.id)
+                val action = SearchResultsFragmentDirections.actionSearchResultsFragmentToViewDocumentFragment(item)
                 findNavController().navigate(action)
             }
         }

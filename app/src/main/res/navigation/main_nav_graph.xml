@@ -61,8 +61,8 @@
         android:label="fragment_view_document"
         tools:layout="@layout/fragment_view_document" >
         <argument
-            android:name="fileId"
-            app:argType="string" />
+            android:name="file"
+            app:argType="com.docubox.data.modes.local.StorageItem$File" />
     </fragment>
 
 </navigation>
