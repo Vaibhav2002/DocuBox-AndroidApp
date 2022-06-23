@@ -1,8 +1,5 @@
 package com.docubox.ui.screens.main.documents
 
-import android.app.DownloadManager
-import android.content.Context
-import android.widget.Toast
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.docubox.data.local.dataSources.CacheData
@@ -172,6 +169,10 @@ class DocumentsViewModel @Inject constructor(
             _uiState.emit(uiState.value.copy(isLoading = it is Resource.Loading))
             handleMessageResponse(it)
         }
+    }
+
+    fun downloadFile(file: StorageItem.File) = viewModelScope.launch {
+        storageRepo.downloadFile(file)
     }
 
     fun deleteFolder(folder: StorageItem.Folder) = viewModelScope.launch {

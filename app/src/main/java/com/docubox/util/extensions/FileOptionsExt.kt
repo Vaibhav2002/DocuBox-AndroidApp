@@ -4,7 +4,6 @@ import android.app.DownloadManager
 import android.content.Context
 import android.net.Uri
 import android.os.Environment
-import androidx.core.content.ContextCompat.getSystemService
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import com.docubox.data.modes.local.FileOption
@@ -12,7 +11,6 @@ import com.docubox.data.modes.local.StorageItem
 import com.docubox.ui.screens.dialogs.FileOptionsBottomSheetFragment
 import com.docubox.util.Constants
 import timber.log.Timber
-import java.io.File
 
 
 fun Fragment.showFileOptions(
@@ -30,7 +28,7 @@ fun Fragment.showFileOptions(
             FileOption.Rename -> Timber.d("Rename File")
             FileOption.RevokeShare -> handleRevokeShareFile(file, onRevokeShare)
             FileOption.Share -> handleShareFile(file, onShare)
-            FileOption.Download -> handleDownloadFile(file)
+            FileOption.Download -> onDownload(file)
         }
     }.show(childFragmentManager, Constants.FILE_OPTION_DIALOG)
 }
@@ -74,17 +72,21 @@ private fun Fragment.handleDeleteFile(
     }
 }
 
-fun Fragment.handleDownloadFile(file: StorageItem.File) {
-    try {
-        val manager = requireContext().getSystemService(Context.DOWNLOAD_SERVICE) as DownloadManager?
-        val uri = Uri.parse(file.file.fileStorageUrl)
-        val request = DownloadManager.Request(uri)
-        request.setTitle(file.file.fileName)
-        request.setDescription("Downloading")
-        request.setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, file.file.fileName);
-        request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED)
-        manager!!.enqueue(request)
-    } catch(e: Exception) {
-        Timber.d("DOWNLOAD ERROR: ${e.message}")
-    }
-}
+//fun Fragment.handleDownloadFile(file: StorageItem.File) {
+//    try {
+//        val manager =
+//            requireContext().getSystemService(Context.DOWNLOAD_SERVICE) as DownloadManager?
+//        val uri = Uri.parse(file.file.fileStorageUrl)
+//        val request = DownloadManager.Request(uri)
+//        request.setTitle(file.file.fileName)
+//        request.setDescription("Downloading")
+//        request.setDestinationInExternalPublicDir(
+//            Environment.DIRECTORY_DOWNLOADS,
+//            file.file.fileName
+//        );
+//        request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED)
+//        manager!!.enqueue(request)
+//    } catch (e: Exception) {
+//        Timber.d("DOWNLOAD ERROR: ${e.message}")
+//    }
+//}
