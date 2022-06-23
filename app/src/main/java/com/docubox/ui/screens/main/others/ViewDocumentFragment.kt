@@ -10,6 +10,8 @@ import com.docubox.data.modes.local.StorageItem
 import com.docubox.data.modes.remote.responses.file.FileDto
 import com.docubox.databinding.FragmentViewDocumentBinding
 import com.docubox.ui.screens.main.documents.DocumentsViewModel
+import com.docubox.util.FileUtil
+import com.docubox.util.Secrets.BASE_URL
 import com.docubox.util.extensions.setupActionBar
 import com.docubox.util.extensions.toFileViewUrl
 import com.docubox.util.viewBinding.viewBinding
@@ -41,7 +43,7 @@ class ViewDocumentFragment : Fragment(R.layout.fragment_view_document) {
         webView.apply {
             settings.builtInZoomControls = true
             settings.supportZoom()
-            loadUrl(file.id.toFileViewUrl())
+            loadUrl("${BASE_URL}documents/file/${file.id}")
         }
     }
 
