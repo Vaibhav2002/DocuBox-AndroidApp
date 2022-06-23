@@ -112,14 +112,14 @@
                 <ImageView
                     android:layout_width="24dp"
                     android:layout_height="24dp"
-                    android:src="@drawable/ic_edit"
+                    android:src="@drawable/ic_info"
                     android:layout_margin="8dp"
                     app:tint="@color/colorSecondaryText" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Change Username"
+                    android:text="About"
                     android:textColor="@color/colorSecondaryText"
                     android:fontFamily="@font/poppins_regular"
                     android:padding="8dp"/>
@@ -140,42 +140,14 @@
                 <ImageView
                     android:layout_width="24dp"
                     android:layout_height="24dp"
-                    android:src="@drawable/ic_change_avatar"
+                    android:src="@drawable/ic_bug"
                     android:layout_margin="8dp"
                     app:tint="@color/colorSecondaryText" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Change Avatar"
-                    android:fontFamily="@font/poppins_regular"
-                    android:textColor="@color/colorSecondaryText"
-                    android:padding="8dp"/>
-
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/btnCheckServerStatus"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:clickable="true"
-                android:focusable="true"
-                android:background="?android:attr/selectableItemBackground"
-                android:padding="8dp">
-
-                <ImageView
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:src="@drawable/ic_server_status"
-                    android:layout_margin="8dp"
-                    app:tint="@color/colorSecondaryText" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Check Server Status"
+                    android:text="Report Bug"
                     android:fontFamily="@font/poppins_regular"
                     android:textColor="@color/colorSecondaryText"
                     android:padding="8dp"/>

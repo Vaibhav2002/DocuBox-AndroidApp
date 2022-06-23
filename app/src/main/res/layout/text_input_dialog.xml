@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="24dp"
-        android:layout_marginTop="64dp"
+        android:layout_marginTop="23dp"
         app:boxBackgroundColor="@android:color/white"
         app:boxStrokeWidth="0dp"
         tools:hint="Name"
