@@ -208,11 +208,12 @@ class DocumentsFragment : Fragment(R.layout.fragment_documents) {
     }
 
     private fun handleFolderLongPress(folder: StorageItem.Folder) {
-        val options = listOf(FolderOptions.Delete)
+        val options = listOf(FolderOptions.Rename, FolderOptions.Delete)
         showFolderOptions(
             folder = folder,
             options = options,
-            onDelete = viewModel::deleteFolder
+            onDelete = viewModel::deleteFolder,
+            onRename = viewModel::renameFolder
         )
     }
 }

@@ -85,4 +85,8 @@ class StorageDataSource @Inject constructor(
     suspend fun renameFile(file: StorageItem.File, newName: String, token: String) = safeApiCall {
         service.renameFile(RenameFileRequest(file.id, newName), token.asJwt())
     }
+
+    suspend fun renameFolder(folder: StorageItem.Folder, newName: String, token: String) = safeApiCall {
+        service.renameFolder(RenameFolderRequest(folder.id, newName), token.asJwt())
+    }
 }

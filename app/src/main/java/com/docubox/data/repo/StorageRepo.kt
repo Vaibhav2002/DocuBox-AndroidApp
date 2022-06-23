@@ -120,4 +120,14 @@ class StorageRepo @Inject constructor(
     }.map {
         it.mapMessages(successMessage = it.data?.message)
     }.flowOn(Dispatchers.IO)
+
+    suspend fun renameFolder(
+        folder: StorageItem.Folder,
+        newName: String
+    ) = flow {
+        emit(Resource.Loading())
+        emit(storageDataSource.renameFolder(folder, newName, token))
+    }.map {
+        it.mapMessages(successMessage = it.data?.message)
+    }.flowOn(Dispatchers.IO)
 }
