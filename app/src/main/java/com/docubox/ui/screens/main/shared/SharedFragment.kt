@@ -11,7 +11,6 @@ import com.docubox.data.modes.local.StorageItem
 import com.docubox.databinding.FragmentSharedBinding
 import com.docubox.databinding.ItemStorageBinding
 import com.docubox.ui.adapter.OneAdapter
-import com.docubox.ui.screens.main.documents.DocumentsFragmentDirections
 import com.docubox.util.extensions.*
 import com.docubox.util.viewBinding.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -62,14 +61,11 @@ class SharedFragment : Fragment(R.layout.fragment_shared) {
                 description.text = item.description
                 itemImage.setImageResource(item.icon)
                 root.setOnLongClickListener {
-                    if (!viewModel.uiState.value.isSharedByMeState) true
-                    else {
-                        when (item) {
-                            is StorageItem.File -> handleFileLongPress(item)
-                            is StorageItem.Folder -> Unit
-                        }
-                        true
+                    when (item) {
+                        is StorageItem.File -> handleFileLongPress(item)
+                        is StorageItem.Folder -> Unit
                     }
+                    true
                 }
             },
         ) {
@@ -82,23 +78,28 @@ class SharedFragment : Fragment(R.layout.fragment_shared) {
             findNavController().popBackStack()
         })
     }
+
     private fun handleStorageItemPress(item: StorageItem) {
         when (item) {
             is StorageItem.Folder -> Unit
             is StorageItem.File -> {
-                val action = SharedFragmentDirections.actionSharedFragmentToViewDocumentFragment(item.id)
+                val action =
+                    SharedFragmentDirections.actionSharedFragmentToViewDocumentFragment(item.id)
                 findNavController().navigate(action)
             }
         }
     }
 
     private fun handleFileLongPress(file: StorageItem.File) {
-        val options = listOf(FileOption.RevokeShare, FileOption.Delete)
+        val options = if (viewModel.uiState.value.isSharedByMeState)
+            listOf(FileOption.RevokeShare, FileOption.Download, FileOption.Delete)
+        else listOf(FileOption.Download)
         showFileOptions(
             file = file,
             options = options,
             onRevokeShare = viewModel::revokeShareFile,
-            onDelete = viewModel::deleteFile
+            onDelete = viewModel::deleteFile,
+            onDownload = viewModel::downloadFile
         )
     }
 }

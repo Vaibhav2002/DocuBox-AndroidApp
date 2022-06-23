@@ -84,6 +84,10 @@ class SharedViewModel @Inject constructor(private val storageRepo: StorageRepo) 
         }
     }
 
+    fun downloadFile(file: StorageItem.File) = viewModelScope.launch {
+        storageRepo.downloadFile(file)
+    }
+
     private suspend fun handleMessageResponse(
         res: Resource<MessageResponse>,
         getData: Boolean = true
