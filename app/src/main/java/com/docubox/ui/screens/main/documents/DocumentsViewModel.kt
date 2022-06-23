@@ -6,10 +6,8 @@ import com.docubox.data.local.dataSources.CacheData
 import com.docubox.data.local.dataSources.StorageCache
 import com.docubox.data.modes.local.StorageItem
 import com.docubox.data.modes.remote.MessageResponse
-import com.docubox.data.modes.remote.responses.StorageConsumption
 import com.docubox.data.repo.PreferencesRepo
 import com.docubox.data.repo.StorageRepo
-import com.docubox.ui.screens.main.home.HomeScreenEvents
 import com.docubox.util.Resource
 import com.docubox.util.isValidEmail
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -44,9 +42,6 @@ class DocumentsViewModel @Inject constructor(
     fun getCurrentDirectory() = directory
 
     val userToken = preferencesRepo.getUserToken()!!
-
-    val storageLeft:Float
-    get() = uiState.value.totalStorage - uiState.value.storageUsed
 
     fun getData() = viewModelScope.launch {
         getAllData(directory)
@@ -187,14 +182,14 @@ class DocumentsViewModel @Inject constructor(
         }
     }
 
-    fun renameFile(file:StorageItem.File, newName:String) = viewModelScope.launch {
+    fun renameFile(file: StorageItem.File, newName: String) = viewModelScope.launch {
         storageRepo.renameFile(file, newName).collectLatest {
             _uiState.emit(uiState.value.copy(isLoading = it is Resource.Loading))
             handleMessageResponse(it)
         }
     }
 
-    fun renameFolder(folder:StorageItem.Folder, newName:String) = viewModelScope.launch {
+    fun renameFolder(folder: StorageItem.Folder, newName: String) = viewModelScope.launch {
         storageRepo.renameFolder(folder, newName).collectLatest {
             _uiState.emit(uiState.value.copy(isLoading = it is Resource.Loading))
             handleMessageResponse(it)
@@ -210,24 +205,8 @@ class DocumentsViewModel @Inject constructor(
     }
 
 
-    fun getStorageConsumption() = viewModelScope.launch {
-        storageRepo.getStorageConsumption().collectLatest {
-            _uiState.emit(uiState.value.copy(isLoading = it is Resource.Loading))
-            when (it) {
-                is Resource.Error -> _events.emit(DocumentsScreenEvents.ShowToast(it.message))
-                is Resource.Loading -> Unit
-                is Resource.Success -> it.data?.let(this@DocumentsViewModel::handleStorageConsumptionSuccess)
-            }
-        }
-    }
-
-    private fun handleStorageConsumptionSuccess(storageConsumption: StorageConsumption) {
-        _uiState.update { state ->
-            state.copy(
-                storageUsed = storageConsumption.storageConsumption.toFloatOrNull() ?: 0f,
-                totalStorage = storageConsumption.totalStorage.toFloatOrNull() ?: 0f
-            )
-        }
+    suspend fun getStorageLeft(): Float? = storageRepo.getStorageConsumptionValue()?.let {
+        return it.totalStorage.toFloat() - it.storageConsumption.toFloat()
     }
 }
 
