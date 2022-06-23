@@ -6,17 +6,17 @@ import com.docubox.data.modes.local.FolderOptions
 import com.docubox.data.modes.local.StorageItem
 import com.docubox.ui.screens.dialogs.FolderOptionsBottomSheetFragment
 import com.docubox.util.Constants
-import timber.log.Timber
 
 fun Fragment.showFolderOptions(
     folder: StorageItem.Folder,
     options: List<FolderOptions>,
     onDelete: (StorageItem.Folder) -> Unit = {},
+    onRename: (StorageItem.Folder, String) -> Unit = {_,_->}
 ) {
     FolderOptionsBottomSheetFragment(options) {
         when (it) {
             FolderOptions.Delete -> handleDeleteFolder(folder, onDelete)
-            FolderOptions.Rename -> Timber.d("Rename Folder")
+            FolderOptions.Rename -> handleRenameFolder(folder, onRename)
             FolderOptions.RevokeShare -> Unit
             FolderOptions.Share -> Unit
         }
@@ -33,5 +33,19 @@ private fun Fragment.handleDeleteFolder(
         positiveButtonText = "Delete"
     ).also {
         if (it) onDelete(folder)
+    }
+}
+
+private fun Fragment.handleRenameFolder(
+    folder: StorageItem.Folder,
+    onRename: (StorageItem.Folder, String) -> Unit
+) = viewLifecycleOwner.lifecycleScope.launchWhenStarted {
+    requireContext().showInputDialog(
+        title = "Rename Folder",
+        text = folder.name,
+        placeholder = "Enter folder name",
+        label = "Folder Name"
+    ).also {
+        if (it.isNotEmpty() && it != folder.name) onRename(folder, it)
     }
 }

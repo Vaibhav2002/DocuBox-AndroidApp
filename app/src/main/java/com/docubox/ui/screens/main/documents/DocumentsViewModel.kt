@@ -194,6 +194,13 @@ class DocumentsViewModel @Inject constructor(
         }
     }
 
+    fun renameFolder(folder:StorageItem.Folder, newName:String) = viewModelScope.launch {
+        storageRepo.renameFolder(folder, newName).collectLatest {
+            _uiState.emit(uiState.value.copy(isLoading = it is Resource.Loading))
+            handleMessageResponse(it)
+        }
+    }
+
     private suspend fun handleMessageResponse(
         res: Resource<MessageResponse>,
         getData: Boolean = true
@@ -222,9 +229,6 @@ class DocumentsViewModel @Inject constructor(
             )
         }
     }
-
-
-
 }
 
 
