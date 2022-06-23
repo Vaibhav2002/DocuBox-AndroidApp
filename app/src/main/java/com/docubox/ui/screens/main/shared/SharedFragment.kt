@@ -92,14 +92,20 @@ class SharedFragment : Fragment(R.layout.fragment_shared) {
 
     private fun handleFileLongPress(file: StorageItem.File) {
         val options = if (viewModel.uiState.value.isSharedByMeState)
-            listOf(FileOption.RevokeShare, FileOption.Download, FileOption.Delete)
+            listOf(
+                FileOption.Rename,
+                FileOption.RevokeShare,
+                FileOption.Download,
+                FileOption.Delete
+            )
         else listOf(FileOption.Download)
         showFileOptions(
             file = file,
             options = options,
             onRevokeShare = viewModel::revokeShareFile,
             onDelete = viewModel::deleteFile,
-            onDownload = viewModel::downloadFile
+            onDownload = viewModel::downloadFile,
+            onRename = viewModel::renameFile
         )
     }
 }
