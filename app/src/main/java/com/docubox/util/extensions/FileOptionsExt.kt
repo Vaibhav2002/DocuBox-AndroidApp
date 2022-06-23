@@ -1,16 +1,11 @@
 package com.docubox.util.extensions
 
-import android.app.DownloadManager
-import android.content.Context
-import android.net.Uri
-import android.os.Environment
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import com.docubox.data.modes.local.FileOption
 import com.docubox.data.modes.local.StorageItem
 import com.docubox.ui.screens.dialogs.FileOptionsBottomSheetFragment
 import com.docubox.util.Constants
-import timber.log.Timber
 
 
 fun Fragment.showFileOptions(
@@ -25,7 +20,7 @@ fun Fragment.showFileOptions(
     FileOptionsBottomSheetFragment(options) {
         when (it) {
             FileOption.Delete -> handleDeleteFile(file, onDelete)
-            FileOption.Rename -> Timber.d("Rename File")
+            FileOption.Rename -> handleRename(file, onRename)
             FileOption.RevokeShare -> handleRevokeShareFile(file, onRevokeShare)
             FileOption.Share -> handleShareFile(file, onShare)
             FileOption.Download -> onDownload(file)
@@ -69,6 +64,20 @@ private fun Fragment.handleDeleteFile(
         positiveButtonText = "Delete"
     ).also {
         if (it) onDelete(file)
+    }
+}
+
+private fun Fragment.handleRename(
+    file: StorageItem.File,
+    onRename: (StorageItem.File, String) -> Unit
+) = viewLifecycleOwner.lifecycleScope.launchWhenStarted {
+    requireContext().showInputDialog(
+        title = "Rename File",
+        text = file.name.substringBeforeLast('.'),
+        placeholder = "Enter file name",
+        label = "File Name"
+    ).also {
+        if (it.isNotEmpty() && it != file.name) onRename(file, it)
     }
 }
 

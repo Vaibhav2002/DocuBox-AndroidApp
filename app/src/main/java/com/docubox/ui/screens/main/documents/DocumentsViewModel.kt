@@ -182,6 +182,13 @@ class DocumentsViewModel @Inject constructor(
         }
     }
 
+    fun renameFile(file:StorageItem.File, newName:String) = viewModelScope.launch {
+        storageRepo.renameFile(file, newName).collectLatest {
+            _uiState.emit(uiState.value.copy(isLoading = it is Resource.Loading))
+            handleMessageResponse(it)
+        }
+    }
+
     private suspend fun handleMessageResponse(
         res: Resource<MessageResponse>,
         getData: Boolean = true
