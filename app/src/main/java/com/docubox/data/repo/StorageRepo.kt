@@ -3,6 +3,7 @@ package com.docubox.data.repo
 import com.docubox.data.modes.local.StorageItem
 import com.docubox.data.modes.mapper.FileMapper
 import com.docubox.data.modes.mapper.FolderMapper
+import com.docubox.data.modes.remote.responses.StorageConsumption
 import com.docubox.data.remote.dataSources.StorageDataSource
 import com.docubox.util.Resource
 import com.docubox.util.extensions.mapMessages
@@ -130,4 +131,8 @@ class StorageRepo @Inject constructor(
     }.map {
         it.mapMessages(successMessage = it.data?.message)
     }.flowOn(Dispatchers.IO)
+
+    suspend fun getStorageConsumptionValue(): StorageConsumption? {
+        return storageDataSource.getStorageConsumption(token).data
+    }
 }
