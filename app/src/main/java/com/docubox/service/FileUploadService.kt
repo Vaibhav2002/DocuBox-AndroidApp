@@ -38,15 +38,17 @@ class FileUploadService : LifecycleService() {
     suspend fun uploadFile(
         file: Uri,
         fileDirectory: String?,
-//        storageLeft:Float,
+        storageLeft:Float,
         token: String,
         lifeCycleOwner: LifecycleOwner
     ) = suspendCoroutine<Boolean> {
-//        val fileSize = FileUtil.getFileSize(this, file)
-//        if (fileSize > storageLeft) {
-//            showToast("Unable to upload file, you have crossed your file storage limit")
-//            it.resume(false)
-//        }
+        val fileSize = FileUtil.getFileSize(this, file)
+        if (fileSize > storageLeft) {
+            showToast("Unable to upload file, you have crossed your file storage limit")
+            it.resume(false)
+            stopSelf()
+            return@suspendCoroutine
+        }
         val directory = fileDirectory?.let { dir -> listOf(dir) } ?: emptyList()
         MultipartUploadRequest(this@FileUploadService, UPLOAD_FILE_URL)
             .setMethod("POST")
