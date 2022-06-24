@@ -34,7 +34,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         binding.apply {
             tvStorageConsumption.text = "${it.storageUsed} / ${it.totalStorage} MB"
             storageProgress.max = it.totalStorage.toInt()
-            storageProgress.progress = it.storageUsed.toInt()
+            storageProgress.progress = it.storageUsed.toInt() % it.totalStorage.toInt()
         }
     }
 
@@ -60,7 +60,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         videoOption.singleClick { viewModel.onFileTypePress(FileType.Video) }
         audioOption.singleClick { viewModel.onFileTypePress(FileType.Audio) }
         docsOption.singleClick { viewModel.onFileTypePress(FileType.File) }
-        btnRefreshStorageConsumption.singleClick { viewModel.getStorageConsumption() }
+        btnRefreshStorageConsumption.singleClick(viewModel::getStorageConsumption)
     }
 
     private fun initViews() = Unit
