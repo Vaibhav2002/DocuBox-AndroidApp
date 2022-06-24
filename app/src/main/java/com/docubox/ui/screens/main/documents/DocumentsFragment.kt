@@ -60,9 +60,10 @@ class DocumentsFragment : Fragment(R.layout.fragment_documents) {
         collectUiState()
         collectEvents()
         onBackPress(viewModel::onBackPress)
-        filePickerLauncher = registerForActivityResult(ActivityResultContracts.GetContent()) {
-            uploadFile(it)
-        }
+        filePickerLauncher =
+            registerForActivityResult(ActivityResultContracts.GetContent()) { uri ->
+                uri?.let { uploadFile(it) }
+            }
     }
 
     override fun onStart() {
