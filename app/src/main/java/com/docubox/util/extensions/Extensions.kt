@@ -2,7 +2,6 @@ package com.docubox.util.extensions
 
 import android.app.Activity
 import android.content.Intent
-import android.provider.OpenableColumns
 import androidx.activity.addCallback
 import androidx.annotation.DrawableRes
 import androidx.core.view.isVisible
@@ -105,7 +104,7 @@ fun String.getFileType() = when {
 
 fun String.asJwt() = "Bearer $this"
 
-fun String.toFileViewUrl() = BASE_URL+"documents/file/$this"
+fun String.toFileViewUrl() = BASE_URL + "documents/file/$this"
 
 fun Fragment.onBackPress(onBackPress: () -> Unit) {
     requireActivity().onBackPressedDispatcher.addCallback(this) {
@@ -113,8 +112,10 @@ fun Fragment.onBackPress(onBackPress: () -> Unit) {
     }
 }
 
-fun List<StorageItem>.sortStorageItems():List<StorageItem>{
+fun List<StorageItem>.sortStorageItems(): List<StorageItem> {
     val folders = filterIsInstance(StorageItem.Folder::class.java)
     val files = filterIsInstance(StorageItem.File::class.java)
-    return folders+files
+    return folders + files
 }
+
+fun Float.MbToBytes() = this * 1024 * 1024

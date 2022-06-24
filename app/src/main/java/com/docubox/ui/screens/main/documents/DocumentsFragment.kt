@@ -189,7 +189,7 @@ class DocumentsFragment : Fragment(R.layout.fragment_documents) {
         fileUploadService.uploadFile(
             file = file,
             fileDirectory = viewModel.getCurrentDirectory(),
-            storageLeft = storageLeft,
+            storageLeft = storageLeft.MbToBytes(),
             token = viewModel.userToken,
             lifeCycleOwner = this@DocumentsFragment
         ).also {
