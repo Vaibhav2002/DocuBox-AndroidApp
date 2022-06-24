@@ -5,6 +5,7 @@
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:padding="16dp"
+    android:background="@color/colorAppBackground"
     android:orientation="vertical"
     tools:context=".ui.screens.dialogs.FileOptionsBottomSheetFragment">
 

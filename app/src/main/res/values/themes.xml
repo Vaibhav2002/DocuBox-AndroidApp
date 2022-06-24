@@ -46,10 +46,11 @@
     </style>
 
     <style name="DocuBox.BottomSheet" parent="ThemeOverlay.Material3.BottomSheetDialog">
-        <item name="colorPrimary">@color/colorOnPrimary</item>
-        <item name="colorSecondary">@color/colorOnPrimary</item>
+        <item name="colorPrimary">@color/colorAppBackground</item>
+        <item name="colorSecondary">@color/colorAppBackground</item>
+        <item name="colorSurface">@color/colorAppBackground</item>
+        <item name="elevationOverlayEnabled">false</item>
     </style>
-
 
 
 </resources>
