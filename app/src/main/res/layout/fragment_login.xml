@@ -75,7 +75,7 @@
             android:hint="Password"
             android:layout_marginTop="16dp"
             app:boxStrokeWidthFocused="0dp"
-            app:placeholderText="Enter email">
+            app:placeholderText="Enter password">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/passwordTIET"
