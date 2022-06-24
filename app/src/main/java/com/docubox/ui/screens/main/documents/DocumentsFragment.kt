@@ -96,8 +96,11 @@ class DocumentsFragment : Fragment(R.layout.fragment_documents) {
 
     private fun collectUiState() = viewModel.uiState.launchAndCollectLatest(viewLifecycleOwner) {
         storageAdapter.submitList(it.storageItems.sortStorageItems())
-        binding.actionBar.tvActionBarTitle.text = it.actionBarTitle
-        binding.swipeRefresh.isRefreshing = it.isRefreshing
+        binding.apply {
+            actionBar.tvActionBarTitle.text = it.actionBarTitle
+            swipeRefresh.isRefreshing = it.isRefreshing
+            emptyStateLayout.emptyStateLayout.visibleOrGone(it.storageItems.isEmpty() && !it.isLoading)
+        }
     }
 
     private fun initViews() = with(binding) {

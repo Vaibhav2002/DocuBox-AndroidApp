@@ -37,6 +37,7 @@ class SharedFragment : Fragment(R.layout.fragment_shared) {
             btnSharedToMe.setSelectedState(!it.isSharedByMeState)
             btnSharedByMe.setSelectedState(it.isSharedByMeState)
             swipeRefresh.isRefreshing = it.isRefreshing
+            emptyStateLayout.emptyStateLayout.visibleOrGone(it.storageItems.isEmpty() && !it.isLoading)
         }
     }
 
