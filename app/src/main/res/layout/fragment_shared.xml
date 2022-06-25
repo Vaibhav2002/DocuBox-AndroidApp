@@ -76,7 +76,7 @@
 
     <include
         android:id="@+id/emptyStateLayout"
-        layout="@layout/empty_state"
+        layout="@layout/empty_state2"
         android:layout_height="0dp"
         android:visibility="gone"
         tools:visibility="visible"
