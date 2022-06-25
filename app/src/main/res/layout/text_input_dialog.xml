@@ -15,6 +15,10 @@
         app:boxBackgroundColor="@android:color/white"
         app:boxStrokeWidth="0dp"
         tools:hint="Name"
+        app:boxCornerRadiusBottomStart="10dp"
+        app:boxCornerRadiusBottomEnd="10dp"
+        app:boxCornerRadiusTopEnd="10dp"
+        app:boxCornerRadiusTopStart="10dp"
         app:boxStrokeWidthFocused="0dp"
         tools:placeholderText="Enter name">
 

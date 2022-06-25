@@ -8,7 +8,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Click on the + button to upload a new document"
+        android:text="No results found"
         android:layout_gravity="center"
         android:gravity="center"
         android:layout_margin="40dp"

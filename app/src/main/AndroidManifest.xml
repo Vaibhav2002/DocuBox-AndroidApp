@@ -22,9 +22,7 @@
         android:theme="@style/Theme.DocuBox"
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
-        <activity
-            android:name=".ViewDocumentActivity"
-            android:exported="false" />
+
         <activity
             android:name=".ui.screens.splash.SplashActivity"
             android:exported="true">
