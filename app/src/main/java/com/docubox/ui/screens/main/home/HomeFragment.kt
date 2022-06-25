@@ -35,6 +35,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
             tvStorageConsumption.text = "${it.storageUsed} / ${it.totalStorage} MB"
             storageProgress.max = it.totalStorage.toInt()
             storageProgress.progress = it.storageUsed.toInt() % it.totalStorage.toInt()
+            progressLayout.visibleOrGone(it.isLoading)
         }
     }
 

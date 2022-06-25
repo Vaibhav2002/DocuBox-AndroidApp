@@ -100,6 +100,7 @@ class DocumentsFragment : Fragment(R.layout.fragment_documents) {
             actionBar.tvActionBarTitle.text = it.actionBarTitle
             swipeRefresh.isRefreshing = it.isRefreshing
             emptyStateLayout.emptyStateLayout.visibleOrGone(it.storageItems.isEmpty() && !it.isLoading)
+            progressLayout.visibleOrGone(it.isLoading)
         }
     }
 
