@@ -47,6 +47,7 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
             emailTIET.isEnabled = it.areTextFieldsEnabled
             passwordTIET.isEnabled = it.areTextFieldsEnabled
             loginBtn.isEnabled = it.isLoginButtonEnabled
+            progressLayout.visibleOrGone(it.isLoading)
         }
     }
 
