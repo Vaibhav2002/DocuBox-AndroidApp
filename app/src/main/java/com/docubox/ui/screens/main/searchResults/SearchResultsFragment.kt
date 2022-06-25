@@ -37,6 +37,7 @@ class SearchResultsFragment : Fragment(R.layout.fragment_search_results) {
 
     private fun collectUiState() = viewModel.uiState.launchAndCollectLatest(viewLifecycleOwner) {
         resultsAdapter.submitList(it.items)
+        binding.progressLayout.visibleOrGone(it.isLoading)
     }
 
     private fun collectUiEvents() = viewModel.events.launchAndCollect(viewLifecycleOwner) {

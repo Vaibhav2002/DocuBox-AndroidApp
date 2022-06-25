@@ -47,6 +47,7 @@ class RegisterFragment : Fragment(R.layout.fragment_register) {
             passwordTIET.isEnabled = it.areTextFieldsEnabled
             usernameTIET.isEnabled = it.areTextFieldsEnabled
             registerBtn.isEnabled = it.isRegisterButtonEnabled
+            progressLayout.visibleOrGone(it.isLoading)
         }
     }
 
