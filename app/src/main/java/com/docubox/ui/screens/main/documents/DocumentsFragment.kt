@@ -60,9 +60,10 @@ class DocumentsFragment : Fragment(R.layout.fragment_documents) {
         collectUiState()
         collectEvents()
         onBackPress(viewModel::onBackPress)
-        filePickerLauncher = registerForActivityResult(ActivityResultContracts.GetContent()) {
-            uploadFile(it)
-        }
+        filePickerLauncher =
+            registerForActivityResult(ActivityResultContracts.GetContent()) { uri ->
+                uri?.let { uploadFile(it) }
+            }
     }
 
     override fun onStart() {
@@ -95,8 +96,12 @@ class DocumentsFragment : Fragment(R.layout.fragment_documents) {
 
     private fun collectUiState() = viewModel.uiState.launchAndCollectLatest(viewLifecycleOwner) {
         storageAdapter.submitList(it.storageItems.sortStorageItems())
-        binding.actionBar.tvActionBarTitle.text = it.actionBarTitle
-        binding.swipeRefresh.isRefreshing = it.isRefreshing
+        binding.apply {
+            actionBar.tvActionBarTitle.text = it.actionBarTitle
+            swipeRefresh.isRefreshing = it.isRefreshing
+            emptyStateLayout.emptyStateLayout.visibleOrGone(it.storageItems.isEmpty() && !it.isLoading)
+            progressLayout.visibleOrGone(it.isLoading)
+        }
     }
 
     private fun initViews() = with(binding) {
@@ -180,15 +185,15 @@ class DocumentsFragment : Fragment(R.layout.fragment_documents) {
 
     private fun uploadFile(file: Uri) = viewLifecycleOwner.lifecycleScope.launchWhenStarted {
         if (!isBound) return@launchWhenStarted
-       /* val storageLeft = viewModel.getStorageLeft()
+        val storageLeft = viewModel.getStorageLeft()
         if (storageLeft == null) {
             requireContext().showToast("Cannot upload file, failed to get storage Available")
             return@launchWhenStarted
-        }*/
+        }
         fileUploadService.uploadFile(
             file = file,
             fileDirectory = viewModel.getCurrentDirectory(),
-//            storageLeft = storageLeft,
+            storageLeft = storageLeft.MbToBytes(),
             token = viewModel.userToken,
             lifeCycleOwner = this@DocumentsFragment
         ).also {

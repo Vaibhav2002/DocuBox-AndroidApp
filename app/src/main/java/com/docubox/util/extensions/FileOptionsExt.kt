@@ -71,13 +71,14 @@ private fun Fragment.handleRename(
     file: StorageItem.File,
     onRename: (StorageItem.File, String) -> Unit
 ) = viewLifecycleOwner.lifecycleScope.launchWhenStarted {
+    val text = file.name.substringBeforeLast('.')
     requireContext().showInputDialog(
         title = "Rename File",
-        text = file.name.substringBeforeLast('.'),
+        text = text,
         placeholder = "Enter file name",
         label = "File Name"
     ).also {
-        if (it.isNotEmpty() && it != file.name) onRename(file, it)
+        if (it.isNotEmpty() && it != text) onRename(file, it)
     }
 }
 

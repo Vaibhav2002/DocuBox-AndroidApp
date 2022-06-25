@@ -11,11 +11,13 @@ import com.docubox.data.modes.local.StorageItem
 object Constants {
 
     const val DATASTORE_NAME = "DocuBoxDataStore"
-    val DEFAULT_FILE_DIRECTORY: String? = "62a770c456fe19af7106ddae"
-    val DEFAULT_FOLDER_DIRECTORY: String? = "62a770c456fe19af7106ddae"
 
     const val FILE_OPTION_DIALOG = "FileOptionsDialog"
     const val FOLDER_OPTION_DIALOG = "FolderOptionsDialog"
+
+    const val ABOUT_US_URL = ""
+    const val REPORT_BUG_URL = ""
+    const val VIEW_SOURCE_CODE_URL = "https://github.com/ishantchauhan710/DocuBox"
 
     val folderOptions = listOf(
         FolderOptions.Rename,

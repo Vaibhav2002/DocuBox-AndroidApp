@@ -1,5 +1,7 @@
 package com.docubox.ui.screens.main.profile
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
@@ -10,9 +12,13 @@ import com.docubox.R
 import com.docubox.data.modes.local.User
 import com.docubox.databinding.FragmentProfileBinding
 import com.docubox.ui.screens.auth.AuthActivity
+import com.docubox.util.Constants.ABOUT_US_URL
+import com.docubox.util.Constants.REPORT_BUG_URL
+import com.docubox.util.Constants.VIEW_SOURCE_CODE_URL
 import com.docubox.util.extensions.navigate
 import com.docubox.util.extensions.setupActionBar
 import com.docubox.util.extensions.showAlertDialog
+import com.docubox.util.extensions.singleClick
 import com.docubox.util.viewBinding.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -21,9 +27,9 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
 
     private val binding by viewBinding(FragmentProfileBinding::bind)
     private val viewModel by viewModels<ProfileViewModel>()
-    private var user: User ?= null
+    private var user: User? = null
 
-  override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initActionBar()
         initViews()
@@ -31,31 +37,47 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
     }
 
 
-   private fun initActionBar() = with(binding) {
-       actionBar.setupActionBar("Profile",true,{
-           findNavController().popBackStack()
-       })
-   }
+    private fun initActionBar() = with(binding) {
+        actionBar.setupActionBar("Profile", true, {
+            findNavController().popBackStack()
+        })
+    }
 
 
-   private fun initViews() = with(binding) {
-       user = viewModel.getUser()
-       user?.let {
-           tvUserName.text = it.userName
-           tvUserEmail.text = it.userEmail
-       }
-   }
+    private fun initViews() = with(binding) {
+        user = viewModel.getUser()
+        user?.let {
+            tvUserName.text = it.userName
+            tvUserEmail.text = it.userEmail
+        }
+    }
 
-   private fun initClickListeners() = with(binding) {
-       btnLogout.setOnClickListener {
-           lifecycleScope.launchWhenStarted {
-               val dialogAction = requireContext().showAlertDialog("Logout","Are you sure you want to logout?","Logout","Cancel")
-               if(dialogAction) {
-                   viewModel.logoutUser()
-                   requireActivity().navigate(AuthActivity::class.java,true)
-               }
-           }
-       }
-   }
+    private fun initClickListeners() = with(binding) {
+        btnLogout.singleClick(this@ProfileFragment::handleLogout)
+        btnAbout.singleClick { openIntent(ABOUT_US_URL) }
+        btnReportBug.singleClick { openIntent(REPORT_BUG_URL) }
+        btnViewSourceCode.singleClick { openIntent(VIEW_SOURCE_CODE_URL) }
+
+    }
+
+    private fun handleLogout() = viewLifecycleOwner.lifecycleScope.launchWhenStarted {
+        requireContext().showAlertDialog(
+            "Logout",
+            "Are you sure you want to logout?",
+            "Logout",
+            "Cancel"
+        ).also {
+            if (it) {
+                viewModel.logoutUser()
+                requireActivity().navigate(AuthActivity::class.java, true)
+            }
+        }
+    }
+
+    private fun openIntent(url: String) {
+        Intent(Intent.ACTION_VIEW, Uri.parse(url)).apply {
+            startActivity(this)
+        }
+    }
 
 }

@@ -47,14 +47,14 @@ class HomeViewModel @Inject constructor(private val storageRepo: StorageRepo) : 
 
     fun onSearch(query: String) = viewModelScope.launch {
         if (query.trim().isNotEmpty())
-            searchFiles(query.trim())
+            searchFiles(query.trim(), query.trim())
     }
 
     fun onFileTypePress(fileType: FileType) = viewModelScope.launch {
-        searchFiles(fileType.mimeType, true)
+        searchFiles(fileType.mimeType, fileType.title, true)
     }
 
-    private suspend fun searchFiles(query: String, isByType: Boolean = false) {
+    private suspend fun searchFiles(query: String, title:String, isByType: Boolean = false) {
         val res = if (!isByType) storageRepo.searchFileByQuery(query)
         else storageRepo.searchFileByType(query)
         res.collectLatest {
@@ -63,14 +63,14 @@ class HomeViewModel @Inject constructor(private val storageRepo: StorageRepo) : 
                 is Resource.Error -> _events.emit(HomeScreenEvents.ShowToast(it.message))
                 is Resource.Loading -> Unit
                 is Resource.Success -> it.data?.let { items ->
-                    handleSearchFileSuccess(query, items)
+                    handleSearchFileSuccess(title, items)
                 }
             }
         }
     }
 
-    private suspend fun handleSearchFileSuccess(query: String, files: List<StorageItem.File>) {
+    private suspend fun handleSearchFileSuccess(title: String, files: List<StorageItem.File>) {
         if (files.isEmpty()) _events.emit(HomeScreenEvents.ShowToast("No results found"))
-        else _events.emit(HomeScreenEvents.NavigateToSearchResults(query, files))
+        else _events.emit(HomeScreenEvents.NavigateToSearchResults(title, files))
     }
 }
