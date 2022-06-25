@@ -6,14 +6,12 @@
         <entry key="..\:/AndroidStudioProjects/DocuBox-AndroidApp/app/src/main/res/drawable/et_home_search.xml" value="0.1245" />
         <entry key="..\:/AndroidStudioProjects/DocuBox-AndroidApp/app/src/main/res/layout/activity_auth.xml" value="0.2194078947368421" />
         <entry key="..\:/AndroidStudioProjects/DocuBox-AndroidApp/app/src/main/res/layout/activity_docubox.xml" value="0.34739583333333335" />
-        <entry key="..\:/AndroidStudioProjects/DocuBox-AndroidApp/app/src/main/res/layout/empty_state.xml" value="0.14" />
-        <entry key="..\:/AndroidStudioProjects/DocuBox-AndroidApp/app/src/main/res/layout/fragment_documents.xml" value="0.16" />
+        <entry key="..\:/AndroidStudioProjects/DocuBox-AndroidApp/app/src/main/res/layout/fragment_documents.xml" value="0.2" />
         <entry key="..\:/AndroidStudioProjects/DocuBox-AndroidApp/app/src/main/res/layout/fragment_downloads.xml" value="0.2194078947368421" />
         <entry key="..\:/AndroidStudioProjects/DocuBox-AndroidApp/app/src/main/res/layout/fragment_file_options_bottom_sheet.xml" value="0.2194078947368421" />
-        <entry key="..\:/AndroidStudioProjects/DocuBox-AndroidApp/app/src/main/res/layout/fragment_getting_started.xml" value="0.2" />
+        <entry key="..\:/AndroidStudioProjects/DocuBox-AndroidApp/app/src/main/res/layout/fragment_getting_started.xml" value="0.22" />
         <entry key="..\:/AndroidStudioProjects/DocuBox-AndroidApp/app/src/main/res/layout/fragment_home.xml" value="0.25" />
         <entry key="..\:/AndroidStudioProjects/DocuBox-AndroidApp/app/src/main/res/layout/fragment_login.xml" value="0.2194078947368421" />
-        <entry key="..\:/AndroidStudioProjects/DocuBox-AndroidApp/app/src/main/res/layout/fragment_profile.xml" value="0.14" />
         <entry key="..\:/AndroidStudioProjects/DocuBox-AndroidApp/app/src/main/res/layout/fragment_register.xml" value="0.21052631578947367" />
         <entry key="..\:/AndroidStudioProjects/DocuBox-AndroidApp/app/src/main/res/layout/fragment_search_results.xml" value="0.17" />
         <entry key="..\:/AndroidStudioProjects/DocuBox-AndroidApp/app/src/main/res/layout/fragment_shared.xml" value="0.22" />
@@ -21,7 +19,6 @@
         <entry key="..\:/AndroidStudioProjects/DocuBox-AndroidApp/app/src/main/res/layout/item_options.xml" value="0.21875" />
         <entry key="..\:/AndroidStudioProjects/DocuBox-AndroidApp/app/src/main/res/layout/item_storage.xml" value="0.2194078947368421" />
         <entry key="..\:/AndroidStudioProjects/DocuBox-AndroidApp/app/src/main/res/layout/options_bottom_sheet.xml" value="0.2194078947368421" />
-        <entry key="..\:/AndroidStudioProjects/DocuBox-AndroidApp/app/src/main/res/layout/progress_bar.xml" value="0.21" />
         <entry key="..\:/AndroidStudioProjects/DocuBox-AndroidApp/app/src/main/res/layout/sheet_upload_document.xml" value="0.2194078947368421" />
         <entry key="..\:/AndroidStudioProjects/DocuBox-AndroidApp/app/src/main/res/layout/text_input_dialog.xml" value="0.2194078947368421" />
         <entry key="app/src/main/res/drawable/et_home_search.xml" value="0.154" />
@@ -31,15 +28,20 @@
         <entry key="app/src/main/res/layout/action_bar.xml" value="0.17135416666666667" />
         <entry key="app/src/main/res/layout/activity_docubox.xml" value="0.17" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.16875" />
+        <entry key="app/src/main/res/layout/activity_onboarding.xml" value="0.16875" />
+        <entry key="app/src/main/res/layout/activity_splash.xml" value="0.12604166666666666" />
         <entry key="app/src/main/res/layout/activity_view_document.xml" value="0.12135416666666667" />
+        <entry key="app/src/main/res/layout/empty_state.xml" value="0.2" />
+        <entry key="app/src/main/res/layout/empty_state2.xml" value="0.12604166666666666" />
         <entry key="app/src/main/res/layout/fragment_documents.xml" value="0.2" />
         <entry key="app/src/main/res/layout/fragment_getting_started.xml" value="0.19" />
-        <entry key="app/src/main/res/layout/fragment_home.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/fragment_home.xml" value="0.22" />
         <entry key="app/src/main/res/layout/fragment_login.xml" value="0.16875" />
-        <entry key="app/src/main/res/layout/fragment_profile.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/fragment_onboarding_a.xml" value="0.14375" />
+        <entry key="app/src/main/res/layout/fragment_profile.xml" value="0.22" />
         <entry key="app/src/main/res/layout/fragment_register.xml" value="0.16875" />
         <entry key="app/src/main/res/layout/fragment_shared.xml" value="0.16875" />
-        <entry key="app/src/main/res/layout/fragment_view_document.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/fragment_view_document.xml" value="0.22" />
         <entry key="app/src/main/res/layout/item_storage.xml" value="0.16875" />
         <entry key="app/src/main/res/layout/options_bottom_sheet.xml" value="0.16875" />
         <entry key="app/src/main/res/layout/sheet_upload_document.xml" value="0.16875" />
