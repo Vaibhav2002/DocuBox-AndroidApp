@@ -1,5 +1,7 @@
 package com.docubox.ui.screens.main.home
 
+import android.app.DownloadManager
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.view.inputmethod.EditorInfo
@@ -11,6 +13,9 @@ import com.docubox.data.modes.local.FileType
 import com.docubox.data.modes.local.SearchResult
 import com.docubox.data.modes.local.StorageItem
 import com.docubox.databinding.FragmentHomeBinding
+import com.docubox.util.Constants.ABOUT_US_URL
+import com.docubox.util.Constants.CONTACT_US_URL
+import com.docubox.util.Constants.HOW_TO_USE_URL
 import com.docubox.util.extensions.*
 import com.docubox.util.viewBinding.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -61,6 +66,10 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         videoOption.singleClick { viewModel.onFileTypePress(FileType.Video) }
         audioOption.singleClick { viewModel.onFileTypePress(FileType.Audio) }
         docsOption.singleClick { viewModel.onFileTypePress(FileType.File) }
+        downloads.singleClick(this@HomeFragment::openDownloadsFolder)
+        howToUse.singleClick { requireContext().openBrowser(HOW_TO_USE_URL) }
+        aboutUs.singleClick { requireContext().openBrowser(ABOUT_US_URL) }
+        contactUs.singleClick { requireContext().openBrowser(CONTACT_US_URL) }
         btnRefreshStorageConsumption.singleClick(viewModel::getStorageConsumption)
     }
 
@@ -76,5 +85,12 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         )
         findNavController().navigate(action)
     }
+
+    private fun openDownloadsFolder() {
+        Intent(DownloadManager.ACTION_VIEW_DOWNLOADS).also {
+            startActivity(it)
+        }
+    }
+
 
 }

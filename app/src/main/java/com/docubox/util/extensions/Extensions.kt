@@ -112,6 +112,7 @@ fun Fragment.onBackPress(onBackPress: () -> Unit) {
     }
 }
 
+
 fun List<StorageItem>.sortStorageItems(): List<StorageItem> {
     val folders = filterIsInstance(StorageItem.Folder::class.java)
     val files = filterIsInstance(StorageItem.File::class.java)

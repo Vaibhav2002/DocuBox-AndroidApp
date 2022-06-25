@@ -1,6 +1,8 @@
 package com.docubox.util.extensions
 
 import android.content.Context
+import android.content.Intent
+import android.net.Uri
 import android.view.LayoutInflater
 import android.widget.Toast
 import com.docubox.databinding.TextInputDialogBinding
@@ -67,7 +69,7 @@ suspend fun Context.showSelectItemDialog(
     var selectedItemIndex = 0
     MaterialAlertDialogBuilder(this).apply {
         setTitle(title)
-        setSingleChoiceItems(items.toTypedArray(), 0) {_,pos->
+        setSingleChoiceItems(items.toTypedArray(), 0) { _, pos ->
             selectedItemIndex = pos
         }
         setNegativeButton("Cancel") { _, _ -> it.resume(null) }
@@ -75,5 +77,11 @@ suspend fun Context.showSelectItemDialog(
             it.resume(items[selectedItemIndex])
         }
         show()
+    }
+}
+
+fun Context.openBrowser(url: String) {
+    Intent(Intent.ACTION_VIEW, Uri.parse(url)).also {
+        startActivity(it)
     }
 }

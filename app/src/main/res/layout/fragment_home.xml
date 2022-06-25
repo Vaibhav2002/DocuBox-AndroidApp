@@ -191,6 +191,7 @@
                             app:cardCornerRadius="8dp">
 
                             <androidx.constraintlayout.widget.ConstraintLayout
+                                android:id="@+id/downloads"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:clickable="true"
@@ -231,6 +232,7 @@
                             app:cardCornerRadius="8dp">
 
                             <androidx.constraintlayout.widget.ConstraintLayout
+                                android:id="@+id/howToUse"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:clickable="true"
@@ -271,6 +273,7 @@
                             app:cardCornerRadius="8dp">
 
                             <androidx.constraintlayout.widget.ConstraintLayout
+                                android:id="@+id/aboutUs"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:clickable="true"
@@ -311,6 +314,7 @@
                             app:cardCornerRadius="8dp">
 
                             <androidx.constraintlayout.widget.ConstraintLayout
+                                android:id="@+id/contactUs"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:clickable="true"
