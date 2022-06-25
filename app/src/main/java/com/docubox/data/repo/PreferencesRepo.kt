@@ -27,4 +27,10 @@ class PreferencesRepo @Inject constructor(private val dataStore: PreferencesMana
     fun isUserLoggedIn() = getUser() != null
 
     fun getUserToken() = getUser()?.token
+
+    fun isOnBoardingComplete() = dataStore.onBoarding == true
+
+    fun setOnBoardingComplete() {
+        dataStore.onBoarding = null
+    }
 }
