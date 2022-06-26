@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_homeFragment_to_searchResultsFragment"
             app:destination="@id/searchResultsFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_aboutUsBottomSheetFragment"
+            app:destination="@id/aboutUsBottomSheetFragment" />
     </fragment>
 
     <fragment
@@ -39,7 +42,11 @@
         android:id="@+id/profileFragment"
         android:name="com.docubox.ui.screens.main.profile.ProfileFragment"
         android:label="fragment_profile"
-        tools:layout="@layout/fragment_profile" />
+        tools:layout="@layout/fragment_profile" >
+        <action
+            android:id="@+id/action_profileFragment_to_aboutUsBottomSheetFragment"
+            app:destination="@id/aboutUsBottomSheetFragment" />
+    </fragment>
     <fragment
         android:id="@+id/searchResultsFragment"
         android:name="com.docubox.ui.screens.main.searchResults.SearchResultsFragment"
@@ -64,5 +71,10 @@
             android:name="file"
             app:argType="com.docubox.data.modes.local.StorageItem$File" />
     </fragment>
+    <dialog
+        android:id="@+id/aboutUsBottomSheetFragment"
+        android:name="com.docubox.ui.screens.dialogs.AboutUsBottomSheetFragment"
+        android:label="fragment_about_us_bottom_sheet"
+        tools:layout="@layout/fragment_about_us_bottom_sheet" />
 
 </navigation>

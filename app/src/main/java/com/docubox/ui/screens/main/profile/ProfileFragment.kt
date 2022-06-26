@@ -12,7 +12,6 @@ import com.docubox.R
 import com.docubox.data.modes.local.User
 import com.docubox.databinding.FragmentProfileBinding
 import com.docubox.ui.screens.auth.AuthActivity
-import com.docubox.util.Constants.ABOUT_US_URL
 import com.docubox.util.Constants.REPORT_BUG_URL
 import com.docubox.util.Constants.VIEW_SOURCE_CODE_URL
 import com.docubox.util.extensions.navigate
@@ -54,7 +53,9 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
 
     private fun initClickListeners() = with(binding) {
         btnLogout.singleClick(this@ProfileFragment::handleLogout)
-        btnAbout.singleClick { openIntent(ABOUT_US_URL) }
+        btnAbout.singleClick {
+            findNavController().navigate(R.id.action_profileFragment_to_aboutUsBottomSheetFragment)
+        }
         btnReportBug.singleClick { openIntent(REPORT_BUG_URL) }
         btnViewSourceCode.singleClick { openIntent(VIEW_SOURCE_CODE_URL) }
 

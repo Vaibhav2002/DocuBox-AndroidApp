@@ -15,9 +15,8 @@ object Constants {
     const val FILE_OPTION_DIALOG = "FileOptionsDialog"
     const val FOLDER_OPTION_DIALOG = "FolderOptionsDialog"
 
-    const val ABOUT_US_URL = ""
     const val REPORT_BUG_URL = "https://github.com/ishantchauhan710/DocuBox-AndroidApp/issues"
-    const val VIEW_SOURCE_CODE_URL = "https://github.com/ishantchauhan710/DocuBox"
+    const val VIEW_SOURCE_CODE_URL = "https://github.com/ishantchauhan710/DocuBox-AndroidApp"
 
     const val HOW_TO_USE_URL = ""
     const val CONTACT_US_URL = ""
