@@ -11,7 +11,7 @@ fun Fragment.showFolderOptions(
     folder: StorageItem.Folder,
     options: List<FolderOptions>,
     onDelete: (StorageItem.Folder) -> Unit = {},
-    onRename: (StorageItem.Folder, String) -> Unit = {_,_->}
+    onRename: (StorageItem.Folder, String) -> Unit = { _, _ -> }
 ) {
     FolderOptionsBottomSheetFragment(options) {
         when (it) {

@@ -1,6 +1,5 @@
 package com.docubox.data.modes.remote.responses.folder
 
-import com.docubox.data.modes.remote.responses.ParentDirectory
 import com.docubox.data.modes.remote.responses.OwnerDto
 import com.google.gson.annotations.SerializedName
 

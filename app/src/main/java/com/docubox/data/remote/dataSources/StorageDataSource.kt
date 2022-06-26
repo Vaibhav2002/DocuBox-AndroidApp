@@ -88,11 +88,14 @@ class StorageDataSource @Inject constructor(
                 setTitle(file.file.fileName)
                 setDescription("Downloading")
                 setMimeType(FileUtil.getMimeTypeFromFile(file.file.fileName))
-                setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, file.file.fileName);
+                setDestinationInExternalPublicDir(
+                    Environment.DIRECTORY_DOWNLOADS,
+                    file.file.fileName
+                )
                 setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED)
                 manager.enqueue(this)
             }
-        } catch(e: Exception) {
+        } catch (e: Exception) {
             Timber.d("DocuBox Download Error:\n${e.localizedMessage}\n${e.localizedMessage}\n\n")
         }
     }
@@ -101,7 +104,8 @@ class StorageDataSource @Inject constructor(
         service.renameFile(RenameFileRequest(file.id, newName), token.asJwt())
     }
 
-    suspend fun renameFolder(folder: StorageItem.Folder, newName: String, token: String) = safeApiCall {
-        service.renameFolder(RenameFolderRequest(folder.id, newName), token.asJwt())
-    }
+    suspend fun renameFolder(folder: StorageItem.Folder, newName: String, token: String) =
+        safeApiCall {
+            service.renameFolder(RenameFolderRequest(folder.id, newName), token.asJwt())
+        }
 }

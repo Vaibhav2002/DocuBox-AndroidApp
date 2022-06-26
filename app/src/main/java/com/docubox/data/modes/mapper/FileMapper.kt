@@ -4,7 +4,7 @@ import com.docubox.data.modes.local.StorageItem
 import com.docubox.data.modes.remote.responses.file.FileDto
 import javax.inject.Inject
 
-class FileMapper @Inject constructor(): Mapper<StorageItem.File, FileDto> {
+class FileMapper @Inject constructor() : Mapper<StorageItem.File, FileDto> {
     override fun toRemote(local: StorageItem.File): FileDto = FileDto(
         fileDirectory = local.file.fileDirectory,
         fileName = local.file.fileName,

@@ -3,9 +3,7 @@ package com.docubox.util
 import android.Manifest
 import android.os.Build
 import com.docubox.data.modes.local.FileOption
-import com.docubox.data.modes.local.FileType
 import com.docubox.data.modes.local.FolderOptions
-import com.docubox.data.modes.local.StorageItem
 
 // All our app's constant data variables
 object Constants {

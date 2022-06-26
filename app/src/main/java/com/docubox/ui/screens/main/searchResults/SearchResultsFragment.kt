@@ -12,8 +12,6 @@ import com.docubox.data.modes.local.StorageItem
 import com.docubox.databinding.FragmentSearchResultsBinding
 import com.docubox.databinding.ItemStorageBinding
 import com.docubox.ui.adapter.OneAdapter
-import com.docubox.ui.screens.main.documents.DocumentsFragmentDirections
-import com.docubox.ui.screens.main.shared.SharedFragmentDirections
 import com.docubox.util.Constants
 import com.docubox.util.extensions.*
 import com.docubox.util.viewBinding.viewBinding
@@ -73,7 +71,10 @@ class SearchResultsFragment : Fragment(R.layout.fragment_search_results) {
         when (item) {
             is StorageItem.Folder -> Unit
             is StorageItem.File -> {
-                val action = SearchResultsFragmentDirections.actionSearchResultsFragmentToViewDocumentFragment(item)
+                val action =
+                    SearchResultsFragmentDirections.actionSearchResultsFragmentToViewDocumentFragment(
+                        item
+                    )
                 findNavController().navigate(action)
             }
         }

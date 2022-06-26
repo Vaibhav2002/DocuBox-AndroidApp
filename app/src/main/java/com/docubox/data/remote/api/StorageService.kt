@@ -84,13 +84,13 @@ interface StorageService {
 
     @POST("documents/rename-file")
     suspend fun renameFile(
-        @Body body:RenameFileRequest,
-        @Header("Authorization") token:String
-    ):Response<MessageResponse>
+        @Body body: RenameFileRequest,
+        @Header("Authorization") token: String
+    ): Response<MessageResponse>
 
     @POST("documents/rename-folder")
     suspend fun renameFolder(
-        @Body body:RenameFolderRequest,
-        @Header("Authorization") token:String
-    ):Response<MessageResponse>
+        @Body body: RenameFolderRequest,
+        @Header("Authorization") token: String
+    ): Response<MessageResponse>
 }

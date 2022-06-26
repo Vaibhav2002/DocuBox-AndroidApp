@@ -2,14 +2,13 @@ package com.docubox.data.modes.local
 
 import androidx.annotation.DrawableRes
 import com.docubox.R
-import com.google.gson.annotations.SerializedName
 
 // Class to get media type of a file
 sealed class FileType(
     val type: String,
     @DrawableRes val icon: Int,
-    val mimeType:String,
-    val title:String = mimeType
+    val mimeType: String,
+    val title: String = mimeType
 ) {
     object Audio : FileType("Audio", R.drawable.ic_audio, "audio", "Audio")
     object Document : FileType("Documents", R.drawable.ic_document, "application/pdf", "Documents")

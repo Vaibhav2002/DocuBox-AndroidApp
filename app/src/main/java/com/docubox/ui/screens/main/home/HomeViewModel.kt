@@ -54,7 +54,7 @@ class HomeViewModel @Inject constructor(private val storageRepo: StorageRepo) : 
         searchFiles(fileType.mimeType, fileType.title, true)
     }
 
-    private suspend fun searchFiles(query: String, title:String, isByType: Boolean = false) {
+    private suspend fun searchFiles(query: String, title: String, isByType: Boolean = false) {
         val res = if (!isByType) storageRepo.searchFileByQuery(query)
         else storageRepo.searchFileByType(query)
         res.collectLatest {

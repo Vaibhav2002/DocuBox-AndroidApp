@@ -50,11 +50,11 @@ class SearchResultsViewModel @Inject constructor(private val storageRepo: Storag
         }
     }
 
-    fun renameFile(file:StorageItem.File, newName:String) = viewModelScope.launch {
+    fun renameFile(file: StorageItem.File, newName: String) = viewModelScope.launch {
         storageRepo.renameFile(file, newName).collectLatest {
             _uiState.emit(uiState.value.copy(isLoading = it is Resource.Loading))
             val newFileName = "${newName}.${file.name.substringAfterLast('.')}"
-            replaceFile(file){ file->
+            replaceFile(file) { file ->
                 val newFile = file.file.copy(fileName = newFileName)
                 file.copy(file = newFile)
             }

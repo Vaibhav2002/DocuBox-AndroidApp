@@ -38,7 +38,7 @@ class FileUploadService : LifecycleService() {
     suspend fun uploadFile(
         file: Uri,
         fileDirectory: String?,
-        storageLeft:Float,
+        storageLeft: Float,
         token: String,
         lifeCycleOwner: LifecycleOwner
     ) = suspendCoroutine<Boolean> {

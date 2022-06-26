@@ -7,4 +7,4 @@ import java.io.Serializable
 data class FileListResponse(
     @SerializedName("fileList")
     val fileList: List<FileDto> = listOf()
-):Serializable
+) : Serializable

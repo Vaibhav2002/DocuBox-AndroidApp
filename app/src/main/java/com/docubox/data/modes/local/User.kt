@@ -8,5 +8,5 @@ data class User(
     val token: String = "", // Authentication token
     val userEmail: String = "",
     val userName: String = "",
-    val rootDirectory:String = ""
+    val rootDirectory: String = ""
 ) : Serializable
