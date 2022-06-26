@@ -22,4 +22,6 @@
     <color name="rippleDrawableColor">#59000000</color>
 
     <color name="gray">#EBEAF0</color>
+
+    <color name="splash_bg">#3381ff</color>
 </resources>
