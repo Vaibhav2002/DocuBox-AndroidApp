@@ -4,7 +4,7 @@
 
 **DocuBox** is an cloud storage app in which we can securely save our files.
 
-# Blog ✍
+<!-- # Blog ✍ -->
 
 <!-- To know more about how I build this project, read my article on https://vaibhav2002.hashnode.dev/DocuBox-an-app-to-track-your-daily-water-intake-and-sleep-and-boost-your-work-efficiency-auth0hackathon -->
 
@@ -16,96 +16,46 @@
 
 ## Setup
 - Clone the repository on your machine.
-- Create project in Firebase, enable authentication (email and Google Auth)  and download google-services.json and paste in the app folder.
-- Sign up hasura, connect database and do the following:
+- Clone the [backend code](https://github.com/ishantchauhan710/DocuBox) and set it up by following its README.
+- After setting up the backend, do the following:
 
-Open strings.xml and google web client url for Firebase google auth
-
-```xml
-<!--    add your google web cient id here-->
-<string name="web_client_id"></string>
-```
-
-Open GraphQLSecrets.kt in util package and add your Auth0 credentials
+Open Secrets.kt in util package and add your backend Base URL
 
 ```kotlin
-//Add your hasura url here
-const val HASURA_URL = "" 
-
-//Add your hasura websocket url here (same as hasura url but with wss in place of https)
-const val HASURA_WEB_SOCKET_URL = ""
-
-//Add your hasura secret key here
-const val SECRET_KEY = ""
+//Add your base url here
+const val BASE_URL = "http://[your server url]/api/"
 ```
 
 ## About
 
-It uses Firebase and Hasura as its backend. It uses Firebase for email based auth and Google auth and Hasura as GraphQL Api to access the database.
+It uses a custom NodeJS Server running on Linode. It uses Linode for database and storage hosting.
 
 - Fully functionable. 
 - Clean and Simple Material UI.
-- Best and Clean Code Quality following Modern Android Development.
+- Best and Clean Code Quality following Modern Android Development, SOLID Principles and much more.
 
 ### App Features
 
-- **Onboardng** - DocuBox has a beautiful user onboarding process.
-- **User Authentication** - Supports email based as well as Google authentication
-- **Home** - Home screen shows the top 5 popular community quizzes, option to start an Instant quiz and to join an exisiting quiz game using invite code.
-- **Communtiy** - Shows list of all community made quizzes with option to search and filter based on category. It also allows user to create a new community quiz.
-- **Create Quiz** - Users can create quizzes and contribute to the DocuBox community.
-- **Favourites** - It list all the quizzes the user has marked as favourite.
-- **Profile** - Shows user's profile.
-- **About** - Shows information about the app like its version number and more.
-- **Quiz Detail** - Shows details of the quiz select and option to start game with friends as well as solo.
-- **Game Screen** - Screen where user plays the quiz in realtime with their friends**
+- **User Authentication** - Supports email based authentication
+- **Saving Files** - You can upload your files to DocuBox's cloud storage and access it anywhere.
+- **File Encryption** - Files stored on DocuBox is secure and encrypted, so your data is securely stored.
+- **Sharing File Access** - You can share view access of your files to other users.
+- **File Management** - You can create multiple folders to organize your storage just as you want it.
+- **File Download** - You can even download your files and save them locally for offline access.
+- **Enhanced File Search** - Super fast file searching which can search files instantly.
 
 ### Insights into the app 🔎
 
+<!-- Place all mockups and banners here -->
 
-![DocuBox - slides.gif](https://cdn.hashnode.com/res/hashnode/image/upload/v1647693160293/_0ttFtYYA.gif)
+## 📸 Screenshots 
 
-**DocuBox** has a sleek, modern looking minimalistic UI which makes it easy for people of every age group to use. 🔥
-
-
-
-![Untitled design.gif](https://cdn.hashnode.com/res/hashnode/image/upload/v1647693198971/kw6umv442.gif)
-
-
-**DocuBox** has a easy and simple user onboarding process. 😁
-
-
-![Untitled design (1).gif](https://cdn.hashnode.com/res/hashnode/image/upload/v1647693225605/_BGxAc1EX.gif)
-
-**DocuBox** uses Firebase for authentication. It supports email-based authentication as well as Google authentication.
-
-
-![Untitled design (2).gif](https://cdn.hashnode.com/res/hashnode/image/upload/v1647693216108/kpEIF8CVx.gif)
-
-
-Select whatever quiz you want to play and have fun time with your friends and gain some more general knowledge while playing.
-
-
-
-![Untitled design (3).gif](https://cdn.hashnode.com/res/hashnode/image/upload/v1647693273748/tCaskC2u2.gif)
-
-Play quizzes in realtime with friends with live rank tracking and a simple  and easy game experience.
-
-
-
-![Untitled design (4).gif](https://cdn.hashnode.com/res/hashnode/image/upload/v1647693291275/TgxISULu6.gif)
-
-Create quizzes of your own and contribute to the Quizzfy community.
-
-## 📸 Screenshots
-
-|||||
-|:----------------------------------------:|:-----------------------------------------:|:-----------------------------------------: |:-----------------------------------------: |
-| ![](media/screenshots/onboarding-1.jpg) | ![](media/screenshots/onboarding-2.jpg) | ![](media/screenshots/onboarding-3.jpg) | ![](media/screenshots/getting-profile.jpg) |
-| ![](media/screenshots/getting-started.jpg)  | ![](media/screenshots/login.jpg) | ![](media/screenshots/register.jpg)    | ![](media/screenshots/avatar.jpg) |
-| ![](media/screenshots/home.jpg) | ![](media/screenshots/community.jpg)    | ![](media/screenshots/favourites.jpg)      | ![](media/screenshots/create-quiz.jpg) |
-| ![](media/screenshots/create-question.jpg)  |    ![](media/screenshots/quiz-detail.jpg)    | ![](media/screenshots/game.jpg)        | ![](media/screenshots/finish.jpg) |
-
+|   |   |   |
+|---|---|---|
+|![](media/screenshots/getting_started.jpg)| ![](media/screenshots/login.jpg) | ![](media/screenshots/register.jpg)
+|![](media/screenshots/home.jpg) | ![](media/screenshots/document.jpg) |![](media/screenshots/shared_to_me.jpg) 
+|![](media/screenshots/shared_by_you.jpg)|![](media/screenshots/profile.jpg) | ![](media/screenshots/about_us.jpg)
+|![](media/screenshots/videos.jpg) | ![](media/screenshots/documents_2.jpg) | ![](media/screenshots/splash.jpg)
 
 ### Technical details 
 
@@ -119,7 +69,7 @@ Create quizzes of your own and contribute to the Quizzfy community.
 - DocuBox's code follows all the best practices and software development principles like SOLID which make it a very good learning resource for beginners as well as for people looking to improve thier software design skills.
 - DocuBox's code is properly linted using Ktlint.
 
-![summary.jpg](https://cdn.hashnode.com/res/hashnode/image/upload/v1629894600750/lYuPA7nYY.jpg)
+![summary.jpg](media/summary.png)
 
 
 ## Built With 🛠
@@ -137,12 +87,7 @@ Create quizzes of your own and contribute to the Quizzfy community.
 - [Dependency Injection](https://developer.android.com/training/dependency-injection) - 
   - [Hilt-Dagger](https://dagger.dev/hilt/) - Standard library to incorporate Dagger dependency injection into an Android application.
   - [Hilt-ViewModel](https://developer.android.com/training/dependency-injection/hilt-jetpack) - DI for injecting `ViewModel`.
-- Backend
-  - [Firebase](https://firebase.google.com)
-    - Firebase Auth - To support email based authentication and Google authentication
-  - [Hasura](https://hasura.io) -  Blazing fast API performance, that’s remarkably easy to scale
 - [GSON](https://github.com/google/gson) - A modern JSON library for Kotlin and Java.
-- [Apollo Kotlin](https://github.com/apollographql/apollo-kotlin) - A strongly-typed, caching GraphQL client for the JVM, Android, and Kotlin multiplatform.
 - [Timber](https://github.com/JakeWharton/timber) - A simple logging library for android.
 - [Retrofit](https://square.github.io/retrofit/) - A type-safe HTTP client for Android and Java.
 - [GSON Converter](https://github.com/square/retrofit/tree/master/retrofit-converters/gson) - A Converter which uses Moshi for serialization to and from JSON.
@@ -154,18 +99,19 @@ Create quizzes of your own and contribute to the Quizzfy community.
     dev.vaibhav.DocuBox    # Root Package
     .
     ├── data                # For data handling.
-    |   ├── local           # Room DB, and its related classes
-    |   ├── remote          # Firebase, Hasura and their datasource implementation
+    |   ├── local           # Local Datasource and classes
+    |   ├── remote          # Remote datasources and API Service
     │   ├── model           # Model data classes and mapper classes, both remote and local entities
     │   └── repo            # Single source of data.
+    |
+    ├── service             # Foreground Service to upload File to server
     |
     ├── di                  # Dependency Injection             
     │   └── module          # DI Modules
     |
     ├── ui                  # UI/View layer
-    |   ├── adapters        # All Adapters, viewholder and diffUtils for recyclerViews
-    |   ├── screens         # All App Screens 
-    |   └── usecases        # Use-case classes
+    |   ├── adapters        # Adapter, ViewHolder and DiffUtil
+    |   └── screens         # All App Screens 
     |
     └── utils               # Utility Classes / Kotlin extensions
 
@@ -173,7 +119,7 @@ Create quizzes of your own and contribute to the Quizzfy community.
 ## Architecture
 This app uses [***MVVM (Model View View-Model)***](https://developer.android.com/jetpack/docs/guide#recommended-app-arch) architecture.
 
-![](https://developer.android.com/topic/libraries/architecture/images/final-architecture.jpg)
+![](https://developer.android.com/topic/libraries/architecture/images/final-architecture.png)
   
 
 
