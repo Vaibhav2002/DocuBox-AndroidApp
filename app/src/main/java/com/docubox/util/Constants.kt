@@ -16,7 +16,7 @@ object Constants {
     const val REPORT_BUG_URL = "https://github.com/ishantchauhan710/DocuBox-AndroidApp/issues"
     const val VIEW_SOURCE_CODE_URL = "https://github.com/ishantchauhan710/DocuBox-AndroidApp"
 
-    const val HOW_TO_USE_URL = ""
+    const val HOW_TO_USE_URL = "https://github.com/Vaibhav2002/DocuBox-AndroidApp/blob/master/HOW%20TO%20USE.md"
     const val CONTACT_US_URL = "https://github.com/Vaibhav2002/DocuBox-AndroidApp/discussions"
 
     val folderOptions = listOf(
