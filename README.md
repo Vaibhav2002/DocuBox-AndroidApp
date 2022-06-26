@@ -59,10 +59,8 @@ It uses a custom NodeJS Server running on Linode. It uses Linode for database an
 
 ### Technical details 
 
-- DocuBox uses Firebase for user authentication, it supports email based authentication and Google authentication
-- DocuBox uses Hasura Cloud's PostgreSQL as it's primary database.
-- DocuBox uses Hasura's GraphQL API to access the database and is much easier to work with compared to a REST interface.
-- DocuBox has full offline support, it uses Android's ROOM database for caching all data offline.
+- DocuBox uses custom NodeJS Server running on Linode as its backend.
+- DocuBox uses Retrofit to make all REST API calls to the NodeJS backend.
 - DocuBox is made using Kotlin and following Modern Android Development practices.
 - DocuBox uses Kotlin Coroutines and Flow to handle all asynchronous tasks.
 - DocuBox uses all Jetpack libraries and follows MVVM architecture. It also has a G.O.A.T rating in Android's  M.A.D scorecard.
@@ -96,7 +94,7 @@ It uses a custom NodeJS Server running on Linode. It uses Linode for database an
 
 # Package Structure
     
-    dev.vaibhav.DocuBox    # Root Package
+    com.docubox             # Root Package
     .
     ├── data                # For data handling.
     |   ├── local           # Local Datasource and classes
