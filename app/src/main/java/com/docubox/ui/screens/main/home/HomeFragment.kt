@@ -13,7 +13,6 @@ import com.docubox.data.modes.local.FileType
 import com.docubox.data.modes.local.SearchResult
 import com.docubox.data.modes.local.StorageItem
 import com.docubox.databinding.FragmentHomeBinding
-import com.docubox.util.Constants.ABOUT_US_URL
 import com.docubox.util.Constants.CONTACT_US_URL
 import com.docubox.util.Constants.HOW_TO_USE_URL
 import com.docubox.util.extensions.*
@@ -68,7 +67,9 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         docsOption.singleClick { viewModel.onFileTypePress(FileType.File) }
         downloads.singleClick(this@HomeFragment::openDownloadsFolder)
         howToUse.singleClick { requireContext().openBrowser(HOW_TO_USE_URL) }
-        aboutUs.singleClick { requireContext().openBrowser(ABOUT_US_URL) }
+        aboutUs.singleClick {
+            findNavController().navigate(R.id.action_homeFragment_to_aboutUsBottomSheetFragment)
+        }
         contactUs.singleClick { requireContext().openBrowser(CONTACT_US_URL) }
         btnRefreshStorageConsumption.singleClick(viewModel::getStorageConsumption)
     }

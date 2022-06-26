@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:paddingHorizontal="24dp"
+    android:paddingVertical="32dp"
+    android:gravity="center"
+    android:background="@color/colorAppBackground"
+    android:orientation="vertical"
+    tools:context=".ui.screens.dialogs.AboutUsBottomSheetFragment">
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="160dp"
+        android:layout_height="160dp"
+        app:strokeWidth="0dp"
+        app:cardCornerRadius="80dp">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/app_logo"/>
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="DocuBox"
+        android:layout_marginTop="24dp"
+        android:textAppearance="@style/TextAppearance.MdcTypographyStyles.DisplaySmall"
+        android:textColor="?attr/colorPrimary"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Securely store all your files with DocuBox"
+        android:textAlignment="center"
+        android:textAppearance="@style/TextAppearance.MdcTypographyStyles.TitleSmall"
+        android:textColor="@color/colorTertiaryText"/>
+
+    <TextView
+        android:id="@+id/versionCodeTv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Version: 1.0.0"
+        android:textColor="@color/colorTertiaryText"
+        android:layout_marginTop="40dp"
+        android:textAppearance="@style/TextAppearance.Material3.LabelSmall"/>
+
+</LinearLayout>
