@@ -1,8 +1,8 @@
-![](media/screenshots/blog-cover.jpg)
+![](media/cover.png)
 
 # **DocuBox** 
 
-**DocuBox** is an cloud storage app in which we can securely save our files.
+### **DocuBox** is a cloud based file storing app where you can securely store and access your documents from anywhere around the world!
 
 <!-- # Blog ✍ -->
 
@@ -46,8 +46,9 @@ It uses a custom NodeJS Server running on Linode. It uses Linode for database an
 
 ### Insights into the app 🔎
 
-<!-- Place all mockups and banners here -->
-
+![](media/graphicA.png)
+![](media/graphicB.png)
+![](media/graphicC.png)
 ## 📸 Screenshots 
 
 |   |   |   |
@@ -80,7 +81,6 @@ It uses a custom NodeJS Server running on Linode. It uses Linode for database an
   - [ViewModel](https://developer.android.com/topic/libraries/architecture/viewmodel) - Stores UI-related data that isn't destroyed on UI changes. 
   - [ViewBinding](https://developer.android.com/topic/libraries/view-binding) - Generates a binding class for each XML layout file present in that module and allows you to more easily write code that interacts with views.
   - [DataBinding](https://developer.android.com/topic/libraries/data-binding) - Binds data directly into XML layouts
-  - [Room](https://developer.android.com/training/data-storage/room) - Room is an android library which is an ORM which wraps android's native SQLite database
   - [DataStore](https://developer.android.com/topic/libraries/architecture/datastore) - Jetpack DataStore is a data storage solution that allows you to store key-value pairs or typed objects with protocol buffers.
 - [Dependency Injection](https://developer.android.com/training/dependency-injection) - 
   - [Hilt-Dagger](https://dagger.dev/hilt/) - Standard library to incorporate Dagger dependency injection into an Android application.
@@ -93,6 +93,8 @@ It uses a custom NodeJS Server running on Linode. It uses Linode for database an
 - [Material Components for Android](https://github.com/material-components/material-components-android) - Modular and customizable Material Design UI components for Android.
 
 # Package Structure
+
+![](media/package%20structure.png)
     
     com.docubox             # Root Package
     .
@@ -117,7 +119,7 @@ It uses a custom NodeJS Server running on Linode. It uses Linode for database an
 ## Architecture
 This app uses [***MVVM (Model View View-Model)***](https://developer.android.com/jetpack/docs/guide#recommended-app-arch) architecture.
 
-![](https://developer.android.com/topic/libraries/architecture/images/final-architecture.png)
+![](media/architecture.png)
   
 
 
