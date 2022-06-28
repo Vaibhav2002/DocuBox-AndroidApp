@@ -6,9 +6,9 @@
 
 This project is developed by **Team 404** for Hashnode x Linode hackathon. This team comprises of [Ishant](https://github.com/ishantchauhan710/) and [Vaibhav](https://github.com/Vaibhav2002).
 
-<!-- # Blog ✍ -->
+# Blog ✍
 
-<!-- To know more about how I build this project, read my article on https://vaibhav2002.hashnode.dev/DocuBox-an-app-to-track-your-daily-water-intake-and-sleep-and-boost-your-work-efficiency-auth0hackathon -->
+To know more about how I build this project, read my article on https://ishantchauhan.hashnode.dev/docubox-securely-store-access-and-share-your-files-on-cloud
 
 ## Application Install
 
