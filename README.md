@@ -8,11 +8,14 @@
 
 <!-- To know more about how I build this project, read my article on https://vaibhav2002.hashnode.dev/DocuBox-an-app-to-track-your-daily-water-intake-and-sleep-and-boost-your-work-efficiency-auth0hackathon -->
 
-# Application Install
+## Application Install
 
 ***You can Install and test latest DocuBox app from below 👇***
 
 [![DocuBox](https://img.shields.io/badge/DocuBox✅-APK-red.svg?style=for-the-badge&logo=android)](https://github.com/Vaibhav2002/DocuBox-AndroidApp/releases/tag/v1.0.0)
+
+### How to use this app
+To know how to use this app [read this](HOW%20TO%20USE.md) or watch this [video](https://youtu.be/z94j9FA-5oY)
 
 ## Setup
 - Clone the repository on your machine.
@@ -34,7 +37,7 @@ It uses a nodejs backend which is deployed on an ubuntu server running on [Linod
 - Clean and Simple Material UI.
 - Best and Clean Code Quality following Modern Android Development, SOLID Principles and much more.
 
-### App Features
+## App Features
 
 - **User Authentication** - Supports email based authentication
 - **Saving Files** - You can upload your files to DocuBox's cloud storage and access it anywhere.
@@ -44,7 +47,7 @@ It uses a nodejs backend which is deployed on an ubuntu server running on [Linod
 - **File Download** - You can even download your files and save them locally for offline access.
 - **Enhanced File Search** - Super fast file searching which can search files instantly.
 
-### Insights into the app 🔎
+## Insights into the app 🔎
 
 ![](media/graphicA.png)
 ![](media/graphicB.png)
@@ -92,7 +95,7 @@ It uses a nodejs backend which is deployed on an ubuntu server running on [Linod
 - [Coil](https://github.com/coil-kt/coil) - An image loading library for Android backed by Kotlin Coroutines.
 - [Material Components for Android](https://github.com/material-components/material-components-android) - Modular and customizable Material Design UI components for Android.
 
-# Package Structure
+## Package Structure
 
 ![](media/package%20structure.png)
     
