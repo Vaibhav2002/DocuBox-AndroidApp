@@ -20,6 +20,7 @@
             android:background="?attr/backgroundColor"
             android:gravity="center"
             android:orientation="vertical"
+            android:paddingVertical="48dp"
             tools:context=".ui.screens.auth.login.LoginFragment">
 
             <TextView
@@ -27,7 +28,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="32dp"
-                android:layout_marginTop="48dp"
                 android:fontFamily="@font/poppins_medium"
                 android:text="Hello Again!"
                 android:textAlignment="center"
