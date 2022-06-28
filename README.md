@@ -28,7 +28,7 @@ const val BASE_URL = "http://[your server url]/api/"
 
 ## About
 
-It uses a custom NodeJS Server running on Linode. It uses Linode for database and storage hosting.
+It uses a custom NodeJS Server running on [Linode](https://www.linode.com). It uses [Linode](https://www.linode.com) for database and storage hosting.
 
 - Fully functionable. 
 - Clean and Simple Material UI.
