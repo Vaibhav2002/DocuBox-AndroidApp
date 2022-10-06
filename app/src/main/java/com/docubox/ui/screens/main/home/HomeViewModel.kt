@@ -5,7 +5,7 @@ import androidx.lifecycle.viewModelScope
 import com.docubox.data.local.models.FileType
 import com.docubox.data.local.models.StorageItem
 import com.docubox.data.remote.models.responses.StorageConsumption
-import com.docubox.data.repo.StorageRepo
+import com.docubox.domain.repo.StorageRepo
 import com.docubox.util.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.*
@@ -13,7 +13,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class HomeViewModel @Inject constructor(private val storageRepo: StorageRepo) : ViewModel() {
+class HomeViewModel @Inject constructor(private val repo: StorageRepo) : ViewModel() {
 
     private val _uiState = MutableStateFlow(HomeScreenState())
     val uiState = _uiState.asStateFlow()
@@ -26,7 +26,7 @@ class HomeViewModel @Inject constructor(private val storageRepo: StorageRepo) : 
     }
 
     fun getStorageConsumption() = viewModelScope.launch {
-        storageRepo.getStorageConsumption().collectLatest {
+        repo.getStorageConsumption().collectLatest {
             _uiState.emit(uiState.value.copy(isLoading = it is Resource.Loading))
             when (it) {
                 is Resource.Error -> _events.emit(HomeScreenEvents.ShowToast(it.message))
@@ -55,8 +55,8 @@ class HomeViewModel @Inject constructor(private val storageRepo: StorageRepo) : 
     }
 
     private suspend fun searchFiles(query: String, title: String, isByType: Boolean = false) {
-        val res = if (!isByType) storageRepo.searchFileByQuery(query)
-        else storageRepo.searchFileByType(query)
+        val res = if (!isByType) repo.searchFileByQuery(query)
+        else repo.searchFileByType(query)
         res.collectLatest {
             _uiState.emit(uiState.value.copy(isLoading = it is Resource.Loading))
             when (it) {

@@ -2,7 +2,7 @@ package com.docubox.ui.screens.auth.login
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.docubox.data.repo.AuthRepo
+import com.docubox.domain.repo.AuthRepo
 import com.docubox.util.Resource
 import com.docubox.util.validateEmail
 import com.docubox.util.validatePassword
@@ -12,7 +12,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class LoginViewModel @Inject constructor(private val authRepo: AuthRepo) : ViewModel() {
+    class LoginViewModel @Inject constructor(private val authRepo: AuthRepo) : ViewModel() {
 
     private val _uiState = MutableStateFlow(LoginScreenState())
     val uiState = _uiState.asStateFlow()

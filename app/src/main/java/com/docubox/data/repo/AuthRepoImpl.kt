@@ -9,14 +9,14 @@ import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
 
 // Repository for all authentication functions
-class AuthRepo @Inject constructor(
+class AuthRepoImpl @Inject constructor(
     private val authDataSource: AuthDataSource, // Class to login and signup user
-    private val preferencesRepo: PreferencesRepo, // Repository that contains data store functions
-) {
+    private val preferenceRepo: PreferenceRepo, // Repository that contains data store functions
+): AuthRepo {
 
-    fun isUserLoggedIn() = preferencesRepo.isUserLoggedIn()
+    override fun isUserLoggedIn() = preferenceRepo.isUserLoggedIn()
 
-    suspend fun loginUser(
+    override suspend fun loginUser(
         email: String,
         password: String
     ) = flow {
@@ -28,7 +28,7 @@ class AuthRepo @Inject constructor(
         emit(resource.mapToUnit())
     }
 
-    suspend fun registerUser(
+    override suspend fun registerUser(
         username: String,
         email: String,
         password: String
@@ -40,11 +40,11 @@ class AuthRepo @Inject constructor(
         emit(resource.mapToUnit())
     }
 
-    suspend fun logoutUser() {
-        preferencesRepo.removeUser()
+    override suspend fun logoutUser() {
+        preferenceRepo.removeUser()
     }
 
     private suspend fun saveUserLocally(userDto: UserDto?) {
-        userDto?.let { preferencesRepo.saveUser(it.toLocal()) }
+        userDto?.let { preferenceRepo.saveUser(it.toLocal()) }
     }
 }

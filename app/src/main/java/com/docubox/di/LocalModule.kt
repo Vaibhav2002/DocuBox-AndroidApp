@@ -8,6 +8,18 @@ import androidx.datastore.preferences.core.PreferenceDataStoreFactory
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.emptyPreferences
 import androidx.datastore.preferences.preferencesDataStoreFile
+import com.docubox.data.local.dataSources.dataStore.PreferencesManager
+import com.docubox.data.modes.mapper.FileMapper
+import com.docubox.data.modes.mapper.FolderMapper
+import com.docubox.data.modes.mapper.UserMapper
+import com.docubox.data.remote.dataSources.AuthDataSource
+import com.docubox.data.remote.dataSources.StorageDataSource
+import com.docubox.data.repo.AuthRepoImpl
+import com.docubox.data.repo.PreferencesRepoImpl
+import com.docubox.data.repo.StorageRepoImpl
+import com.docubox.domain.repo.AuthRepo
+import com.docubox.domain.repo.PreferenceRepo
+import com.docubox.domain.repo.StorageRepo
 import com.docubox.util.Constants.DATASTORE_NAME
 import dagger.Module
 import dagger.Provides
@@ -33,4 +45,30 @@ object LocalModule {
             scope = CoroutineScope(Dispatchers.IO + SupervisorJob()),
             produceFile = { context.preferencesDataStoreFile(DATASTORE_NAME) }
         )
+
+    @Provides
+    @Singleton
+    fun providesAuthRepo(
+        authDataSource: AuthDataSource,
+        preferencesRepo: PreferenceRepo,
+        userMapper: UserMapper
+    ): AuthRepo =
+        AuthRepoImpl(authDataSource, preferencesRepo, userMapper)
+
+    @Provides
+    @Singleton
+    fun providesPreferenceRepo(
+        preferencesManager: PreferencesManager
+    ): PreferenceRepo =
+        PreferencesRepoImpl(preferencesManager)
+
+    @Provides
+    @Singleton
+    fun providesStorageRepo(
+        storageDataSource: StorageDataSource,
+        preferencesRepo: PreferenceRepo,
+        fileMapper: FileMapper,
+        folderMapper: FolderMapper
+    ): StorageRepo =
+        StorageRepoImpl(storageDataSource, preferencesRepo, fileMapper, folderMapper)
 }

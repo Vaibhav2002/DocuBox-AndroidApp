@@ -2,7 +2,8 @@ package com.docubox.ui.screens.auth.register
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.docubox.data.repo.AuthRepo
+import com.docubox.data.repo.AuthRepoImpl
+import com.docubox.domain.repo.AuthRepo
 import com.docubox.util.Resource
 import com.docubox.util.validateEmail
 import com.docubox.util.validatePassword
@@ -13,7 +14,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class RegisterViewModel @Inject constructor(private val authRepo: AuthRepo) : ViewModel() {
+class RegisterViewModel @Inject constructor(private val repo: AuthRepo) : ViewModel() {
 
     private val _uiState = MutableStateFlow(RegisterScreenState())
     val uiState = _uiState.asStateFlow()
@@ -66,7 +67,7 @@ class RegisterViewModel @Inject constructor(private val authRepo: AuthRepo) : Vi
         password: String,
     ) {
 
-        authRepo.registerUser(username, email, password).collectLatest {
+        repo.registerUser(username, email, password).collectLatest {
             _uiState.emit(uiState.value.copy(isLoading = it is Resource.Loading))
             when (it) {
                 is Resource.Error -> _events.emit(RegisterScreenEvents.ShowToast(it.message))

@@ -6,8 +6,8 @@ import com.docubox.data.local.CacheData
 import com.docubox.data.local.StorageCache
 import com.docubox.data.local.models.StorageItem
 import com.docubox.data.remote.models.MessageResponse
-import com.docubox.data.repo.PreferencesRepo
-import com.docubox.data.repo.StorageRepo
+import com.docubox.domain.repo.PreferenceRepo
+import com.docubox.domain.repo.StorageRepo
 import com.docubox.util.Resource
 import com.docubox.util.isValidEmail
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -20,7 +20,7 @@ import javax.inject.Inject
 @HiltViewModel
 class DocumentsViewModel @Inject constructor(
     private val storageRepo: StorageRepo,
-    private val preferencesRepo: PreferencesRepo
+    private val preferenceRepo: PreferenceRepo
 ) : ViewModel() {
 
     companion object {
@@ -33,7 +33,7 @@ class DocumentsViewModel @Inject constructor(
     private val _events = MutableSharedFlow<DocumentsScreenEvents>()
     val events = _events.asSharedFlow()
 
-    private var directory = preferencesRepo.getUser()?.rootDirectory
+    private var directory = preferenceRepo.getUser()?.rootDirectory
 
     init {
         getAllData(directory)
@@ -41,7 +41,7 @@ class DocumentsViewModel @Inject constructor(
 
     fun getCurrentDirectory() = directory
 
-    val userToken = preferencesRepo.getUserToken()!!
+    val userToken = preferenceRepo.getUserToken()!!
 
     fun getData() = viewModelScope.launch {
         getAllData(directory)

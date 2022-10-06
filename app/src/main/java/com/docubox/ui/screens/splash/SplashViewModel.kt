@@ -2,7 +2,7 @@ package com.docubox.ui.screens.splash
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.docubox.data.repo.AuthRepo
+import com.docubox.domain.repo.AuthRepo
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableSharedFlow
