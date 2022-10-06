@@ -4,7 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.docubox.data.modes.local.FolderOptions
+import com.docubox.data.local.models.FolderOptions
 import com.docubox.databinding.ItemOptionsBinding
 import com.docubox.databinding.OptionsBottomSheetBinding
 import com.docubox.util.extensions.compose

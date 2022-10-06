@@ -16,9 +16,9 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.docubox.R
-import com.docubox.data.modes.local.FileOption
-import com.docubox.data.modes.local.FolderOptions
-import com.docubox.data.modes.local.StorageItem
+import com.docubox.data.local.models.FileOption
+import com.docubox.data.local.models.FolderOptions
+import com.docubox.data.local.models.StorageItem
 import com.docubox.databinding.FragmentDocumentsBinding
 import com.docubox.databinding.ItemStorageBinding
 import com.docubox.databinding.SheetUploadDocumentBinding

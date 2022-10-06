@@ -9,9 +9,9 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.docubox.R
-import com.docubox.data.modes.local.FileType
-import com.docubox.data.modes.local.SearchResult
-import com.docubox.data.modes.local.StorageItem
+import com.docubox.data.local.models.FileType
+import com.docubox.data.local.models.SearchResult
+import com.docubox.data.local.models.StorageItem
 import com.docubox.databinding.FragmentHomeBinding
 import com.docubox.util.Constants.CONTACT_US_URL
 import com.docubox.util.Constants.HOW_TO_USE_URL

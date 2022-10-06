@@ -2,7 +2,7 @@ package com.docubox.ui.screens.main.searchResults
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.docubox.data.modes.local.StorageItem
+import com.docubox.data.local.models.StorageItem
 import com.docubox.data.repo.StorageRepo
 import com.docubox.util.Resource
 import com.docubox.util.isValidEmail

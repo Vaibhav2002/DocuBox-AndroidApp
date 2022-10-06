@@ -2,8 +2,8 @@ package com.docubox.ui.screens.main.shared
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.docubox.data.modes.local.StorageItem
-import com.docubox.data.modes.remote.MessageResponse
+import com.docubox.data.local.models.StorageItem
+import com.docubox.data.remote.models.MessageResponse
 import com.docubox.data.repo.StorageRepo
 import com.docubox.util.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel

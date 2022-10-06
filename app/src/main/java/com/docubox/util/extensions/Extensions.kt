@@ -10,8 +10,8 @@ import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.edit
 import androidx.fragment.app.Fragment
 import com.docubox.R
-import com.docubox.data.modes.local.FileType
-import com.docubox.data.modes.local.StorageItem
+import com.docubox.data.local.models.FileType
+import com.docubox.data.local.models.StorageItem
 import com.docubox.databinding.ActionBarBinding
 import com.docubox.util.Constants
 import com.docubox.util.Secrets.BASE_URL

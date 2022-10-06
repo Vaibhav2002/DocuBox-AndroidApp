@@ -1,7 +1,7 @@
 package com.docubox.data.repo
 
 import com.docubox.data.local.dataSources.dataStore.PreferencesManager
-import com.docubox.data.modes.local.User
+import com.docubox.data.local.models.User
 import com.google.gson.Gson
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject

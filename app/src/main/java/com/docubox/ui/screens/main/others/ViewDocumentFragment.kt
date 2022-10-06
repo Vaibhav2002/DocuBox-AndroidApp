@@ -6,7 +6,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.docubox.R
-import com.docubox.data.modes.remote.responses.file.FileDto
+import com.docubox.data.remote.models.responses.file.FileDto
 import com.docubox.databinding.FragmentViewDocumentBinding
 import com.docubox.util.Secrets.BASE_URL
 import com.docubox.util.extensions.setupActionBar

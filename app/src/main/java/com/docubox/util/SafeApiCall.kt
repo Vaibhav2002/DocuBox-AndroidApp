@@ -1,6 +1,6 @@
 package com.docubox.util
 
-import com.docubox.data.modes.remote.MessageResponse
+import com.docubox.data.remote.models.MessageResponse
 import com.google.gson.Gson
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
