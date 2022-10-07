@@ -1,6 +1,6 @@
 package com.docubox.ui.screens.main.home
 
-import com.docubox.data.modes.local.StorageItem
+import com.docubox.data.local.models.StorageItem
 
 sealed class HomeScreenEvents {
     data class ShowToast(val message: String) : HomeScreenEvents()

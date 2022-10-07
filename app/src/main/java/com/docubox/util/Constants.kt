@@ -2,8 +2,8 @@ package com.docubox.util
 
 import android.Manifest
 import android.os.Build
-import com.docubox.data.modes.local.FileOption
-import com.docubox.data.modes.local.FolderOptions
+import com.docubox.data.local.models.FileOption
+import com.docubox.data.local.models.FolderOptions
 
 // All our app's constant data variables
 object Constants {

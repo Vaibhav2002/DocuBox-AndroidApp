@@ -9,7 +9,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.docubox.R
-import com.docubox.data.modes.local.User
+import com.docubox.data.local.models.User
 import com.docubox.databinding.FragmentProfileBinding
 import com.docubox.ui.screens.auth.AuthActivity
 import com.docubox.util.Constants.REPORT_BUG_URL

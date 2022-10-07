@@ -2,10 +2,10 @@ package com.docubox.ui.screens.main.documents
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.docubox.data.local.dataSources.CacheData
-import com.docubox.data.local.dataSources.StorageCache
-import com.docubox.data.modes.local.StorageItem
-import com.docubox.data.modes.remote.MessageResponse
+import com.docubox.data.local.CacheData
+import com.docubox.data.local.StorageCache
+import com.docubox.data.local.models.StorageItem
+import com.docubox.data.remote.models.MessageResponse
 import com.docubox.data.repo.PreferencesRepo
 import com.docubox.data.repo.StorageRepo
 import com.docubox.util.Resource

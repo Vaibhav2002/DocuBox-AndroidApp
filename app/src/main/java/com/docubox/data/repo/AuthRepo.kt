@@ -1,8 +1,8 @@
 package com.docubox.data.repo
 
-import com.docubox.data.modes.mapper.UserMapper
-import com.docubox.data.modes.remote.UserDto
+import com.docubox.data.mapper.toLocal
 import com.docubox.data.remote.dataSources.AuthDataSource
+import com.docubox.data.remote.models.UserDto
 import com.docubox.util.Resource
 import com.docubox.util.extensions.mapToUnit
 import kotlinx.coroutines.flow.flow
@@ -12,7 +12,6 @@ import javax.inject.Inject
 class AuthRepo @Inject constructor(
     private val authDataSource: AuthDataSource, // Class to login and signup user
     private val preferencesRepo: PreferencesRepo, // Repository that contains data store functions
-    private val userMapper: UserMapper // To map data between local and remote
 ) {
 
     fun isUserLoggedIn() = preferencesRepo.isUserLoggedIn()
@@ -46,6 +45,6 @@ class AuthRepo @Inject constructor(
     }
 
     private suspend fun saveUserLocally(userDto: UserDto?) {
-        userDto?.let { preferencesRepo.saveUser(userMapper.toLocal(it)) }
+        userDto?.let { preferencesRepo.saveUser(it.toLocal()) }
     }
 }

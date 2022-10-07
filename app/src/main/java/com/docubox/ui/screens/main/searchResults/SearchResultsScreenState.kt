@@ -1,6 +1,6 @@
 package com.docubox.ui.screens.main.searchResults
 
-import com.docubox.data.modes.local.StorageItem
+import com.docubox.data.local.models.StorageItem
 
 data class SearchResultsScreenState(
     val items: List<StorageItem.File> = emptyList(),

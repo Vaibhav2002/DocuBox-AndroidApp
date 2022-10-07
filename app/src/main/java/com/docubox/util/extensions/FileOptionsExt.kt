@@ -2,8 +2,8 @@ package com.docubox.util.extensions
 
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
-import com.docubox.data.modes.local.FileOption
-import com.docubox.data.modes.local.StorageItem
+import com.docubox.data.local.models.FileOption
+import com.docubox.data.local.models.StorageItem
 import com.docubox.ui.screens.dialogs.FileOptionsBottomSheetFragment
 import com.docubox.util.Constants
 

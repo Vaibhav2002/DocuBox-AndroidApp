@@ -1,8 +1,8 @@
 package com.docubox.data.remote.api
 
-import com.docubox.data.modes.remote.UserDto
-import com.docubox.data.modes.remote.requests.LoginRequest
-import com.docubox.data.modes.remote.requests.RegisterRequest
+import com.docubox.data.remote.models.UserDto
+import com.docubox.data.remote.models.requests.LoginRequest
+import com.docubox.data.remote.models.requests.RegisterRequest
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.POST

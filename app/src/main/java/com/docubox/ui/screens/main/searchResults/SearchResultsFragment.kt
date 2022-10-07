@@ -7,8 +7,8 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.docubox.R
-import com.docubox.data.modes.local.FileOption
-import com.docubox.data.modes.local.StorageItem
+import com.docubox.data.local.models.FileOption
+import com.docubox.data.local.models.StorageItem
 import com.docubox.databinding.FragmentSearchResultsBinding
 import com.docubox.databinding.ItemStorageBinding
 import com.docubox.ui.adapter.OneAdapter

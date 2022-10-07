@@ -1,8 +1,8 @@
 package com.docubox.data.remote.dataSources
 
-import com.docubox.data.modes.remote.UserDto
-import com.docubox.data.modes.remote.requests.LoginRequest
-import com.docubox.data.modes.remote.requests.RegisterRequest
+import com.docubox.data.remote.models.UserDto
+import com.docubox.data.remote.models.requests.LoginRequest
+import com.docubox.data.remote.models.requests.RegisterRequest
 import com.docubox.data.remote.api.AuthService
 import com.docubox.util.Resource
 import com.docubox.util.safeApiCall

@@ -54,7 +54,7 @@
         tools:layout="@layout/fragment_search_results" >
         <argument
             android:name="results"
-            app:argType="com.docubox.data.modes.local.SearchResult" />
+            app:argType="com.docubox.data.local.models.SearchResult" />
         <argument
             android:name="title"
             app:argType="string" />
@@ -69,7 +69,7 @@
         tools:layout="@layout/fragment_view_document" >
         <argument
             android:name="file"
-            app:argType="com.docubox.data.modes.local.StorageItem$File" />
+            app:argType="com.docubox.data.local.models.StorageItem$File" />
     </fragment>
     <dialog
         android:id="@+id/aboutUsBottomSheetFragment"

@@ -4,9 +4,15 @@ import android.app.DownloadManager
 import android.content.Context
 import android.net.Uri
 import android.os.Environment
-import com.docubox.data.modes.local.StorageItem
-import com.docubox.data.modes.remote.requests.*
+import com.docubox.data.local.models.StorageItem
 import com.docubox.data.remote.api.StorageService
+import com.docubox.data.remote.models.requests.CreateFolderRequest
+import com.docubox.data.remote.models.requests.GetFileRequest
+import com.docubox.data.remote.models.requests.GetFolderRequest
+import com.docubox.data.remote.models.requests.RenameFileRequest
+import com.docubox.data.remote.models.requests.RenameFolderRequest
+import com.docubox.data.remote.models.requests.RevokeFileRequest
+import com.docubox.data.remote.models.requests.ShareFileRequest
 import com.docubox.util.FileUtil
 import com.docubox.util.extensions.asJwt
 import com.docubox.util.runSafeAsync

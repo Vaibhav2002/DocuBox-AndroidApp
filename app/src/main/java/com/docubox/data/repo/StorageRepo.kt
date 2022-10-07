@@ -1,10 +1,9 @@
 package com.docubox.data.repo
 
-import com.docubox.data.modes.local.StorageItem
-import com.docubox.data.modes.mapper.FileMapper
-import com.docubox.data.modes.mapper.FolderMapper
-import com.docubox.data.modes.remote.responses.StorageConsumption
+import com.docubox.data.local.models.StorageItem
+import com.docubox.data.mapper.toLocal
 import com.docubox.data.remote.dataSources.StorageDataSource
+import com.docubox.data.remote.models.responses.StorageConsumption
 import com.docubox.util.Resource
 import com.docubox.util.extensions.mapMessages
 import com.docubox.util.extensions.mapTo
@@ -18,9 +17,7 @@ import javax.inject.Singleton
 @Singleton
 class StorageRepo @Inject constructor(
     private val storageDataSource: StorageDataSource,
-    private val preferencesRepo: PreferencesRepo,
-    private val fileMapper: FileMapper,
-    private val folderMapper: FolderMapper
+    private val preferencesRepo: PreferencesRepo
 ) {
 
     private val token
@@ -30,35 +27,35 @@ class StorageRepo @Inject constructor(
         emit(Resource.Loading())
         emit(storageDataSource.getAllFiles(fileDirectory, token))
     }.map { resource -> //mapping all files in GetFileResponse model to list of Local StorageItem.File
-        resource mapTo { fileMapper.toLocal(it.fileList) }
+        resource mapTo { it.fileList.toLocal() }
     }.flowOn(Dispatchers.IO)
 
     suspend fun getAllFolders(folderParentDirectory: String?) = flow {
         emit(Resource.Loading())
         emit(storageDataSource.getAllFolders(folderParentDirectory, token))
     }.map { resource -> //mapping all folders in GetFolderResponse model to list of Local StorageItem.Folder
-        resource mapTo { folderMapper.toLocal(it.folderList) }
+        resource mapTo { it.folderList.toLocal() }
     }.flowOn(Dispatchers.IO)
 
     suspend fun createFolder(folderName: String, folderDirectory: String) = flow {
         emit(Resource.Loading())
         emit(storageDataSource.createFolder(folderName, folderDirectory, token))
     }.map { res ->
-        res.mapTo { folderMapper.toLocal(it.folder) }
+        res.mapTo { it.folder.toLocal() }
     }.flowOn(Dispatchers.IO)
 
     suspend fun getFilesSharedByMe() = flow {
         emit(Resource.Loading())
         emit(storageDataSource.getFilesSharedByMe(token))
     }.map { res ->
-        res.mapTo { fileMapper.toLocal(it.fileList) }
+        res.mapTo { it.fileList.toLocal() }
     }.flowOn(Dispatchers.IO)
 
     suspend fun getFilesSharedToMe() = flow {
         emit(Resource.Loading())
         emit(storageDataSource.getFilesSharedToMe(token))
     }.map { res ->
-        res.mapTo { fileMapper.toLocal(it.fileList) }
+        res.mapTo { it.fileList.toLocal() }
     }.flowOn(Dispatchers.IO)
 
     suspend fun shareFile(fileId: String, email: String) = flow {
@@ -98,14 +95,14 @@ class StorageRepo @Inject constructor(
         emit(Resource.Loading())
         emit(storageDataSource.searchFilesByName(query, token))
     }.map { res ->
-        res.mapTo { fileMapper.toLocal(it.fileList) }
+        res.mapTo { it.fileList.toLocal() }
     }.flowOn(Dispatchers.IO)
 
     suspend fun searchFileByType(type: String) = flow {
         emit(Resource.Loading())
         emit(storageDataSource.searchFilesByType(type, token))
     }.map { res ->
-        res.mapTo { fileMapper.toLocal(it.fileList) }
+        res.mapTo { it.fileList.toLocal() }
     }.flowOn(Dispatchers.IO)
 
     suspend fun downloadFile(file: StorageItem.File) {

@@ -1,6 +1,6 @@
 package com.docubox.ui.screens.main.documents
 
-import com.docubox.data.modes.local.StorageItem
+import com.docubox.data.local.models.StorageItem
 
 data class DocumentsScreenState(
     val storageItems: List<StorageItem> = emptyList(),

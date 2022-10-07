@@ -2,9 +2,9 @@ package com.docubox.ui.screens.main.home
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.docubox.data.modes.local.FileType
-import com.docubox.data.modes.local.StorageItem
-import com.docubox.data.modes.remote.responses.StorageConsumption
+import com.docubox.data.local.models.FileType
+import com.docubox.data.local.models.StorageItem
+import com.docubox.data.remote.models.responses.StorageConsumption
 import com.docubox.data.repo.StorageRepo
 import com.docubox.util.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel

@@ -1,11 +1,17 @@
 package com.docubox.data.remote.api
 
-import com.docubox.data.modes.remote.MessageResponse
-import com.docubox.data.modes.remote.requests.*
-import com.docubox.data.modes.remote.responses.StorageConsumption
-import com.docubox.data.modes.remote.responses.file.FileListResponse
-import com.docubox.data.modes.remote.responses.folder.CreateFolderResponse
-import com.docubox.data.modes.remote.responses.folder.GetFolderResponse
+import com.docubox.data.remote.models.MessageResponse
+import com.docubox.data.remote.models.responses.StorageConsumption
+import com.docubox.data.remote.models.responses.file.FileListResponse
+import com.docubox.data.remote.models.responses.folder.CreateFolderResponse
+import com.docubox.data.remote.models.responses.folder.GetFolderResponse
+import com.docubox.data.remote.models.requests.CreateFolderRequest
+import com.docubox.data.remote.models.requests.GetFileRequest
+import com.docubox.data.remote.models.requests.GetFolderRequest
+import com.docubox.data.remote.models.requests.RenameFileRequest
+import com.docubox.data.remote.models.requests.RenameFolderRequest
+import com.docubox.data.remote.models.requests.RevokeFileRequest
+import com.docubox.data.remote.models.requests.ShareFileRequest
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.Header
