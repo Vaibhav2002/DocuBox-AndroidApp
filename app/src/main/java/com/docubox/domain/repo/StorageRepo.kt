@@ -1,8 +1,8 @@
 package com.docubox.domain.repo
 
-import com.docubox.data.modes.local.StorageItem
-import com.docubox.data.modes.remote.MessageResponse
-import com.docubox.data.modes.remote.responses.StorageConsumption
+import com.docubox.data.local.models.StorageItem
+import com.docubox.data.remote.models.MessageResponse
+import com.docubox.data.remote.models.responses.StorageConsumption
 import com.docubox.util.Resource
 import kotlinx.coroutines.flow.Flow
 

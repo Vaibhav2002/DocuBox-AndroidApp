@@ -9,9 +9,6 @@ import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.emptyPreferences
 import androidx.datastore.preferences.preferencesDataStoreFile
 import com.docubox.data.local.dataSources.dataStore.PreferencesManager
-import com.docubox.data.modes.mapper.FileMapper
-import com.docubox.data.modes.mapper.FolderMapper
-import com.docubox.data.modes.mapper.UserMapper
 import com.docubox.data.remote.dataSources.AuthDataSource
 import com.docubox.data.remote.dataSources.StorageDataSource
 import com.docubox.data.repo.AuthRepoImpl
@@ -50,10 +47,9 @@ object LocalModule {
     @Singleton
     fun providesAuthRepo(
         authDataSource: AuthDataSource,
-        preferencesRepo: PreferenceRepo,
-        userMapper: UserMapper
+        preferencesRepo: PreferenceRepo
     ): AuthRepo =
-        AuthRepoImpl(authDataSource, preferencesRepo, userMapper)
+        AuthRepoImpl(authDataSource, preferencesRepo)
 
     @Provides
     @Singleton
@@ -66,9 +62,7 @@ object LocalModule {
     @Singleton
     fun providesStorageRepo(
         storageDataSource: StorageDataSource,
-        preferencesRepo: PreferenceRepo,
-        fileMapper: FileMapper,
-        folderMapper: FolderMapper
+        preferencesRepo: PreferenceRepo
     ): StorageRepo =
-        StorageRepoImpl(storageDataSource, preferencesRepo, fileMapper, folderMapper)
+        StorageRepoImpl(storageDataSource, preferencesRepo)
 }

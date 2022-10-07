@@ -19,8 +19,8 @@ import javax.inject.Singleton
 @Singleton
 class StorageRepoImpl @Inject constructor(
     private val storageDataSource: StorageDataSource,
-    private val preferencesRepo: PreferencesRepo
-) {
+    private val preferenceRepo: PreferenceRepo
+): StorageRepo {
 
     private val token
         get() = preferenceRepo.getUserToken()!!

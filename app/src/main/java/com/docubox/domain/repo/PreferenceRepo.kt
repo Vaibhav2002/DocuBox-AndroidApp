@@ -1,6 +1,6 @@
 package com.docubox.domain.repo
 
-import com.docubox.data.modes.local.User
+import com.docubox.data.local.models.User
 import kotlinx.coroutines.flow.Flow
 
 interface PreferenceRepo {
