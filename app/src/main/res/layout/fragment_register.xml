@@ -29,7 +29,7 @@
                 android:layout_marginHorizontal="32dp"
                 android:layout_marginTop="48dp"
                 android:fontFamily="@font/poppins_medium"
-                android:text="Welcome"
+                android:text="@string/welcome"
                 android:textAlignment="center"
                 android:textAppearance="@style/TextAppearance.MdcTypographyStyles.HeadlineLarge"
                 android:textColor="?attr/colorOnBackground" />
@@ -42,7 +42,7 @@
                 android:layout_marginTop="4dp"
                 android:alpha="0.9"
                 android:fontFamily="@font/poppins_light"
-                android:text="Securely store your files with DocuBox"
+                android:text="@string/securely_store_your_files_with_docubox"
                 android:textAlignment="center"
                 android:textAppearance="@style/TextAppearance.MdcTypographyStyles.TitleLarge"
                 android:textColor="@color/colorSecondaryText" />
@@ -54,7 +54,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="24dp"
                 android:layout_marginTop="64dp"
-                android:hint="Full Name"
+                android:hint="@string/full_name"
                 app:boxBackgroundColor="@color/gray"
                 app:boxStrokeWidth="0dp"
                 app:boxStrokeWidthFocused="0dp"
@@ -78,7 +78,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="24dp"
                 android:layout_marginTop="16dp"
-                android:hint="Email"
+                android:hint="@string/email"
                 app:boxBackgroundColor="@color/gray"
                 app:boxStrokeWidth="0dp"
                 app:boxStrokeWidthFocused="0dp"
@@ -102,7 +102,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="24dp"
                 android:layout_marginTop="16dp"
-                android:hint="Password"
+                android:hint="@string/password"
                 app:boxBackgroundColor="@color/gray"
                 app:boxStrokeWidth="0dp"
                 app:boxStrokeWidthFocused="0dp"
@@ -129,7 +129,7 @@
                 android:layout_marginTop="32dp"
                 android:fontFamily="@font/poppins_semi_bold"
                 android:paddingVertical="16dp"
-                android:text="Register"
+                android:text="@string/register"
                 android:textAppearance="@style/TextAppearance.MdcTypographyStyles.TitleMedium"
                 app:cornerRadius="8dp"
                 app:elevation="8dp" />
@@ -148,7 +148,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="6dp"
                     android:fontFamily="@font/poppins_regular"
-                    android:text="Already have an account?"
+                    android:text="@string/already_have_an_account"
                     android:textAppearance="@style/TextAppearance.Material3.LabelMedium" />
 
                 <TextView
@@ -156,7 +156,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/poppins_regular"
-                    android:text="Login"
+                    android:text="@string/login"
                     android:textAppearance="@style/TextAppearance.Material3.LabelLarge"
                     android:textColor="?attr/colorPrimary" />
 

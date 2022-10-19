@@ -47,6 +47,7 @@
         app:layout_constraintBottom_toBottomOf="@+id/btnBack"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/btnBack"
-        app:tint="@color/colorSecondaryText" />
+        app:tint="@color/colorSecondaryText"
+        tools:ignore="ContentDescription" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -29,7 +29,8 @@
             android:layout_height="match_parent"
             android:layout_margin="40dp"
             android:scaleType="centerCrop"
-            android:src="@drawable/img_lock" />
+            android:src="@drawable/img_lock"
+            tools:ignore="ContentDescription" />
 
     </com.google.android.material.card.MaterialCardView>
 
@@ -39,7 +40,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
         android:fontFamily="@font/poppins_semi_bold"
-        android:text="Securely store\nyour files"
+        android:text="@string/securely_store_nyour_files"
         android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.MdcTypographyStyles.HeadlineLarge"
         android:textColor="@color/colorSecondaryText"
@@ -55,7 +56,7 @@
         android:layout_marginBottom="48dp"
         android:alpha="0.7"
         android:fontFamily="@font/poppins_light"
-        android:text="Save all your important documents on the cloud with maximum security"
+        android:text="@string/save_all_your_important_documents_on_the_cloud_with_maximum_security"
         android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.MdcTypographyStyles.TitleMedium"
         android:textColor="@color/colorSecondaryText"
@@ -91,7 +92,7 @@
                 android:layout_marginStart="4dp"
                 android:layout_weight="1"
                 android:paddingVertical="16dp"
-                android:text="Register"
+                android:text="@string/register"
                 android:textColor="?attr/colorOnPrimary"
                 app:backgroundTint="@color/colorPrimary"
                 app:cornerRadius="8dp"
@@ -105,7 +106,7 @@
                 android:layout_marginStart="4dp"
                 android:layout_weight="1"
                 android:paddingVertical="16dp"
-                android:text="Login"
+                android:text="@string/login"
                 android:textColor="?attr/colorOnBackground"
                 app:cornerRadius="8dp"
                 app:rippleColor="@color/rippleColor" />
