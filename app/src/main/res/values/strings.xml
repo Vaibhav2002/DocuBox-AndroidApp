@@ -5,4 +5,17 @@
     <string name="cancel">Cancel</string>
     <string name="rationale_message">Core features are based on these permission</string>
     <string name="permission_settings_message">You need to allow necessary permissions in Settings manually</string>
+    <string name="hello_again">Hello Again!</string>
+    <string name="welcome_back_you_ve_been_missed">Welcome back you\'ve been missed</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="login">Login</string>
+    <string name="don_t_have_an_account_yet">Don\'t have an account yet?</string>
+    <string name="register">Register</string>
+    <string name="welcome">Welcome</string>
+    <string name="securely_store_your_files_with_docubox">Securely store your files with DocuBox</string>
+    <string name="full_name">Full Name</string>
+    <string name="already_have_an_account">Already have an account?</string>
+    <string name="securely_store_nyour_files">Securely store\nyour files</string>
+    <string name="save_all_your_important_documents_on_the_cloud_with_maximum_security">Save all your important documents on the cloud with maximum security</string>
 </resources>
